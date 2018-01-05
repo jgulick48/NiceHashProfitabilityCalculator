@@ -76,7 +76,10 @@ namespace NiceHash_Profitability_Tracker
             }
             catch(Exception ex)
             {
-                
+				if (cbDebug.Checked)
+				{
+					MessageBox.Show(ex.ToString());
+				}
             }
         }
 
