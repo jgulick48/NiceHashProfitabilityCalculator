@@ -109,7 +109,7 @@ namespace NiceHash_Profitability_Tracker
         private void AddLineToDatabase(string Wallet, double secondsPassed, float Earnings)
         {
             string sql = String.Format("insert into earnings (daterecorded, earnings, secondspassed, wallet)" +
-                "values ({0},{1},{2},'{3}')", lastCheck, Earnings,secondsPassed,Wallet);
+                "values ({0},{1},{2},'{3}')", lastCheck.ToString(CultureInfo.CreateSpecificCulture("en-US")), Earnings.ToString(CultureInfo.CreateSpecificCulture("en-US")), secondsPassed.ToString(CultureInfo.CreateSpecificCulture("en-US")), Wallet);
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             m_dbConnection.Open();
             command.ExecuteNonQuery();
