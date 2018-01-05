@@ -119,7 +119,18 @@ namespace NiceHash_Profitability_Tracker
             float total = 0;
             foreach(dynamic stat in stats)
             {
-                total += float.Parse(stat.balance.ToString());
+				float balance = 0;
+				if (float.TryParse(stat.balance.ToString(), out balance))
+				{
+					total += float.Parse(stat.balance.ToString());
+				}
+				else
+				{
+					if(cbDebug.Checked)
+					{
+						MessageBox.Show("Error parsing balance. Value: " + stat.balance.ToString() + " is not valid." + Environment.NewLine + stats.ToString());
+					}
+				}
             }
             return total;
         }
