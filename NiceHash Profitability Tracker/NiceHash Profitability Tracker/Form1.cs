@@ -198,11 +198,11 @@ namespace NiceHash_Profitability_Tracker
                 mathRoundValue = 2;
                 avgEarnings = avgEarnings * (float)nudBTCValue.Value;
             }
-            lblPMHA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString();
-            lblPHHA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString();
-            lblPDHA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString();
-            lblPWHA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString();
-            lblPMthHA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString();
+            lblPMHA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPHHA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPDHA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPWHA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPMthHA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
         }
         private void UpdateDayMetrics()
         {
@@ -214,11 +214,11 @@ namespace NiceHash_Profitability_Tracker
                 mathRoundValue = 2;
                 avgEarnings = avgEarnings * (float)nudBTCValue.Value;
             }
-            lblPMDA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString();
-            lblPHDA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString();
-            lblPDDA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString();
-            lblPWDA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString();
-            lblPMthDA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString();
+            lblPMDA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPHDA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPDDA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPWDA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPMthDA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
 
         }
         private void UpdateWeekMetrics()
@@ -231,11 +231,11 @@ namespace NiceHash_Profitability_Tracker
                 mathRoundValue = 2;
                 avgEarnings = avgEarnings * (float)nudBTCValue.Value;
             }
-            lblPMWA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString();
-            lblPHWA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString();
-            lblPDWA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString();
-            lblPWWA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString();
-            lblPMthWA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString();
+            lblPMWA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPHWA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPDWA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPWWA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPMthWA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
         }
 
         private void tbWalletAddr_TextChanged(object sender, EventArgs e)
