@@ -1,0 +1,21 @@
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\NiceHash Profitability Tracker.exe.config
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\NiceHash Profitability Tracker.exe
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\NiceHash Profitability Tracker.pdb
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\EntityFramework.dll
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\Newtonsoft.Json.dll
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\System.Data.SQLite.dll
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\System.Data.SQLite.EF6.dll
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\System.Data.SQLite.Linq.dll
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\EntityFramework.xml
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\Newtonsoft.Json.xml
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\System.Data.SQLite.xml
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\bin\Debug\System.Data.SQLite.dll.config
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\obj\Debug\NiceHash Profitability Tracker.csprojResolveAssemblyReference.cache
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\obj\Debug\NiceHash_Profitability_Tracker.Form1.resources
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\obj\Debug\NiceHash_Profitability_Tracker.Properties.Resources.resources
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\obj\Debug\NiceHash Profitability Tracker.csproj.GenerateResource.Cache
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\obj\Debug\NiceHash Profitability Tracker.csproj.CoreCompileInputs.cache
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\obj\Debug\NiceHash Profitability Tracker.exe
+c:\users\jeremy.gulick\source\repos\NiceHash Profitability Tracker\NiceHash Profitability Tracker\obj\Debug\NiceHash Profitability Tracker.pdb
