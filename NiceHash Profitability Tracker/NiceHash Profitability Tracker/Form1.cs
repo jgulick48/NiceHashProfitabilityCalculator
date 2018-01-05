@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -120,7 +121,7 @@ namespace NiceHash_Profitability_Tracker
             foreach(dynamic stat in stats)
             {
 				float balance = 0;
-				if (float.TryParse(stat.balance.ToString(), out balance))
+				if (float.TryParse(stat.balance.ToString(),NumberStyles.Any, CultureInfo.InvariantCulture, out balance))
 				{
 					total += float.Parse(stat.balance.ToString());
 				}
