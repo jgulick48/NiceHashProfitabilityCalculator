@@ -123,7 +123,7 @@ namespace NiceHash_Profitability_Tracker
 				float balance = 0;
 				if (float.TryParse(stat.balance.ToString(),NumberStyles.Any, CultureInfo.InvariantCulture, out balance))
 				{
-					total += float.Parse(stat.balance.ToString());
+					total += balance;
 				}
 				else
 				{
