@@ -34,7 +34,7 @@
             this.tbWalletAddr = new System.Windows.Forms.TextBox();
             this.btnScanAction = new System.Windows.Forms.Button();
             this.lblRefreshTime = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudRefreshTimer = new System.Windows.Forms.NumericUpDown();
             this.lblLastRefreshTimelbl = new System.Windows.Forms.Label();
             this.lblPendingBalancelbl = new System.Windows.Forms.Label();
             this.lblPrftMinlbl = new System.Windows.Forms.Label();
@@ -69,7 +69,7 @@
             this.cbCnvtBTC = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblFIAT = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRefreshTimer)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBTCValue)).BeginInit();
             this.SuspendLayout();
@@ -92,6 +92,7 @@
             this.tbWalletAddr.Size = new System.Drawing.Size(488, 20);
             this.tbWalletAddr.TabIndex = 1;
             this.tbWalletAddr.Text = "37s2ZBNJ64sa1bkYh3HWAkncJSxcXoBzvn";
+            this.tbWalletAddr.TextChanged += new System.EventHandler(this.tbWalletAddr_TextChanged);
             // 
             // btnScanAction
             // 
@@ -113,28 +114,28 @@
             this.lblRefreshTime.TabIndex = 3;
             this.lblRefreshTime.Text = "Refresh Time (seconds):";
             // 
-            // numericUpDown1
+            // nudRefreshTimer
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(138, 380);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.nudRefreshTimer.Location = new System.Drawing.Point(138, 380);
+            this.nudRefreshTimer.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.nudRefreshTimer.Minimum = new decimal(new int[] {
             30,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 4;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.nudRefreshTimer.Name = "nudRefreshTimer";
+            this.nudRefreshTimer.Size = new System.Drawing.Size(120, 20);
+            this.nudRefreshTimer.TabIndex = 4;
+            this.nudRefreshTimer.Value = new decimal(new int[] {
             30,
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.nudRefreshTimer.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // lblLastRefreshTimelbl
             // 
@@ -477,6 +478,7 @@
             0,
             0,
             0});
+            this.nudBTCValue.ValueChanged += new System.EventHandler(this.nudBTCValue_ValueChanged);
             // 
             // cbCnvtBTC
             // 
@@ -520,7 +522,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.lblPendingBalancelbl);
             this.Controls.Add(this.lblLastRefreshTimelbl);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.nudRefreshTimer);
             this.Controls.Add(this.lblRefreshTime);
             this.Controls.Add(this.btnScanAction);
             this.Controls.Add(this.tbWalletAddr);
@@ -529,7 +531,7 @@
             this.Name = "Form1";
             this.Text = "NiceHash Profitability Monitor";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRefreshTimer)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBTCValue)).EndInit();
@@ -544,7 +546,7 @@
         private System.Windows.Forms.TextBox tbWalletAddr;
         private System.Windows.Forms.Button btnScanAction;
         private System.Windows.Forms.Label lblRefreshTime;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudRefreshTimer;
         private System.Windows.Forms.Label lblLastRefreshTimelbl;
         private System.Windows.Forms.Label lblPendingBalancelbl;
         private System.Windows.Forms.Label lblPrftMinlbl;

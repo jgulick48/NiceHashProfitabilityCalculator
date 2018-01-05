@@ -18,8 +18,9 @@ namespace NiceHash_Profitability_Tracker
     public partial class Form1 : Form
     {
         SQLiteConnection m_dbConnection;
-        double lastCheck;
-        float lastCheckValue;
+        private double lastCheck;
+        private float lastCheckValue;
+        private bool Loading = false;
         public Form1()
         {
             InitializeComponent();
@@ -27,7 +28,12 @@ namespace NiceHash_Profitability_Tracker
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            timer1.Interval = (int)numericUpDown1.Value * 1000;
+            if (!Loading)
+            {
+                Properties.Settings.Default.RefreshTime = nudRefreshTimer.Value;
+                Properties.Settings.Default.Save();
+            }
+            timer1.Interval = (int)nudRefreshTimer.Value * 1000;
         }
         private void UpdateBalance()
         {
@@ -76,6 +82,11 @@ namespace NiceHash_Profitability_Tracker
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Loading = true;
+            nudBTCValue.Value = Properties.Settings.Default.BTCValue;
+            tbWalletAddr.Text = Properties.Settings.Default.WalletAddress;
+            nudRefreshTimer.Value = Properties.Settings.Default.RefreshTime;
+            Loading = false;
             if(!File.Exists("Nicehash.sqlite"))
             {
                 SQLiteConnection.CreateFile("Nicehash.sqlite");
@@ -210,6 +221,24 @@ namespace NiceHash_Profitability_Tracker
             lblPDWA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString();
             lblPWWA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString();
             lblPMthWA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString();
+        }
+
+        private void tbWalletAddr_TextChanged(object sender, EventArgs e)
+        {
+            if (!Loading)
+            {
+                Properties.Settings.Default.WalletAddress = tbWalletAddr.Text;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void nudBTCValue_ValueChanged(object sender, EventArgs e)
+        {
+            if (!Loading)
+            {
+                Properties.Settings.Default.BTCValue = nudBTCValue.Value;
+                Properties.Settings.Default.Save();
+            }
         }
     }
 }
