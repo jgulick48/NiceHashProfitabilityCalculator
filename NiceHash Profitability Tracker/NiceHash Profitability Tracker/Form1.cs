@@ -176,8 +176,8 @@ namespace NiceHash_Profitability_Tracker
             float recordedEarnings = 0;
             while (reader.Read())
             {
-                recordedEarnings += float.Parse(reader["earnings"].ToString());
-                recordedSeconds += double.Parse(reader["secondspassed"].ToString());
+                recordedEarnings += float.Parse(reader["earnings"].ToString(), CultureInfo.InvariantCulture);
+                recordedSeconds += double.Parse(reader["secondspassed"].ToString(), CultureInfo.InvariantCulture);
             }
             m_dbConnection.Close();
             return (recordedEarnings / (float)recordedSeconds);
