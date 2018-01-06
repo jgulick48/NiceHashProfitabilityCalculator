@@ -14,5 +14,3 @@ BTC: 1DnD4an89ixaaG8HC5jnh4x6W3ttoZv2R1
 LTC: LM4pgHRovVgnyQrtjyE28aysvgeqMTobyR
 
 ETH: 0x21d91C3D033b3C428bae69b628d83B974C0B2B5A
-
-CoinBase: jeremyg@threegm.com
