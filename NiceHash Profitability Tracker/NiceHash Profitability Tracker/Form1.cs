@@ -13,6 +13,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.Data.SQLite;
+using NiceHashWorkerMonitor;
 
 namespace NiceHash_Profitability_Tracker
 {
@@ -52,12 +53,12 @@ namespace NiceHash_Profitability_Tracker
                     {
                         if(lastCheck == 0)
                         {
-                            lastCheck = GetUnixTimeStamp();
+                            lastCheck = NiceHashWorkerMonitor.DataHelper.DateTimeHelper.GetUnixTimeStamp();
                             lastCheckValue = getBalanceFromResults(returnData.result.stats);
                         }
                         else
                         {
-                            double elapsedTime = (GetUnixTimeStamp() - lastCheck);
+                            double elapsedTime = (NiceHashWorkerMonitor.DataHelper.DateTimeHelper.GetUnixTimeStamp() - lastCheck);
                             lastCheck = lastCheck + elapsedTime;
                             float newBal = getBalanceFromResults(returnData.result.stats);
                             float earnings = newBal - lastCheckValue;
@@ -71,7 +72,7 @@ namespace NiceHash_Profitability_Tracker
                         }
                     }
                 }
-                lblLRT.Text = UnixTimeStampToDateTime(lastCheck).ToLongTimeString();
+                lblLRT.Text = NiceHashWorkerMonitor.DataHelper.DateTimeHelper.UnixTimeStampToDateTime(lastCheck).ToLongTimeString();
                 lblPB.Text = lastCheckValue.ToString();
                 lblFIAT.Text = Math.Round((lastCheckValue * (float)nudBTCValue.Value), 2).ToString();
             }
@@ -154,21 +155,10 @@ namespace NiceHash_Profitability_Tracker
                 btnScanAction.Text = "Start";
             }
         }
-        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
-        {
-            // Unix timestamp is seconds past epoch
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-            return dtDateTime;
-        }
-        public static double GetUnixTimeStamp()
-        {
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            return (DateTime.UtcNow - dtDateTime).TotalSeconds;
-        }
+        
         private float getSecondAverage(int howFarBack)
         {
-            string sql = "select earnings, secondspassed from earnings where daterecorded > '" + (GetUnixTimeStamp()-howFarBack) + "'";
+            string sql = "select earnings, secondspassed from earnings where daterecorded > '" + (NiceHashWorkerMonitor.DataHelper.DateTimeHelper.GetUnixTimeStamp()-howFarBack) + "'";
             m_dbConnection.Open();
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             SQLiteDataReader reader = command.ExecuteReader();

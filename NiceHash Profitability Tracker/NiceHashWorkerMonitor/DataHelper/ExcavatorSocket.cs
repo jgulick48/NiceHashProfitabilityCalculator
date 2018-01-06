@@ -14,23 +14,19 @@ namespace NiceHashWorkerMonitor.DataHelper
 {
 	class ExcavatorSocket
 	{
-		private TcpClient _tcpclient;
+		private static TcpClient _tcpclient;
 
-		private StreamReader _sReader;
-		private StreamWriter _sWriter;
+		private static StreamReader _sReader;
+		private static StreamWriter _sWriter;
 		public static List<string> lst_storeddata = new List<string>();
 
 		private Boolean _isConnected;
-		public dynamic Client(string ipAddress, int id, string method, string[] param)
-		{
-			//server ip
-			//String ipAddress = "192.168.43.15";
-			//port number
-			int portNum = 4000;
+		public static dynamic Client(Objects.MiningRig rig, int id, string method, string[] param)
+		{;
 			try
 			{
 				_tcpclient = new TcpClient();
-				_tcpclient.Connect(ipAddress, portNum);
+				_tcpclient.Connect(rig.IPAddress, rig.Port);
 				return HandleCommunication(id, method, param);
 			}
 			catch (Exception ex)
@@ -39,7 +35,7 @@ namespace NiceHashWorkerMonitor.DataHelper
 			}
 		}
 
-		public dynamic HandleCommunication(int id, string method, string[] param)
+		public static dynamic HandleCommunication(int id, string method, string[] param)
 		{
 			_sReader = new StreamReader(_tcpclient.GetStream(), Encoding.ASCII);
 			_sWriter = new StreamWriter(_tcpclient.GetStream(), Encoding.ASCII);
@@ -59,7 +55,7 @@ namespace NiceHashWorkerMonitor.DataHelper
 			_tcpclient.Close();
 			return returnData;
 		}
-		public JArray GetJArrayFromStringArray(string[] param)
+		public static JArray GetJArrayFromStringArray(string[] param)
 		{
 			JArray array = new JArray();
 			foreach(string para in param)
