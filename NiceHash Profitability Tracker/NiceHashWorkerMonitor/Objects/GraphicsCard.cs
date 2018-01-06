@@ -13,5 +13,7 @@ namespace NiceHashWorkerMonitor.Objects
 		public string GUID;
 		public string DeviceName;
 		public string FriendlyName;
+		public Objects.GraphicsCardMetrics LastGPUMetric;
+		public List<Objects.WorkUnit> LastWorkUnits;
 	}
 }

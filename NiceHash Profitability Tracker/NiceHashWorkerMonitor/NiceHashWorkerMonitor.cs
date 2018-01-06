@@ -15,6 +15,7 @@ namespace NiceHashWorkerMonitor
 		private Objects.MiningRig rig;
 		private double TimeSinceLastScan;
 		private bool Loading;
+		private Dictionary<int, int> CardIDDropdown;
 		private Queue<Objects.WorkUnit> pendingWU = new Queue<Objects.WorkUnit>();
 		private Queue<Objects.GraphicsCardMetrics> pendingGCM = new Queue<Objects.GraphicsCardMetrics>();
 		public NiceHashWorkerMonitor()
@@ -44,6 +45,7 @@ namespace NiceHashWorkerMonitor
 			WAI.tbWorkerName.Text = Properties.Settings.Default.WorkerName;
 			if (WAI.ShowDialog() == DialogResult.OK)
 			{
+				CardIDDropdown = new Dictionary<int, int>();
 				Properties.Settings.Default.WalletAddress = WAI.tbWalletAddress.Text;
 				Properties.Settings.Default.WorkerName = WAI.tbWorkerName.Text;
 				Properties.Settings.Default.Save();
@@ -58,8 +60,10 @@ namespace NiceHashWorkerMonitor
 				rig.CardList = new Dictionary<int, Objects.GraphicsCard>();
 				foreach (Objects.GraphicsCard card in cards)
 				{
+					CardIDDropdown.Add(cbCardSelect.Items.Count, card.ID);
+					cbCardSelect.Items.Add(card.DeviceName);
 					rig.CardList.Add(card.ID, card);
-					DataHelper.DataManager.CreateOrUpdateGraphicsCard(card);
+					card.FriendlyName = DataHelper.DataManager.CreateOrUpdateGraphicsCard(card);
 				}
 			}
 			else
@@ -127,6 +131,7 @@ namespace NiceHashWorkerMonitor
 			{
 				bgwDataBaseSave.RunWorkerAsync();
 			}
+			UpdateCardStatsView();
 		}
 
 		private void bgwDataBaseSave_DoWork(object sender, DoWorkEventArgs e)
@@ -139,6 +144,73 @@ namespace NiceHashWorkerMonitor
 			while(pendingWU.Count > 0)
 			{
 				DataHelper.DataManager.InsertGraphicsWorkUnit(pendingWU.Dequeue());
+			}
+		}
+
+		private void cbCardSelect_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(cbCardSelect.SelectedIndex != -1)
+			{
+				btnSaveCard.Enabled = true;
+				UpdateCardStatsView();
+			}
+			else
+			{
+				btnSaveCard.Enabled = false;
+			}
+		}
+
+		private void btnEditRig_Click(object sender, EventArgs e)
+		{
+			NiceHashWorkerMonitor_Load(sender, e);
+		}
+		private void UpdateCardStatsView()
+		{
+			int CardSelect = cbCardSelect.SelectedIndex;
+			if(CardSelect != -1)
+			{
+				Objects.GraphicsCard cardSelected = rig.CardList[CardIDDropdown[CardSelect]];
+				tbGCName.Text = cardSelected.DeviceName;
+				tbGCFriendlyName.Text = cardSelected.FriendlyName;
+				if (cardSelected.LastWorkUnits != null)
+				{
+					string AlgoName = "";
+					double totalTime = 0;
+					float totalEarnings = 0;
+					foreach (Objects.WorkUnit WU in cardSelected.LastWorkUnits)
+					{
+						AlgoName += WU.algo.Name + "\t";
+						totalTime += WU.Time;
+						totalEarnings += (WU.caclulatedEarnings * WU.efficiency) * ((float)WU.Time / (60 * 60 * 24));
+					}
+					float EarningsRate = (totalEarnings / (float)totalTime) * (60 * 60 * 24) * cardSelected.LastWorkUnits.Count();
+					tbGCEarnings.Text = EarningsRate.ToString();
+					tbAlogName.Text = AlgoName;
+				}
+				else
+				{
+					tbAlogName.Text = "";
+					tbGCEarnings.Text = "";
+				}
+				if (cardSelected.LastGPUMetric != null)
+				{
+					tbGCTemp.Text = cardSelected.LastGPUMetric.Temprature.ToString();
+					tbGCPower.Text = cardSelected.LastGPUMetric.Power.ToString();
+					tbGPUPercent.Text = cardSelected.LastGPUMetric.GPUUsage.ToString();
+					tbFanPercent.Text = cardSelected.LastGPUMetric.FanSpeedPercent.ToString();
+					tbFanRPM.Text = cardSelected.LastGPUMetric.FanSpeedRPM.ToString();
+				}
+				tbCardUUID.Text = cardSelected.GUID;
+			}
+		}
+
+		private void btnSaveCard_Click(object sender, EventArgs e)
+		{
+			if(cbCardSelect.SelectedIndex != -1)
+			{
+				Objects.GraphicsCard cardSelected = rig.CardList[CardIDDropdown[cbCardSelect.SelectedIndex]];
+				cardSelected.FriendlyName = tbGCFriendlyName.Text;
+				DataHelper.DataManager.UpdateGraphicsCardFirendlyName(cardSelected);
 			}
 		}
 	}

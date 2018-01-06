@@ -39,6 +39,7 @@ namespace NiceHashWorkerMonitor.DataHelper
 		}
 		public static List<Objects.WorkUnit> GetWorkUnitsForRig(Objects.MiningRig rig, dynamic PayRate, double timeElapsed)
 		{
+			rig.ClearWorkMetrics();
 			List<Objects.WorkUnit> workUnits = new List<Objects.WorkUnit>();
 			Dictionary<int, Objects.Algorithm> algorithmKey = new Dictionary<int, Objects.Algorithm>();
 			dynamic work = DataHelper.ExcavatorSocket.Client(rig, 0, "algorithm.list", new string[0]);
@@ -64,6 +65,7 @@ namespace NiceHashWorkerMonitor.DataHelper
 						workUnit.caclulatedEarnings = getEarningsInfo(workUnit.speed, ParseFloatFromString(PayRate.result.simplemultialgo[workUnit.algo.GetNiceHashID()].paying.ToString()), workUnit.algo.GetHashMultiplier());
 						workUnit.TimeRecorded = rig.LastCheckTime;
 						workUnits.Add(workUnit);
+						rig.CardList[(int)worker.device_id].LastWorkUnits.Add(workUnit);
 					}
 				}
 			}
@@ -91,6 +93,7 @@ namespace NiceHashWorkerMonitor.DataHelper
 			metric.Temprature = CardInfo.gpu_temp;
 			metric.TimeElapsed = timeElapsed;
 			metric.TimeRecorded = rig.LastCheckTime;
+			card.LastGPUMetric = metric;
 			return metric;
 		}
 		public static string GetGraphicsCardDetailsString(Objects.MiningRig rig, Objects.GraphicsCard card)

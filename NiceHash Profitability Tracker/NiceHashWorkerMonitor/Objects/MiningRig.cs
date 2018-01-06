@@ -16,5 +16,12 @@ namespace NiceHashWorkerMonitor.Objects
 		public string Name;
 		public Dictionary<int,GraphicsCard> CardList;
 		public double LastCheckTime;
+		public void ClearWorkMetrics()
+		{
+			foreach(GraphicsCard card in CardList.Values)
+			{
+				card.LastWorkUnits = new List<WorkUnit>();
+			}
+		}
 	}
 }

@@ -28,7 +28,7 @@ namespace NiceHashWorkerMonitor.DataHelper
 			rig.ID = long.Parse(cmd.Parameters["?Rig_ID"].Value.ToString());
 			m_cn.Close();
 		}
-		public static void CreateOrUpdateGraphicsCard(Objects.GraphicsCard cardInfo)
+		public static string CreateOrUpdateGraphicsCard(Objects.GraphicsCard cardInfo)
 		{
 			MySqlConnection m_cn = new MySqlConnection(connectionstring);
 			MySqlCommand cmd = new MySqlCommand("createOrUpdateGraphicsCard", m_cn);
@@ -39,13 +39,14 @@ namespace NiceHashWorkerMonitor.DataHelper
 			cmd.Parameters["?UU_ID"].Direction = ParameterDirection.Input;
 			cmd.Parameters.AddWithValue("?GC_NAME", cardInfo.DeviceName);
 			cmd.Parameters["?GC_NAME"].Direction = ParameterDirection.Input;
-			cmd.Parameters.AddWithValue("?F_NAME", cardInfo.FriendlyName);
-			cmd.Parameters["?F_NAME"].Direction = ParameterDirection.Input;
+			cmd.Parameters.Add("?F_NAME", MySqlDbType.VarChar);
+			cmd.Parameters["?F_NAME"].Direction = ParameterDirection.Output;
 			cmd.Parameters.AddWithValue("?D_ID", cardInfo.ID);
 			cmd.Parameters["?D_ID"].Direction = ParameterDirection.Input;
 			m_cn.Open();
 			cmd.ExecuteNonQuery();
 			m_cn.Close();
+			return cmd.Parameters["?F_NAME"].Value.ToString();
 		}
 		public static void InsertGraphicsCardMetric(Objects.GraphicsCardMetrics metric)
 		{
@@ -116,6 +117,19 @@ namespace NiceHashWorkerMonitor.DataHelper
 			m_cn.Close();
 
 			return float.Parse(cmd.Parameters["?A_MULTIPLIER"].Value.ToString());
+		}
+		public static void UpdateGraphicsCardFirendlyName(Objects.GraphicsCard card)
+		{
+			MySqlConnection m_cn = new MySqlConnection(connectionstring);
+			MySqlCommand cmd = new MySqlCommand("UpdateGraphicsCardFirendlyName", m_cn);
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.AddWithValue("?F_NAME", card.FriendlyName);
+			cmd.Parameters["?F_NAME"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?UU_ID", card.GUID);
+			cmd.Parameters["?UU_ID"].Direction = ParameterDirection.Input;
+			m_cn.Open();
+			cmd.ExecuteNonQuery();
+			m_cn.Close();
 		}
 	}
 }
