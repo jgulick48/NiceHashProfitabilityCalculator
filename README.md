@@ -4,7 +4,8 @@ A quick GUI to monitor your profitability on NiceHash and store numbers in an sq
 # NiceHashWorkerMonitor
 This is a logger program that interfaces with Excavator on each miner and saves the data to an sqlite database. I'm working on another app that is used to read this data and generate reports that you can export or view graphcs.
 
-
+# NiceHashStatsViewer
+This is a graphing tool to see the logs that you have generated.  I have 4 reports currenly each the Card and Rig levels and am working on adding more reports. Feel free to put in requests for what you would like to see and I'll try to prioritize various things based on demand.
 
 
 Donation Addresses:
