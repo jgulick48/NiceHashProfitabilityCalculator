@@ -52,7 +52,7 @@ namespace NiceHashStatsViewer.Reports
 					"inner join GraphicsCard as GC on R.MiningRigID = GC.RigID " +
 					"inner join CardStats as cs on GC.uuid = cs.CardUUID " +
 					"where R.WorkerName = '{1}' and TimeRecorded > {2} and TimeRecorded <= {3} " +
-					"group by R.WorkerName, ROUND(cs.TimeRecorded/{0})" +
+					"group by R.WorkerName, ROUND(cs.TimeRecorded/{0}) " +
 					"order by ROUND(cs.TimeRecorded/{0}) asc", resolution, rig["WorkerName"], DateTimeHelper.GetUnixTimeStamp(start), DateTimeHelper.GetUnixTimeStamp(end), stat, sumation);
 				RigReports.Add(DataHelper.DataBaseHandler.GetDataTableFromSQL(rigPowerSQL));
 			}
@@ -75,7 +75,7 @@ namespace NiceHashStatsViewer.Reports
 					"inner join GraphicsCard as GC on R.MiningRigID = GC.RigID " +
 					"left join WorkUnit as wu on GC.uuid = wu.CardUUID " +
 					"where R.WorkerName = '{1}' and TimeRecorded > {2} and TimeRecorded <= {3} " +
-					"group by R.WorkerName, ROUND(wu.TimeRecorded/{0})" +
+					"group by R.WorkerName, ROUND(wu.TimeRecorded/{0}) " +
 					"order by ROUND(wu.TimeRecorded/{0}) asc", resolution, rig["WorkerName"], DateTimeHelper.GetUnixTimeStamp(start), DateTimeHelper.GetUnixTimeStamp(end), stat, sumation);
 				RigReports.Add(DataHelper.DataBaseHandler.GetDataTableFromSQL(rigPowerSQL));
 			}
@@ -101,7 +101,7 @@ namespace NiceHashStatsViewer.Reports
 					"inner join GraphicsCard as GC on R.MiningRigID = GC.RigID " +
 					"inner join CardStats as cs on GC.uuid = cs.CardUUID " +
 					"where GC.uuid = '{1}' and TimeRecorded > {2} and TimeRecorded <= {3} " +
-					"group by GC.uuid, ROUND(cs.TimeRecorded/{0})" +
+					"group by GC.uuid, ROUND(cs.TimeRecorded/{0}) " +
 					"order by ROUND(cs.TimeRecorded/{0}) asc", resolution, card["uuid"], DateTimeHelper.GetUnixTimeStamp(start), DateTimeHelper.GetUnixTimeStamp(end), stat, sumation);
 				RigReports.Add(DataHelper.DataBaseHandler.GetDataTableFromSQL(rigPowerSQL));
 			}
@@ -126,7 +126,7 @@ namespace NiceHashStatsViewer.Reports
 					"inner join GraphicsCard as GC on R.MiningRigID = GC.RigID " +
 					"left join WorkUnit as wu on GC.uuid = wu.CardUUID " +
 					"where GC.uuid = '{1}' and TimeRecorded > {2} and TimeRecorded <= {3} " +
-					"group by GC.uuid, ROUND(wu.TimeRecorded/{0})" +
+					"group by GC.uuid, ROUND(wu.TimeRecorded/{0}) " +
 					"order by ROUND(wu.TimeRecorded/{0}) asc", resolution, card["uuid"], DateTimeHelper.GetUnixTimeStamp(start), DateTimeHelper.GetUnixTimeStamp(end), stat, sumation);
 				RigReports.Add(DataHelper.DataBaseHandler.GetDataTableFromSQL(rigPowerSQL));
 			}

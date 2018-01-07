@@ -26,14 +26,17 @@ namespace NiceHashWorkerMonitor.DataHelper
 		{
 			List<Objects.GraphicsCard> cards = new List<Objects.GraphicsCard>();
 			dynamic deviceList = DataHelper.ExcavatorSocket.Client(rig, 0, "device.list", new string[0]);
-			foreach(dynamic device in deviceList.devices)
+			if(deviceList != null)
 			{
-				Objects.GraphicsCard card = new Objects.GraphicsCard();
-				card.ID = device.device_id;
-				card.DeviceName = device.name;
-				FillExtraGCDetails(rig, card);
-				card.RigID = rig.ID;
-				cards.Add(card);
+				foreach(dynamic device in deviceList.devices)
+				{
+					Objects.GraphicsCard card = new Objects.GraphicsCard();
+					card.ID = device.device_id;
+					card.DeviceName = device.name;
+					FillExtraGCDetails(rig, card);
+					card.RigID = rig.ID;
+					cards.Add(card);
+				}
 			}
 			return cards;
 		}
