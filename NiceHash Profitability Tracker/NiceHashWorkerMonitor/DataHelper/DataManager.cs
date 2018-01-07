@@ -8,7 +8,7 @@ namespace NiceHashWorkerMonitor.DataHelper
 {
 	public static class DataManager
 	{
-		public static int DataSaveMethod = 1;
+		public static int DataSaveMethod = 0;
 		public static void CreateOrGetRig(Objects.MiningRig rig)
 		{
 			switch(DataSaveMethod)

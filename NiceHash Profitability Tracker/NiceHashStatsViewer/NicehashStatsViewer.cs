@@ -53,10 +53,10 @@ namespace NiceHashStatsViewer
 					Reports.RigReports.RunRigStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "Temp", "Temp(C)", "WorkerName", false, "F");
 					break;
 				case 2:
-					Reports.RigReports.RunRigWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "Efficiency", "Efficiency %", "WorkerName", false,"P");
+					Reports.RigReports.RunRigWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "Efficiency", "Efficiency %", "WorkerName", false, "P");
 					break;
 				case 3:
-					Reports.RigReports.RunRigWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", "WorkerName", false, "F9");
+					Reports.RigReports.RunRigWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", "WorkerName", true, "F9");
 					break;
 			}
 		}
@@ -74,7 +74,7 @@ namespace NiceHashStatsViewer
 					Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Efficiency", "Efficiency %", "Name", false, "P");
 					break;
 				case 3:
-					Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", "Name", false, "F9");
+					Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", "Name", true, "F9");
 					break;
 			}
 		}

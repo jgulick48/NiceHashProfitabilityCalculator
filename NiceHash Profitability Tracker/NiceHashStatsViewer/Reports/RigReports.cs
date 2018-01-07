@@ -68,7 +68,7 @@ namespace NiceHashStatsViewer.Reports
 				string sumation = "";
 				if (sum)
 				{
-					sumation = "*Count(Distinct(wu.WorkUnitID))";
+					sumation = "*Count(Distinct(GC.uuid))";
 				}
 				string rigPowerSQL = string.Format(
 					"select (SUM(wu.Time * wu.{4})/SUM(wu.Time)){5} as {4}, ROUND(wu.TimeRecorded/{0}) as Time, R.WorkerName from MiningRig as R " +
