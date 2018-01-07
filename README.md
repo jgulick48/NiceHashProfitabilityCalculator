@@ -8,6 +8,22 @@ This is a logger program that interfaces with Excavator on each miner and saves 
 This is a graphing tool to see the logs that you have generated.  I have 4 reports currenly each the Card and Rig levels and am working on adding more reports. Feel free to put in requests for what you would like to see and I'll try to prioritize various things based on demand.
 
 
+# Quick How To:
+
+>Download the files from the release at https://github.com/jgulick48/NiceHashProfitabilityCalculator/releases/tag/1.0.0.10
+
+>Extract them to where ever you want on each miner.
+
+>Have NiceHash v2+ running.
+
+>Run the NiceHashWorkderMonitor.exe on each miner and put in your Wallet Address and a nickname for the miner (doesn't have to be the same as on NiceHash)
+
+>Press the Start Button on the Monitor.
+
+>From any machine you can now run the NiceHashStatsViewer.exe to run various reports using your Wallet Address. You will want to change the default time that is listed to be able to view recent stats. Best to let the monitor log for 10-20 minutes first just so you have stuff to view.
+
+>Feel free open and issue if you find problems or want to see some features added.
+
 Donation Addresses:
 
 BTC: 1DnD4an89ixaaG8HC5jnh4x6W3ttoZv2R1
