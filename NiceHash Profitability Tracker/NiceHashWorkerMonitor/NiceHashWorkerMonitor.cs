@@ -131,7 +131,7 @@ namespace NiceHashWorkerMonitor
 			{
 				bgwDataBaseSave.RunWorkerAsync();
 			}
-			UpdateCardStatsView();
+			UpdateCardStatsView(false);
 		}
 
 		private void bgwDataBaseSave_DoWork(object sender, DoWorkEventArgs e)
@@ -152,7 +152,7 @@ namespace NiceHashWorkerMonitor
 			if(cbCardSelect.SelectedIndex != -1)
 			{
 				btnSaveCard.Enabled = true;
-				UpdateCardStatsView();
+				UpdateCardStatsView(true);
 			}
 			else
 			{
@@ -164,14 +164,17 @@ namespace NiceHashWorkerMonitor
 		{
 			NiceHashWorkerMonitor_Load(sender, e);
 		}
-		private void UpdateCardStatsView()
+		private void UpdateCardStatsView(bool UpdateFriendlyName)
 		{
 			int CardSelect = cbCardSelect.SelectedIndex;
 			if(CardSelect != -1)
 			{
 				Objects.GraphicsCard cardSelected = rig.CardList[CardIDDropdown[CardSelect]];
 				tbGCName.Text = cardSelected.DeviceName;
-				tbGCFriendlyName.Text = cardSelected.FriendlyName;
+				if (UpdateFriendlyName)
+				{
+					tbGCFriendlyName.Text = cardSelected.FriendlyName;
+				}
 				if (cardSelected.LastWorkUnits != null)
 				{
 					string AlgoName = "";

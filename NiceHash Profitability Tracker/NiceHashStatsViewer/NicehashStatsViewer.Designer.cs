@@ -65,6 +65,7 @@
 			this.timerCardStatsGraphs = new System.Windows.Forms.Timer(this.components);
 			this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
 			this.cartesianChart2 = new LiveCharts.WinForms.CartesianChart();
+			this.cbCardUseFriendlyName = new System.Windows.Forms.CheckBox();
 			this.tcMain.SuspendLayout();
 			this.tpRigStats.SuspendLayout();
 			this.tcRigStats.SuspendLayout();
@@ -276,6 +277,7 @@
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.cbCardUseFriendlyName);
 			this.tabPage1.Controls.Add(this.cbGardStatsGraphLive);
 			this.tabPage1.Controls.Add(this.cartesianChart2);
 			this.tabPage1.Controls.Add(this.btnRunCardStatsGraphReport);
@@ -299,12 +301,13 @@
 			// 
 			this.cbGardStatsGraphLive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.cbGardStatsGraphLive.AutoSize = true;
-			this.cbGardStatsGraphLive.Location = new System.Drawing.Point(9, 441);
+			this.cbGardStatsGraphLive.Location = new System.Drawing.Point(130, 445);
 			this.cbGardStatsGraphLive.Name = "cbGardStatsGraphLive";
 			this.cbGardStatsGraphLive.Size = new System.Drawing.Size(46, 17);
 			this.cbGardStatsGraphLive.TabIndex = 10;
 			this.cbGardStatsGraphLive.Text = "Live";
 			this.cbGardStatsGraphLive.UseVisualStyleBackColor = true;
+			this.cbGardStatsGraphLive.Visible = false;
 			// 
 			// btnRunCardStatsGraphReport
 			// 
@@ -444,6 +447,16 @@
 			this.cartesianChart2.TabIndex = 9;
 			this.cartesianChart2.Text = "cartesianChart2";
 			// 
+			// cbCardUseFriendlyName
+			// 
+			this.cbCardUseFriendlyName.AutoSize = true;
+			this.cbCardUseFriendlyName.Location = new System.Drawing.Point(9, 445);
+			this.cbCardUseFriendlyName.Name = "cbCardUseFriendlyName";
+			this.cbCardUseFriendlyName.Size = new System.Drawing.Size(115, 17);
+			this.cbCardUseFriendlyName.TabIndex = 11;
+			this.cbCardUseFriendlyName.Text = "Use Friendly Name";
+			this.cbCardUseFriendlyName.UseVisualStyleBackColor = true;
+			// 
 			// NicehashStatsViewer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -504,6 +517,7 @@
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.ComponentModel.BackgroundWorker bgwCardStatsReport;
 		private System.Windows.Forms.Timer timerCardStatsGraphs;
+		private System.Windows.Forms.CheckBox cbCardUseFriendlyName;
 	}
 }
 

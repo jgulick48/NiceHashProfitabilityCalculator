@@ -97,7 +97,7 @@ namespace NiceHashStatsViewer.Reports
 					sumation = "*Count(Distinct(GC.uuid))";
 				}
 				string rigPowerSQL = string.Format(
-					"select (SUM(cs.Time * cs.{4})/SUM(cs.Time)){5} as {4}, ROUND(cs.TimeRecorded/{0}) as Time, GC.Name from MiningRig as R " +
+					"select (SUM(cs.Time * cs.{4})/SUM(cs.Time)){5} as {4}, ROUND(cs.TimeRecorded/{0}) as Time, GC.Name, GC.FriendlyName from MiningRig as R " +
 					"inner join GraphicsCard as GC on R.MiningRigID = GC.RigID " +
 					"inner join CardStats as cs on GC.uuid = cs.CardUUID " +
 					"where GC.uuid = '{1}' and TimeRecorded > {2} and TimeRecorded <= {3} " +
@@ -122,7 +122,7 @@ namespace NiceHashStatsViewer.Reports
 					sumation = "*Count(Distinct(wu.WorkUnitID))";
 				}
 				string rigPowerSQL = string.Format(
-					"select (SUM(wu.Time * wu.{4})/SUM(wu.Time)){5} as {4}, ROUND(wu.TimeRecorded/{0}) as Time, GC.Name from MiningRig as R " +
+					"select (SUM(wu.Time * wu.{4})/SUM(wu.Time)){5} as {4}, ROUND(wu.TimeRecorded/{0}) as Time, GC.Name, GC.FriendlyName from MiningRig as R " +
 					"inner join GraphicsCard as GC on R.MiningRigID = GC.RigID " +
 					"left join WorkUnit as wu on GC.uuid = wu.CardUUID " +
 					"where GC.uuid = '{1}' and TimeRecorded > {2} and TimeRecorded <= {3} " +
