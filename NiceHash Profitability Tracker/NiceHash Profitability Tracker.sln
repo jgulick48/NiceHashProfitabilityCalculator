@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiceHash Profitability Trac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiceHashWorkerMonitor", "NiceHashWorkerMonitor\NiceHashWorkerMonitor.csproj", "{2C671C2C-16F6-4748-8E6C-E67BF16DDE55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiceHashStatsViewer", "NiceHashStatsViewer\NiceHashStatsViewer.csproj", "{BC901F61-915D-4182-95A4-CF7AD0FA0958}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2C671C2C-16F6-4748-8E6C-E67BF16DDE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C671C2C-16F6-4748-8E6C-E67BF16DDE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C671C2C-16F6-4748-8E6C-E67BF16DDE55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC901F61-915D-4182-95A4-CF7AD0FA0958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC901F61-915D-4182-95A4-CF7AD0FA0958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC901F61-915D-4182-95A4-CF7AD0FA0958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC901F61-915D-4182-95A4-CF7AD0FA0958}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

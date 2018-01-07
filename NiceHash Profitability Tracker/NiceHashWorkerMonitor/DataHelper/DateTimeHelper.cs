@@ -15,6 +15,11 @@ namespace NiceHashWorkerMonitor.DataHelper
 			dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
 			return dtDateTime;
 		}
+		public static double GetUnixTimeStamp(DateTime time)
+		{
+			System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+			return (time.ToUniversalTime() - dtDateTime).TotalSeconds;
+		}
 		public static double GetUnixTimeStamp()
 		{
 			System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);

@@ -14,10 +14,10 @@ namespace NiceHashWorkerMonitor.DataHelper
 			switch(DataSaveMethod)
 			{
 				case 0:
-					DataHelper.MySQLHandler.CreateOrGetRig(rig);
+					DataHelper.MySQLHelper.CreateOrGetRig(rig);
 					break;
 				case 1:
-					DataHelper.sqliteHandler.CreateOrGetRig(rig);
+					DataHelper.sqliteHelper.CreateOrGetRig(rig);
 					break;
 			}
 		}
@@ -26,10 +26,10 @@ namespace NiceHashWorkerMonitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHandler.CreateOrUpdateGraphicsCard(cardInfo);
+					return DataHelper.MySQLHelper.CreateOrUpdateGraphicsCard(cardInfo);
 					break;
 				case 1:
-					return DataHelper.sqliteHandler.CreateOrUpdateGraphicsCard(cardInfo);
+					return DataHelper.sqliteHelper.CreateOrUpdateGraphicsCard(cardInfo);
 			}
 			return "";
 		}
@@ -38,10 +38,10 @@ namespace NiceHashWorkerMonitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					DataHelper.MySQLHandler.InsertGraphicsCardMetric(metric);
+					DataHelper.MySQLHelper.InsertGraphicsCardMetric(metric);
 					break;
 				case 1:
-					DataHelper.sqliteHandler.InsertGraphicsCardMetric(metric);
+					DataHelper.sqliteHelper.InsertGraphicsCardMetric(metric);
 					break;
 			}
 		}
@@ -50,10 +50,10 @@ namespace NiceHashWorkerMonitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					DataHelper.MySQLHandler.InsertGraphicsWorkUnit(workUnit);
+					DataHelper.MySQLHelper.InsertGraphicsWorkUnit(workUnit);
 					break;
 				case 1:
-					DataHelper.sqliteHandler.InsertGraphicsWorkUnit(workUnit);
+					DataHelper.sqliteHelper.InsertGraphicsWorkUnit(workUnit);
 					break;
 			}
 		}
@@ -62,10 +62,10 @@ namespace NiceHashWorkerMonitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHandler.GetAlgoFloatMultiplierByName(name);
+					return DataHelper.MySQLHelper.GetAlgoFloatMultiplierByName(name);
 					break;
 				case 1:
-					return DataHelper.sqliteHandler.GetAlgoFloatMultiplierByName(name);
+					return DataHelper.sqliteHelper.GetAlgoFloatMultiplierByName(name);
 					break;
 			}
 			return 0;
@@ -75,10 +75,10 @@ namespace NiceHashWorkerMonitor.DataHelper
 			switch(DataSaveMethod)
 			{
 				case 0:
-					DataHelper.MySQLHandler.UpdateGraphicsCardFirendlyName(card);
+					DataHelper.MySQLHelper.UpdateGraphicsCardFirendlyName(card);
 					break;
 				case 1:
-					DataHelper.sqliteHandler.UpdateGraphicsCardFirendlyName(card);
+					DataHelper.sqliteHelper.UpdateGraphicsCardFirendlyName(card);
 					break;
 			}
 		}

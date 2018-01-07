@@ -80,9 +80,9 @@
     <Compile Include="DataHelper\DateTimeHelper.cs" />
     <Compile Include="DataHelper\ExcavatorSocket.cs" />
     <Compile Include="DataHelper\GraphicsCardHelper.cs" />
-    <Compile Include="DataHelper\MySQLHandler.cs" />
+    <Compile Include="DataHelper\MySQLHelper.cs" />
     <Compile Include="DataHelper\NiceHashAPIHelper.cs" />
-    <Compile Include="DataHelper\sqliteHandler.cs" />
+    <Compile Include="DataHelper\sqliteHelper.cs" />
     <Compile Include="Forms\WorkerAddressInfo.cs">
       <SubType>Form</SubType>
     </Compile>
