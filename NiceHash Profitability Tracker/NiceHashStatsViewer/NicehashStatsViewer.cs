@@ -14,6 +14,7 @@ namespace NiceHashStatsViewer
 {
 	public partial class NicehashStatsViewer : Form
 	{
+		private bool loading = false;
 		public NicehashStatsViewer()
 		{
 			InitializeComponent();
@@ -133,6 +134,58 @@ namespace NiceHashStatsViewer
 		private void btnRunCardStatsGraphReport_Click(object sender, EventArgs e)
 		{
 			RunCardStatReport(GetCardResolution());
+		}
+
+		private void NicehashStatsViewer_Load(object sender, EventArgs e)
+		{
+			loading = true;
+			cbCardStatsGraphReport.SelectedIndex = Properties.Settings.Default.SelectedCardReport;
+			cbRigStatsGraphReport.SelectedIndex = Properties.Settings.Default.SelectedRigReport;
+			tbCardStatsGraphWallet.Text = Properties.Settings.Default.WalletAddress;
+			tbRigStatsGraphWallet.Text = Properties.Settings.Default.WalletAddress;
+			loading = false;
+			dtpCardStatsGraphStart.Value = DateTime.Now.AddHours(-12);
+			dtpRigStatsGraphStartTime.Value = DateTime.Now.AddHours(-12);
+		}
+
+		private void cbRigStatsGraphReport_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(!loading)
+			{
+				Properties.Settings.Default.SelectedRigReport = cbRigStatsGraphReport.SelectedIndex;
+				Properties.Settings.Default.Save();
+			}
+		}
+
+		private void tbRigStatsGraphWallet_TextChanged(object sender, EventArgs e)
+		{
+			if(!loading)
+			{
+				TextBox itemChanged = (TextBox)sender;
+				Properties.Settings.Default.WalletAddress = itemChanged.Text;
+				Properties.Settings.Default.Save();
+				if (itemChanged != tbCardStatsGraphWallet)
+				{
+					loading = true;
+					tbCardStatsGraphWallet.Text = itemChanged.Text;
+					loading = false;
+				}
+				else if (itemChanged != tbRigStatsGraphWallet)
+				{
+					loading = true;
+					tbRigStatsGraphWallet.Text = itemChanged.Text;
+					loading = false;
+				}
+			}
+		}
+
+		private void cbCardStatsGraphReport_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(!loading)
+			{
+				Properties.Settings.Default.SelectedCardReport = cbCardStatsGraphReport.SelectedIndex;
+				Properties.Settings.Default.Save();
+			}
 		}
 	}
 }

@@ -35,7 +35,6 @@
 			this.tcRigStats = new System.Windows.Forms.TabControl();
 			this.tpRigGraphs = new System.Windows.Forms.TabPage();
 			this.cbLive = new System.Windows.Forms.CheckBox();
-			this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
 			this.btnPlotData = new System.Windows.Forms.Button();
 			this.tbRigStatsGraphWallet = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
@@ -50,7 +49,6 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.cbGardStatsGraphLive = new System.Windows.Forms.CheckBox();
-			this.cartesianChart2 = new LiveCharts.WinForms.CartesianChart();
 			this.btnRunCardStatsGraphReport = new System.Windows.Forms.Button();
 			this.tbCardStatsGraphWallet = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -65,6 +63,8 @@
 			this.bgwRigStatsReport = new System.ComponentModel.BackgroundWorker();
 			this.bgwCardStatsReport = new System.ComponentModel.BackgroundWorker();
 			this.timerCardStatsGraphs = new System.Windows.Forms.Timer(this.components);
+			this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+			this.cartesianChart2 = new LiveCharts.WinForms.CartesianChart();
 			this.tcMain.SuspendLayout();
 			this.tpRigStats.SuspendLayout();
 			this.tcRigStats.SuspendLayout();
@@ -143,17 +143,6 @@
 			this.cbLive.Text = "Live";
 			this.cbLive.UseVisualStyleBackColor = true;
 			// 
-			// cartesianChart1
-			// 
-			this.cartesianChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.cartesianChart1.Location = new System.Drawing.Point(9, 59);
-			this.cartesianChart1.Name = "cartesianChart1";
-			this.cartesianChart1.Size = new System.Drawing.Size(713, 376);
-			this.cartesianChart1.TabIndex = 9;
-			this.cartesianChart1.Text = "cartesianChart1";
-			// 
 			// btnPlotData
 			// 
 			this.btnPlotData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -174,6 +163,7 @@
 			this.tbRigStatsGraphWallet.Size = new System.Drawing.Size(404, 20);
 			this.tbRigStatsGraphWallet.TabIndex = 7;
 			this.tbRigStatsGraphWallet.Text = "37s2ZBNJ64sa1bkYh3HWAkncJSxcXoBzvn";
+			this.tbRigStatsGraphWallet.TextChanged += new System.EventHandler(this.tbRigStatsGraphWallet_TextChanged);
 			// 
 			// label4
 			// 
@@ -239,6 +229,7 @@
 			this.cbRigStatsGraphReport.Name = "cbRigStatsGraphReport";
 			this.cbRigStatsGraphReport.Size = new System.Drawing.Size(443, 21);
 			this.cbRigStatsGraphReport.TabIndex = 1;
+			this.cbRigStatsGraphReport.SelectedIndexChanged += new System.EventHandler(this.cbRigStatsGraphReport_SelectedIndexChanged);
 			// 
 			// label1
 			// 
@@ -315,17 +306,6 @@
 			this.cbGardStatsGraphLive.Text = "Live";
 			this.cbGardStatsGraphLive.UseVisualStyleBackColor = true;
 			// 
-			// cartesianChart2
-			// 
-			this.cartesianChart2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.cartesianChart2.Location = new System.Drawing.Point(9, 59);
-			this.cartesianChart2.Name = "cartesianChart2";
-			this.cartesianChart2.Size = new System.Drawing.Size(713, 376);
-			this.cartesianChart2.TabIndex = 9;
-			this.cartesianChart2.Text = "cartesianChart2";
-			// 
 			// btnRunCardStatsGraphReport
 			// 
 			this.btnRunCardStatsGraphReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -346,6 +326,7 @@
 			this.tbCardStatsGraphWallet.Size = new System.Drawing.Size(404, 20);
 			this.tbCardStatsGraphWallet.TabIndex = 7;
 			this.tbCardStatsGraphWallet.Text = "37s2ZBNJ64sa1bkYh3HWAkncJSxcXoBzvn";
+			this.tbCardStatsGraphWallet.TextChanged += new System.EventHandler(this.tbRigStatsGraphWallet_TextChanged);
 			// 
 			// label5
 			// 
@@ -411,6 +392,7 @@
 			this.cbCardStatsGraphReport.Name = "cbCardStatsGraphReport";
 			this.cbCardStatsGraphReport.Size = new System.Drawing.Size(443, 21);
 			this.cbCardStatsGraphReport.TabIndex = 1;
+			this.cbCardStatsGraphReport.SelectedIndexChanged += new System.EventHandler(this.cbCardStatsGraphReport_SelectedIndexChanged);
 			// 
 			// label8
 			// 
@@ -440,6 +422,28 @@
 			// 
 			this.timerCardStatsGraphs.Interval = 10000;
 			// 
+			// cartesianChart1
+			// 
+			this.cartesianChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.cartesianChart1.Location = new System.Drawing.Point(9, 59);
+			this.cartesianChart1.Name = "cartesianChart1";
+			this.cartesianChart1.Size = new System.Drawing.Size(713, 376);
+			this.cartesianChart1.TabIndex = 9;
+			this.cartesianChart1.Text = "cartesianChart1";
+			// 
+			// cartesianChart2
+			// 
+			this.cartesianChart2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.cartesianChart2.Location = new System.Drawing.Point(9, 59);
+			this.cartesianChart2.Name = "cartesianChart2";
+			this.cartesianChart2.Size = new System.Drawing.Size(713, 376);
+			this.cartesianChart2.TabIndex = 9;
+			this.cartesianChart2.Text = "cartesianChart2";
+			// 
 			// NicehashStatsViewer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -449,6 +453,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "NicehashStatsViewer";
 			this.Text = "NiceHash Stats Viewer";
+			this.Load += new System.EventHandler(this.NicehashStatsViewer_Load);
 			this.tcMain.ResumeLayout(false);
 			this.tpRigStats.ResumeLayout(false);
 			this.tcRigStats.ResumeLayout(false);
