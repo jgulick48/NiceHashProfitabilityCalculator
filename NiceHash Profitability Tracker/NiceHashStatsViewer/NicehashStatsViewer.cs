@@ -26,14 +26,14 @@ namespace NiceHashStatsViewer
 				if (cbLive.Checked)
 				{
 					
-					RunRigStatReport(GetResolution());
-					timerRigStatsGraphs.Interval = GetResolution() * 1000;
+					RunRigStatReport(GetRigResolution());
+					timerRigStatsGraphs.Interval = GetRigResolution() * 1000;
 					timerRigStatsGraphs.Start();
 					btnPlotData.Text = "Stop Reports";
 				}
 				else
 				{
-					RunRigStatReport(GetResolution());
+					RunRigStatReport(GetRigResolution());
 				}
 			}
 			else
@@ -65,31 +65,57 @@ namespace NiceHashStatsViewer
 			switch (cbCardStatsGraphReport.SelectedIndex)
 			{
 				case 0:
-					Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart2, "Power", "Power(Watts)", "Name", true, "F");
+					Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Power", "Power(Watts)", "Name", true, "F");
 					break;
 				case 1:
-					Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart2, "Temp", "Temp(C)", "Name", false, "F");
+					Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Temp", "Temp(C)", "Name", false, "F");
 					break;
 				case 2:
-					Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart2, "Efficiency", "Efficiency %", "Name", false, "P");
+					Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Efficiency", "Efficiency %", "Name", false, "P");
 					break;
 				case 3:
-					Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart2, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", "Name", false, "F9");
+					Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", "Name", false, "F9");
 					break;
 			}
 		}
 
 		private void timerRigStatsGraphs_Tick(object sender, EventArgs e)
 		{
-			timerRigStatsGraphs.Interval = GetResolution() * 1000;
+			timerRigStatsGraphs.Interval = GetRigResolution() * 1000;
 			dtpRigStatsGraphsEndTime.Value = DateTime.Now;
-			RunRigStatReport(GetResolution());
+			RunRigStatReport(GetRigResolution());
 		}
-		private int GetResolution()
+		private int GetRigResolution()
 		{
 			double SecondsContained = (dtpRigStatsGraphsEndTime.Value - dtpRigStatsGraphStartTime.Value).TotalSeconds;
 			int resolution = (60 * 60);
-			if (SecondsContained >= (60 * 60 * 2))
+			if (SecondsContained >= (60 * 60 * 24 * 5))
+			{
+				resolution = (60 * 60 * 12);
+			}
+			else if (SecondsContained >= (60 * 60 * 2))
+			{
+				resolution = (60 * 60);
+			}
+			else if (SecondsContained >= (60 * 30))
+			{
+				resolution = (60);
+			}
+			else
+			{
+				resolution = (10);
+			}
+			return resolution;
+		}
+		private int GetCardResolution()
+		{
+			double SecondsContained = (dtpCardStatsGraphEnd.Value - dtpCardStatsGraphStart.Value).TotalSeconds;
+			int resolution = (60 * 60);
+			if (SecondsContained >= (60 * 60 * 24*5))
+			{
+				resolution = (60 * 60 * 12);
+			}
+			else if (SecondsContained >= (60 * 60 * 2))
 			{
 				resolution = (60 * 60);
 			}
@@ -106,7 +132,7 @@ namespace NiceHashStatsViewer
 
 		private void btnRunCardStatsGraphReport_Click(object sender, EventArgs e)
 		{
-			RunCardStatReport(GetResolution());
+			RunCardStatReport(GetCardResolution());
 		}
 	}
 }

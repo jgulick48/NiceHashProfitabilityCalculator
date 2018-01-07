@@ -56,7 +56,7 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
-			this.nudCardStatsGraphEnd = new System.Windows.Forms.DateTimePicker();
+			this.dtpCardStatsGraphEnd = new System.Windows.Forms.DateTimePicker();
 			this.dtpCardStatsGraphStart = new System.Windows.Forms.DateTimePicker();
 			this.cbCardStatsGraphReport = new System.Windows.Forms.ComboBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -292,7 +292,7 @@
 			this.tabPage1.Controls.Add(this.label5);
 			this.tabPage1.Controls.Add(this.label6);
 			this.tabPage1.Controls.Add(this.label7);
-			this.tabPage1.Controls.Add(this.nudCardStatsGraphEnd);
+			this.tabPage1.Controls.Add(this.dtpCardStatsGraphEnd);
 			this.tabPage1.Controls.Add(this.dtpCardStatsGraphStart);
 			this.tabPage1.Controls.Add(this.cbCardStatsGraphReport);
 			this.tabPage1.Controls.Add(this.label8);
@@ -376,15 +376,15 @@
 			this.label7.TabIndex = 4;
 			this.label7.Text = "Start Time:";
 			// 
-			// nudCardStatsGraphEnd
+			// dtpCardStatsGraphEnd
 			// 
-			this.nudCardStatsGraphEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nudCardStatsGraphEnd.CustomFormat = "MM\'/\'dd\'/\'yyyy hh\':\'mm tt";
-			this.nudCardStatsGraphEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.nudCardStatsGraphEnd.Location = new System.Drawing.Point(564, 32);
-			this.nudCardStatsGraphEnd.Name = "nudCardStatsGraphEnd";
-			this.nudCardStatsGraphEnd.Size = new System.Drawing.Size(158, 20);
-			this.nudCardStatsGraphEnd.TabIndex = 3;
+			this.dtpCardStatsGraphEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.dtpCardStatsGraphEnd.CustomFormat = "MM\'/\'dd\'/\'yyyy hh\':\'mm tt";
+			this.dtpCardStatsGraphEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.dtpCardStatsGraphEnd.Location = new System.Drawing.Point(564, 32);
+			this.dtpCardStatsGraphEnd.Name = "dtpCardStatsGraphEnd";
+			this.dtpCardStatsGraphEnd.Size = new System.Drawing.Size(158, 20);
+			this.dtpCardStatsGraphEnd.TabIndex = 3;
 			// 
 			// dtpCardStatsGraphStart
 			// 
@@ -492,7 +492,7 @@
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.DateTimePicker nudCardStatsGraphEnd;
+		private System.Windows.Forms.DateTimePicker dtpCardStatsGraphEnd;
 		private System.Windows.Forms.DateTimePicker dtpCardStatsGraphStart;
 		private System.Windows.Forms.ComboBox cbCardStatsGraphReport;
 		private System.Windows.Forms.Label label8;
