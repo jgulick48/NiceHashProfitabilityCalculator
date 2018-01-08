@@ -63,25 +63,41 @@ namespace NiceHashStatsViewer
 		}
 		private void RunCardStatReport(int resolution)
 		{
-			string legend = "Name";
-			if(cbCardUseFriendlyName.Checked)
+			try
 			{
-				legend = "FriendlyName";
+				string legend = "Name";
+				if (cbCardUseFriendlyName.Checked)
+				{
+					legend = "FriendlyName";
+				}
+				switch (cbCardStatsGraphReport.SelectedIndex)
+				{
+					case 0:
+						Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Power", "Power(Watts)", legend, true, "F");
+						break;
+					case 1:
+						Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Temp", "Temp(C)", legend, false, "F");
+						break;
+					case 2:
+						throw new Exception();
+						Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Efficiency", "Efficiency %", legend, false, "P");
+						break;
+					case 3:
+						Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", legend, true, "F9");
+						break;
+				}
 			}
-			switch (cbCardStatsGraphReport.SelectedIndex)
+			catch(Exception ex)
 			{
-				case 0:
-					Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Power", "Power(Watts)", legend, true, "F");
-					break;
-				case 1:
-					Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Temp", "Temp(C)", legend, false, "F");
-					break;
-				case 2:
-					Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Efficiency", "Efficiency %", legend, false, "P");
-					break;
-				case 3:
-					Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", legend, true, "F9");
-					break;
+				string MethodDescriptor = String.Format("RunCardStatReport, Resolution:\t{0}\tReportType:\t{1}\tStartTime:\t{2}\tEndTime:\t{3}\tWallet:\t{4}", resolution, cbCardStatsGraphReport.SelectedIndex, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, tbCardStatsGraphWallet.Text);
+				int errorID = DataHelper.DataBaseHandler.SaveExceptionLogAndReturnID(ex.ToString(), MethodDescriptor);
+				if (errorID != -1)
+				{
+					Forms.ExceptionPopup errorPopup = new Forms.ExceptionPopup();
+					errorPopup.lblErrorMessage.Text = "An error occured while trying to run your report. Please click the report button to open a case and refernce error number: " + errorID;
+					errorPopup.tbErrorMessage.Text = ex.ToString();
+					errorPopup.ShowDialog();
+				}
 			}
 		}
 

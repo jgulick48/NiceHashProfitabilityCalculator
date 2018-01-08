@@ -23,5 +23,17 @@ namespace NiceHashStatsViewer.DataHelper
 			}
 			return new DataTable();
 		}
+		public static int SaveExceptionLogAndReturnID(string ExceptionDetails, string ExceptionMethod)
+		{
+			switch (DataBaseMethod)
+			{
+				case 0:
+					return DataHelper.MySQLHandler.SaveExceptionLogAndReturnID(ExceptionDetails, ExceptionMethod);
+					break;
+				case 1:
+					break;
+			}
+			return -1;
+		}
 	}
 }

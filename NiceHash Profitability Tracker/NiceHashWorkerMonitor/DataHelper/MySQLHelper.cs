@@ -103,6 +103,24 @@ namespace NiceHashWorkerMonitor.DataHelper
 
 			}
 		}
+		public static int SaveExceptionLogAndReturnID(string ExceptionDetails, string ExceptionMethod)
+		{
+			MySqlConnection m_cn = new MySqlConnection(connectionstring);
+			MySqlCommand cmd = new MySqlCommand("GetAlgoFloatMultiplierByName", m_cn);
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.AddWithValue("?E_TEXT", ExceptionDetails);
+			cmd.Parameters["?E_TEXT"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?E_METHOD", ExceptionMethod);
+			cmd.Parameters["?E_METHOD"].Direction = ParameterDirection.Input;
+			cmd.Parameters.Add("?E_ID", MySqlDbType.Int16);
+			cmd.Parameters["?E_ID"].Direction = ParameterDirection.Output;
+			m_cn.Open();
+			cmd.ExecuteNonQuery();
+			m_cn.Close();
+
+			return int.Parse(cmd.Parameters["?E_ID"].Value.ToString());
+
+		}
 		public static float GetAlgoFloatMultiplierByName(string name)
 		{
 			MySqlConnection m_cn = new MySqlConnection(connectionstring);

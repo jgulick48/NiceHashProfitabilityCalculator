@@ -95,6 +95,12 @@
     <Compile Include="DataHelper\DataBaseHelper.cs" />
     <Compile Include="DataHelper\MySQLHelper.cs" />
     <Compile Include="DataHelper\SQLITEHelper.cs" />
+    <Compile Include="Forms\ExceptionPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExceptionPopup.Designer.cs">
+      <DependentUpon>ExceptionPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="NicehashStatsViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\RigReports.cs" />
+    <EmbeddedResource Include="Forms\ExceptionPopup.resx">
+      <DependentUpon>ExceptionPopup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NicehashStatsViewer.resx">
       <DependentUpon>NicehashStatsViewer.cs</DependentUpon>
     </EmbeddedResource>

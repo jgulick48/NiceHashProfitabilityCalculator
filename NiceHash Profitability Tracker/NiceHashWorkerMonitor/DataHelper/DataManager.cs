@@ -72,7 +72,7 @@ namespace NiceHashWorkerMonitor.DataHelper
 		}
 		public static void UpdateGraphicsCardFirendlyName(Objects.GraphicsCard card)
 		{
-			switch(DataSaveMethod)
+			switch (DataSaveMethod)
 			{
 				case 0:
 					DataHelper.MySQLHelper.UpdateGraphicsCardFirendlyName(card);
@@ -81,6 +81,18 @@ namespace NiceHashWorkerMonitor.DataHelper
 					DataHelper.sqliteHelper.UpdateGraphicsCardFirendlyName(card);
 					break;
 			}
+		}
+		public static int SaveExceptionLogAndReturnID(string ExceptionDetails, string ExceptionMethod)
+		{
+			switch (DataSaveMethod)
+			{
+				case 0:
+					return DataHelper.MySQLHelper.SaveExceptionLogAndReturnID(ExceptionDetails, ExceptionMethod);
+					break;
+				case 1:
+					break;
+			}
+			return -1;
 		}
 	}
 }
