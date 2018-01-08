@@ -45,7 +45,9 @@ namespace NiceHashStatsViewer
 		}
 		private void RunRigStatReport(int resolution)
 		{
-			switch (cbRigStatsGraphReport.SelectedIndex)
+			try
+			{
+				switch (cbRigStatsGraphReport.SelectedIndex)
 			{
 				case 0:
 					Reports.RigReports.RunRigStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "Power", "Power(Watts)", "WorkerName", true,"F");
@@ -59,6 +61,19 @@ namespace NiceHashStatsViewer
 				case 3:
 					Reports.RigReports.RunRigWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", "WorkerName", true, "F9");
 					break;
+				}
+			}
+			catch (Exception ex)
+			{
+				string MethodDescriptor = String.Format("RunRigStatReport, Resolution:\t{0}\tReportType:\t{1}\tStartTime:\t{2}\tEndTime:\t{3}\tWallet:\t{4}", resolution, cbRigStatsGraphReport.SelectedIndex, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, tbCardStatsGraphWallet.Text);
+				int errorID = DataHelper.DataBaseHandler.SaveExceptionLogAndReturnID(ex.ToString(), MethodDescriptor);
+				if (errorID != -1)
+				{
+					Forms.ExceptionPopup errorPopup = new Forms.ExceptionPopup();
+					errorPopup.lblErrorMessage.Text = "An error occured while trying to run your report. Please click the report button to open a case and refernce error number: " + errorID;
+					errorPopup.tbErrorMessage.Text = ex.ToString();
+					errorPopup.ShowDialog();
+				}
 			}
 		}
 		private void RunCardStatReport(int resolution)
@@ -79,7 +94,6 @@ namespace NiceHashStatsViewer
 						Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Temp", "Temp(C)", legend, false, "F");
 						break;
 					case 2:
-						throw new Exception();
 						Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Efficiency", "Efficiency %", legend, false, "P");
 						break;
 					case 3:
