@@ -10,6 +10,7 @@ using NiceHashWorkerMonitor.DataHelper;
 using LiveCharts.WinForms;
 using LiveCharts;
 using LiveCharts.Wpf;
+using System.Globalization;
 
 namespace NiceHashStatsViewer.Reports
 {
@@ -53,7 +54,7 @@ namespace NiceHashStatsViewer.Reports
 					"inner join CardStats as cs on GC.uuid = cs.CardUUID " +
 					"where R.WorkerName = '{1}' and TimeRecorded > {2} and TimeRecorded <= {3} " +
 					"group by R.WorkerName, ROUND(cs.TimeRecorded/{0}) " +
-					"order by ROUND(cs.TimeRecorded/{0}) asc", resolution, rig["WorkerName"], DateTimeHelper.GetUnixTimeStamp(start), DateTimeHelper.GetUnixTimeStamp(end), stat, sumation);
+					"order by ROUND(cs.TimeRecorded/{0}) asc", resolution, rig["WorkerName"], DateTimeHelper.GetUnixTimeStamp(start).ToString(CultureInfo.CreateSpecificCulture("en-US")), DateTimeHelper.GetUnixTimeStamp(end).ToString(CultureInfo.CreateSpecificCulture("en-US")), stat, sumation);
 				RigReports.Add(DataHelper.DataBaseHandler.GetDataTableFromSQL(rigPowerSQL));
 			}
 			return RigReports;
@@ -76,7 +77,7 @@ namespace NiceHashStatsViewer.Reports
 					"left join WorkUnit as wu on GC.uuid = wu.CardUUID " +
 					"where R.WorkerName = '{1}' and TimeRecorded > {2} and TimeRecorded <= {3} " +
 					"group by R.WorkerName, ROUND(wu.TimeRecorded/{0}) " +
-					"order by ROUND(wu.TimeRecorded/{0}) asc", resolution, rig["WorkerName"], DateTimeHelper.GetUnixTimeStamp(start), DateTimeHelper.GetUnixTimeStamp(end), stat, sumation);
+					"order by ROUND(wu.TimeRecorded/{0}) asc", resolution, rig["WorkerName"], DateTimeHelper.GetUnixTimeStamp(start).ToString(CultureInfo.CreateSpecificCulture("en-US")), DateTimeHelper.GetUnixTimeStamp(end).ToString(CultureInfo.CreateSpecificCulture("en-US")), stat, sumation);
 				RigReports.Add(DataHelper.DataBaseHandler.GetDataTableFromSQL(rigPowerSQL));
 			}
 			return RigReports;
@@ -102,7 +103,7 @@ namespace NiceHashStatsViewer.Reports
 					"inner join CardStats as cs on GC.uuid = cs.CardUUID " +
 					"where GC.uuid = '{1}' and TimeRecorded > {2} and TimeRecorded <= {3} " +
 					"group by GC.uuid, ROUND(cs.TimeRecorded/{0}) " +
-					"order by ROUND(cs.TimeRecorded/{0}) asc", resolution, card["uuid"], DateTimeHelper.GetUnixTimeStamp(start), DateTimeHelper.GetUnixTimeStamp(end), stat, sumation);
+					"order by ROUND(cs.TimeRecorded/{0}) asc", resolution, card["uuid"], DateTimeHelper.GetUnixTimeStamp(start).ToString(CultureInfo.CreateSpecificCulture("en-US")), DateTimeHelper.GetUnixTimeStamp(end).ToString(CultureInfo.CreateSpecificCulture("en-US")), stat, sumation);
 				RigReports.Add(DataHelper.DataBaseHandler.GetDataTableFromSQL(rigPowerSQL));
 			}
 			return RigReports;
@@ -127,7 +128,7 @@ namespace NiceHashStatsViewer.Reports
 					"left join WorkUnit as wu on GC.uuid = wu.CardUUID " +
 					"where GC.uuid = '{1}' and TimeRecorded > {2} and TimeRecorded <= {3} " +
 					"group by GC.uuid, ROUND(wu.TimeRecorded/{0}) " +
-					"order by ROUND(wu.TimeRecorded/{0}) asc", resolution, card["uuid"], DateTimeHelper.GetUnixTimeStamp(start), DateTimeHelper.GetUnixTimeStamp(end), stat, sumation);
+					"order by ROUND(wu.TimeRecorded/{0}) asc", resolution, card["uuid"], DateTimeHelper.GetUnixTimeStamp(start).ToString(CultureInfo.CreateSpecificCulture("en-US")), DateTimeHelper.GetUnixTimeStamp(end).ToString(CultureInfo.CreateSpecificCulture("en-US")), stat, sumation);
 				RigReports.Add(DataHelper.DataBaseHandler.GetDataTableFromSQL(rigPowerSQL));
 			}
 			return RigReports;
@@ -146,7 +147,7 @@ namespace NiceHashStatsViewer.Reports
 					{
 						if (!string.IsNullOrEmpty(row[MetricColumn].ToString()))
 						{
-							int key = ((int)Math.Round(double.Parse(row["Time"].ToString()) * resolution));
+							int key = ((int)Math.Round(double.Parse(row["Time"].ToString(), CultureInfo.CreateSpecificCulture("en-US")) * resolution));
 							values.Add(key, row);
 						}
 					}
@@ -159,7 +160,7 @@ namespace NiceHashStatsViewer.Reports
 						{
 							if (!string.IsNullOrEmpty(values[i][MetricColumn].ToString()))
 							{
-								series.Values.Add(float.Parse(values[i][MetricColumn].ToString()));
+								series.Values.Add(float.Parse(values[i][MetricColumn].ToString(), CultureInfo.CreateSpecificCulture("en-US")));
 							}
 							else
 							{
