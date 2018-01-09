@@ -222,5 +222,67 @@ namespace NiceHashStatsViewer
 				Properties.Settings.Default.Save();
 			}
 		}
-	}
+
+        private void btnLast3Hours_Click(object sender, EventArgs e)
+        {
+            dtpRigStatsGraphStartTime.Value = DateTime.Now.AddHours(-3);
+            dtpRigStatsGraphsEndTime.Value = DateTime.Now;
+        }
+
+        private void btnLast12Hours_Click(object sender, EventArgs e)
+        {
+
+            dtpRigStatsGraphStartTime.Value = DateTime.Now.AddHours(-12);
+            dtpRigStatsGraphsEndTime.Value = DateTime.Now;
+        }
+
+        private void btnLastDay_Click(object sender, EventArgs e)
+        {
+
+            dtpRigStatsGraphStartTime.Value = DateTime.Now.AddDays(-1);
+            dtpRigStatsGraphsEndTime.Value = DateTime.Now;
+        }
+
+        private void btnLastWeek_Click(object sender, EventArgs e)
+        {
+            dtpRigStatsGraphStartTime.Value = DateTime.Now.AddDays(-7);
+            dtpRigStatsGraphsEndTime.Value = DateTime.Now;
+        }
+
+        private void btnLastMonth_Click(object sender, EventArgs e)
+        {
+            dtpRigStatsGraphStartTime.Value = DateTime.Now.AddMonths(-1);
+            dtpRigStatsGraphsEndTime.Value = DateTime.Now;
+        }
+
+        private void btnCardLast3Hours_Click(object sender, EventArgs e)
+        {
+            dtpCardStatsGraphStart.Value = DateTime.Now.AddHours(-3);
+            dtpCardStatsGraphEnd.Value = DateTime.Now;
+        }
+
+        private void btnCardLast12Hours_Click(object sender, EventArgs e)
+        {
+            dtpCardStatsGraphStart.Value = DateTime.Now.AddHours(-12);
+            dtpCardStatsGraphEnd.Value = DateTime.Now;
+        }
+
+        private void btnCardLastDay_Click(object sender, EventArgs e)
+        {
+            dtpCardStatsGraphStart.Value = DateTime.Now.AddDays(-1);
+            dtpCardStatsGraphEnd.Value = DateTime.Now;
+        }
+
+        private void btnCardLastWeek_Click(object sender, EventArgs e)
+        {
+            dtpCardStatsGraphStart.Value = DateTime.Now.AddDays(-7);
+            dtpCardStatsGraphEnd.Value = DateTime.Now;
+        }
+
+        private void btnCardLastMonth_Click(object sender, EventArgs e)
+        {
+            dtpCardStatsGraphStart.Value = DateTime.Now.AddMonths(-1);
+            dtpCardStatsGraphEnd.Value = DateTime.Now;
+        }
+    }
 }
