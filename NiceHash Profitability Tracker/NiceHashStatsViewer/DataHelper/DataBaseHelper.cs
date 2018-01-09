@@ -9,7 +9,7 @@ namespace NiceHashStatsViewer.DataHelper
 {
 	public static class DataBaseHandler
 	{
-		public static int DataBaseMethod = 0;
+		public static int DataBaseMethod = 1;
 		public static DataTable GetDataTableFromSQL(string sql)
 		{
 			switch(DataBaseMethod)
@@ -31,6 +31,7 @@ namespace NiceHashStatsViewer.DataHelper
 					return DataHelper.MySQLHandler.SaveExceptionLogAndReturnID(ExceptionDetails, ExceptionMethod);
 					break;
 				case 1:
+                    return -1;
 					break;
 			}
 			return -1;
