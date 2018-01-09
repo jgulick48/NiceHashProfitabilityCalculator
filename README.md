@@ -9,7 +9,7 @@ This is a logger program that interfaces with Excavator on each miner and saves 
 # NiceHashStatsViewer
 This is a graphing tool to see the logs that you have generated.  I have 4 reports currenly each the Card and Rig levels and am working on adding more reports. Feel free to put in requests for what you would like to see and I'll try to prioritize various things based on demand.
 
-![Image](https://i.imgur.com/v1agqTh.jpg)
+![Image](https://i.imgur.com/mq6YBJM.png)
 
 # Quick How To:
 
