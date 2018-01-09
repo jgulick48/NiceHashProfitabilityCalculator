@@ -150,7 +150,7 @@ namespace NiceHashStatsViewer.Reports
 					{
 						if (!string.IsNullOrEmpty(row[Params.stat].ToString()))
 						{
-							int key = ((int)Math.Round(double.Parse(row["Time"].ToString(), CultureInfo.CreateSpecificCulture("en-US")) * Params.resolution));
+							int key = ((int)Math.Round(double.Parse(row["Time"].ToString(), CultureInfo.InvariantCulture) * Params.resolution));
 							values.Add(key, row);
 						}
 					}
@@ -163,7 +163,7 @@ namespace NiceHashStatsViewer.Reports
 						{
 							if (!string.IsNullOrEmpty(values[i][Params.stat].ToString()))
 							{
-								series.Values.Add(float.Parse(values[i][Params.stat].ToString(), CultureInfo.CreateSpecificCulture("en-US")));
+								series.Values.Add(float.Parse(values[i][Params.stat].ToString(), CultureInfo.InvariantCulture));
 							}
 							else
 							{
