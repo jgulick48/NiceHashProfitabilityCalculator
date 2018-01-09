@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\ReportParameters.cs" />
     <Compile Include="Reports\RigReports.cs" />
     <EmbeddedResource Include="Forms\ExceptionPopup.resx">
       <DependentUpon>ExceptionPopup.cs</DependentUpon>

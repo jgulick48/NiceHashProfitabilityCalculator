@@ -34,6 +34,12 @@
             this.tpRigStats = new System.Windows.Forms.TabPage();
             this.tcRigStats = new System.Windows.Forms.TabControl();
             this.tpRigGraphs = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnRigLast3Hours = new System.Windows.Forms.Button();
+            this.btnRigLast12Hours = new System.Windows.Forms.Button();
+            this.btnRigLastDay = new System.Windows.Forms.Button();
+            this.btnRigLastWeek = new System.Windows.Forms.Button();
+            this.btnRigLastMonth = new System.Windows.Forms.Button();
             this.cbLive = new System.Windows.Forms.CheckBox();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.btnPlotData = new System.Windows.Forms.Button();
@@ -66,27 +72,33 @@
             this.bgwRigStatsReport = new System.ComponentModel.BackgroundWorker();
             this.bgwCardStatsReport = new System.ComponentModel.BackgroundWorker();
             this.timerCardStatsGraphs = new System.Windows.Forms.Timer(this.components);
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnRigLast3Hours = new System.Windows.Forms.Button();
-            this.btnRigLast12Hours = new System.Windows.Forms.Button();
-            this.btnRigLastDay = new System.Windows.Forms.Button();
-            this.btnRigLastWeek = new System.Windows.Forms.Button();
-            this.btnRigLastMonth = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCardLast3Hours = new System.Windows.Forms.Button();
-            this.btnCardLast12Hours = new System.Windows.Forms.Button();
-            this.btnCardLastDay = new System.Windows.Forms.Button();
-            this.btnCardLastWeek = new System.Windows.Forms.Button();
             this.btnCardLastMonth = new System.Windows.Forms.Button();
+            this.btnCardLastWeek = new System.Windows.Forms.Button();
+            this.btnCardLastDay = new System.Windows.Forms.Button();
+            this.btnCardLast12Hours = new System.Windows.Forms.Button();
+            this.btnCardLast3Hours = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.nudCardLastXHours = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.nudRigLastXHours = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
             this.tcMain.SuspendLayout();
             this.tpRigStats.SuspendLayout();
             this.tcRigStats.SuspendLayout();
             this.tpRigGraphs.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.tpCardStats.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCardLastXHours)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRigLastXHours)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMain
@@ -147,6 +159,85 @@
             this.tpRigGraphs.TabIndex = 0;
             this.tpRigGraphs.Text = "Graphs";
             this.tpRigGraphs.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 6;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnRigLast3Hours, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnRigLast12Hours, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnRigLastDay, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnRigLastWeek, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnRigLastMonth, 4, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 59);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(716, 29);
+            this.tableLayoutPanel1.TabIndex = 11;
+            // 
+            // btnRigLast3Hours
+            // 
+            this.btnRigLast3Hours.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRigLast3Hours.Location = new System.Drawing.Point(3, 3);
+            this.btnRigLast3Hours.Name = "btnRigLast3Hours";
+            this.btnRigLast3Hours.Size = new System.Drawing.Size(113, 23);
+            this.btnRigLast3Hours.TabIndex = 0;
+            this.btnRigLast3Hours.Text = "Last 3 Hours";
+            this.btnRigLast3Hours.UseVisualStyleBackColor = true;
+            this.btnRigLast3Hours.Click += new System.EventHandler(this.btnLast3Hours_Click);
+            // 
+            // btnRigLast12Hours
+            // 
+            this.btnRigLast12Hours.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRigLast12Hours.Location = new System.Drawing.Point(122, 3);
+            this.btnRigLast12Hours.Name = "btnRigLast12Hours";
+            this.btnRigLast12Hours.Size = new System.Drawing.Size(113, 23);
+            this.btnRigLast12Hours.TabIndex = 1;
+            this.btnRigLast12Hours.Text = "Last 12 Hours";
+            this.btnRigLast12Hours.UseVisualStyleBackColor = true;
+            this.btnRigLast12Hours.Click += new System.EventHandler(this.btnLast12Hours_Click);
+            // 
+            // btnRigLastDay
+            // 
+            this.btnRigLastDay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRigLastDay.Location = new System.Drawing.Point(241, 3);
+            this.btnRigLastDay.Name = "btnRigLastDay";
+            this.btnRigLastDay.Size = new System.Drawing.Size(113, 23);
+            this.btnRigLastDay.TabIndex = 2;
+            this.btnRigLastDay.Text = "Last Day";
+            this.btnRigLastDay.UseVisualStyleBackColor = true;
+            this.btnRigLastDay.Click += new System.EventHandler(this.btnLastDay_Click);
+            // 
+            // btnRigLastWeek
+            // 
+            this.btnRigLastWeek.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRigLastWeek.Location = new System.Drawing.Point(360, 3);
+            this.btnRigLastWeek.Name = "btnRigLastWeek";
+            this.btnRigLastWeek.Size = new System.Drawing.Size(113, 23);
+            this.btnRigLastWeek.TabIndex = 3;
+            this.btnRigLastWeek.Text = "Last Week";
+            this.btnRigLastWeek.UseVisualStyleBackColor = true;
+            this.btnRigLastWeek.Click += new System.EventHandler(this.btnLastWeek_Click);
+            // 
+            // btnRigLastMonth
+            // 
+            this.btnRigLastMonth.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRigLastMonth.Location = new System.Drawing.Point(479, 3);
+            this.btnRigLastMonth.Name = "btnRigLastMonth";
+            this.btnRigLastMonth.Size = new System.Drawing.Size(113, 23);
+            this.btnRigLastMonth.TabIndex = 4;
+            this.btnRigLastMonth.Text = "Last Month";
+            this.btnRigLastMonth.UseVisualStyleBackColor = true;
+            this.btnRigLastMonth.Click += new System.EventHandler(this.btnLastMonth_Click);
             // 
             // cbLive
             // 
@@ -326,6 +417,7 @@
             // 
             // cbCardUseFriendlyName
             // 
+            this.cbCardUseFriendlyName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbCardUseFriendlyName.AutoSize = true;
             this.cbCardUseFriendlyName.Location = new System.Drawing.Point(9, 445);
             this.cbCardUseFriendlyName.Name = "cbCardUseFriendlyName";
@@ -344,7 +436,6 @@
             this.cbGardStatsGraphLive.TabIndex = 10;
             this.cbGardStatsGraphLive.Text = "Live";
             this.cbGardStatsGraphLive.UseVisualStyleBackColor = true;
-            this.cbGardStatsGraphLive.Visible = false;
             // 
             // cartesianChart2
             // 
@@ -441,7 +532,7 @@
             "Calculated Earnings (Average Per Day)"});
             this.cbCardStatsGraphReport.Location = new System.Drawing.Point(54, 6);
             this.cbCardStatsGraphReport.Name = "cbCardStatsGraphReport";
-            this.cbCardStatsGraphReport.Size = new System.Drawing.Size(443, 21);
+            this.cbCardStatsGraphReport.Size = new System.Drawing.Size(440, 21);
             this.cbCardStatsGraphReport.TabIndex = 1;
             this.cbCardStatsGraphReport.SelectedIndexChanged += new System.EventHandler(this.cbCardStatsGraphReport_SelectedIndexChanged);
             // 
@@ -472,99 +563,80 @@
             // timerCardStatsGraphs
             // 
             this.timerCardStatsGraphs.Interval = 10000;
+            this.timerCardStatsGraphs.Tick += new System.EventHandler(this.timerCardStatsGraphs_Tick);
             // 
-            // tableLayoutPanel1
+            // btnCardLastMonth
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.btnRigLast3Hours, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnRigLast12Hours, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnRigLastDay, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnRigLastWeek, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnRigLastMonth, 4, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 59);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(716, 29);
-            this.tableLayoutPanel1.TabIndex = 11;
+            this.btnCardLastMonth.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCardLastMonth.Location = new System.Drawing.Point(479, 3);
+            this.btnCardLastMonth.Name = "btnCardLastMonth";
+            this.btnCardLastMonth.Size = new System.Drawing.Size(113, 23);
+            this.btnCardLastMonth.TabIndex = 4;
+            this.btnCardLastMonth.Text = "Last Month";
+            this.btnCardLastMonth.UseVisualStyleBackColor = true;
+            this.btnCardLastMonth.Click += new System.EventHandler(this.btnCardLastMonth_Click);
             // 
-            // btnRigLast3Hours
+            // btnCardLastWeek
             // 
-            this.btnRigLast3Hours.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRigLast3Hours.Location = new System.Drawing.Point(3, 3);
-            this.btnRigLast3Hours.Name = "btnRigLast3Hours";
-            this.btnRigLast3Hours.Size = new System.Drawing.Size(137, 23);
-            this.btnRigLast3Hours.TabIndex = 0;
-            this.btnRigLast3Hours.Text = "Last 3 Hours";
-            this.btnRigLast3Hours.UseVisualStyleBackColor = true;
-            this.btnRigLast3Hours.Click += new System.EventHandler(this.btnLast3Hours_Click);
+            this.btnCardLastWeek.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCardLastWeek.Location = new System.Drawing.Point(360, 3);
+            this.btnCardLastWeek.Name = "btnCardLastWeek";
+            this.btnCardLastWeek.Size = new System.Drawing.Size(113, 23);
+            this.btnCardLastWeek.TabIndex = 3;
+            this.btnCardLastWeek.Text = "Last Week";
+            this.btnCardLastWeek.UseVisualStyleBackColor = true;
+            this.btnCardLastWeek.Click += new System.EventHandler(this.btnCardLastWeek_Click);
             // 
-            // btnRigLast12Hours
+            // btnCardLastDay
             // 
-            this.btnRigLast12Hours.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRigLast12Hours.Location = new System.Drawing.Point(146, 3);
-            this.btnRigLast12Hours.Name = "btnRigLast12Hours";
-            this.btnRigLast12Hours.Size = new System.Drawing.Size(137, 23);
-            this.btnRigLast12Hours.TabIndex = 1;
-            this.btnRigLast12Hours.Text = "Last 12 Hours";
-            this.btnRigLast12Hours.UseVisualStyleBackColor = true;
-            this.btnRigLast12Hours.Click += new System.EventHandler(this.btnLast12Hours_Click);
+            this.btnCardLastDay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCardLastDay.Location = new System.Drawing.Point(241, 3);
+            this.btnCardLastDay.Name = "btnCardLastDay";
+            this.btnCardLastDay.Size = new System.Drawing.Size(113, 23);
+            this.btnCardLastDay.TabIndex = 2;
+            this.btnCardLastDay.Text = "Last Day";
+            this.btnCardLastDay.UseVisualStyleBackColor = true;
+            this.btnCardLastDay.Click += new System.EventHandler(this.btnCardLastDay_Click);
             // 
-            // btnRigLastDay
+            // btnCardLast12Hours
             // 
-            this.btnRigLastDay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRigLastDay.Location = new System.Drawing.Point(289, 3);
-            this.btnRigLastDay.Name = "btnRigLastDay";
-            this.btnRigLastDay.Size = new System.Drawing.Size(137, 23);
-            this.btnRigLastDay.TabIndex = 2;
-            this.btnRigLastDay.Text = "Last Day";
-            this.btnRigLastDay.UseVisualStyleBackColor = true;
-            this.btnRigLastDay.Click += new System.EventHandler(this.btnLastDay_Click);
+            this.btnCardLast12Hours.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCardLast12Hours.Location = new System.Drawing.Point(122, 3);
+            this.btnCardLast12Hours.Name = "btnCardLast12Hours";
+            this.btnCardLast12Hours.Size = new System.Drawing.Size(113, 23);
+            this.btnCardLast12Hours.TabIndex = 1;
+            this.btnCardLast12Hours.Text = "Last 12 Hours";
+            this.btnCardLast12Hours.UseVisualStyleBackColor = true;
+            this.btnCardLast12Hours.Click += new System.EventHandler(this.btnCardLast12Hours_Click);
             // 
-            // btnRigLastWeek
+            // btnCardLast3Hours
             // 
-            this.btnRigLastWeek.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRigLastWeek.Location = new System.Drawing.Point(432, 3);
-            this.btnRigLastWeek.Name = "btnRigLastWeek";
-            this.btnRigLastWeek.Size = new System.Drawing.Size(137, 23);
-            this.btnRigLastWeek.TabIndex = 3;
-            this.btnRigLastWeek.Text = "Last Week";
-            this.btnRigLastWeek.UseVisualStyleBackColor = true;
-            this.btnRigLastWeek.Click += new System.EventHandler(this.btnLastWeek_Click);
-            // 
-            // btnRigLastMonth
-            // 
-            this.btnRigLastMonth.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRigLastMonth.Location = new System.Drawing.Point(575, 3);
-            this.btnRigLastMonth.Name = "btnRigLastMonth";
-            this.btnRigLastMonth.Size = new System.Drawing.Size(138, 23);
-            this.btnRigLastMonth.TabIndex = 4;
-            this.btnRigLastMonth.Text = "Last Month";
-            this.btnRigLastMonth.UseVisualStyleBackColor = true;
-            this.btnRigLastMonth.Click += new System.EventHandler(this.btnLastMonth_Click);
+            this.btnCardLast3Hours.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCardLast3Hours.Location = new System.Drawing.Point(3, 3);
+            this.btnCardLast3Hours.Name = "btnCardLast3Hours";
+            this.btnCardLast3Hours.Size = new System.Drawing.Size(113, 23);
+            this.btnCardLast3Hours.TabIndex = 0;
+            this.btnCardLast3Hours.Text = "Last 3 Hours";
+            this.btnCardLast3Hours.UseVisualStyleBackColor = true;
+            this.btnCardLast3Hours.Click += new System.EventHandler(this.btnCardLast3Hours_Click);
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 5;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnCount = 6;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66611F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66611F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66611F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66611F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66611F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66945F));
             this.tableLayoutPanel2.Controls.Add(this.btnCardLast3Hours, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnCardLast12Hours, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnCardLastDay, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnCardLastWeek, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnCardLastMonth, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel1, 5, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 59);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -572,60 +644,97 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(716, 29);
             this.tableLayoutPanel2.TabIndex = 12;
             // 
-            // btnCardLast3Hours
+            // panel1
             // 
-            this.btnCardLast3Hours.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCardLast3Hours.Location = new System.Drawing.Point(3, 3);
-            this.btnCardLast3Hours.Name = "btnCardLast3Hours";
-            this.btnCardLast3Hours.Size = new System.Drawing.Size(137, 23);
-            this.btnCardLast3Hours.TabIndex = 0;
-            this.btnCardLast3Hours.Text = "Last 3 Hours";
-            this.btnCardLast3Hours.UseVisualStyleBackColor = true;
-            this.btnCardLast3Hours.Click += new System.EventHandler(this.btnCardLast3Hours_Click);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.nudCardLastXHours);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(598, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(115, 23);
+            this.panel1.TabIndex = 5;
             // 
-            // btnCardLast12Hours
+            // label9
             // 
-            this.btnCardLast12Hours.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCardLast12Hours.Location = new System.Drawing.Point(146, 3);
-            this.btnCardLast12Hours.Name = "btnCardLast12Hours";
-            this.btnCardLast12Hours.Size = new System.Drawing.Size(137, 23);
-            this.btnCardLast12Hours.TabIndex = 1;
-            this.btnCardLast12Hours.Text = "Last 12 Hours";
-            this.btnCardLast12Hours.UseVisualStyleBackColor = true;
-            this.btnCardLast12Hours.Click += new System.EventHandler(this.btnCardLast12Hours_Click);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 5);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(27, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Last";
             // 
-            // btnCardLastDay
+            // nudCardLastXHours
             // 
-            this.btnCardLastDay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCardLastDay.Location = new System.Drawing.Point(289, 3);
-            this.btnCardLastDay.Name = "btnCardLastDay";
-            this.btnCardLastDay.Size = new System.Drawing.Size(137, 23);
-            this.btnCardLastDay.TabIndex = 2;
-            this.btnCardLastDay.Text = "Last Day";
-            this.btnCardLastDay.UseVisualStyleBackColor = true;
-            this.btnCardLastDay.Click += new System.EventHandler(this.btnCardLastDay_Click);
+            this.nudCardLastXHours.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudCardLastXHours.Location = new System.Drawing.Point(36, 3);
+            this.nudCardLastXHours.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudCardLastXHours.Name = "nudCardLastXHours";
+            this.nudCardLastXHours.Size = new System.Drawing.Size(35, 20);
+            this.nudCardLastXHours.TabIndex = 1;
+            this.nudCardLastXHours.ValueChanged += new System.EventHandler(this.nudCardLastXHours_ValueChanged);
             // 
-            // btnCardLastWeek
+            // label10
             // 
-            this.btnCardLastWeek.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCardLastWeek.Location = new System.Drawing.Point(432, 3);
-            this.btnCardLastWeek.Name = "btnCardLastWeek";
-            this.btnCardLastWeek.Size = new System.Drawing.Size(137, 23);
-            this.btnCardLastWeek.TabIndex = 3;
-            this.btnCardLastWeek.Text = "Last Week";
-            this.btnCardLastWeek.UseVisualStyleBackColor = true;
-            this.btnCardLastWeek.Click += new System.EventHandler(this.btnCardLastWeek_Click);
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(77, 5);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Hours";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnCardLastMonth
+            // panel2
             // 
-            this.btnCardLastMonth.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCardLastMonth.Location = new System.Drawing.Point(575, 3);
-            this.btnCardLastMonth.Name = "btnCardLastMonth";
-            this.btnCardLastMonth.Size = new System.Drawing.Size(138, 23);
-            this.btnCardLastMonth.TabIndex = 4;
-            this.btnCardLastMonth.Text = "Last Month";
-            this.btnCardLastMonth.UseVisualStyleBackColor = true;
-            this.btnCardLastMonth.Click += new System.EventHandler(this.btnCardLastMonth_Click);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.nudRigLastXHours);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(598, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(115, 23);
+            this.panel2.TabIndex = 6;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(77, 5);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(35, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Hours";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // nudRigLastXHours
+            // 
+            this.nudRigLastXHours.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudRigLastXHours.Location = new System.Drawing.Point(36, 3);
+            this.nudRigLastXHours.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudRigLastXHours.Name = "nudRigLastXHours";
+            this.nudRigLastXHours.Size = new System.Drawing.Size(35, 20);
+            this.nudRigLastXHours.TabIndex = 1;
+            this.nudRigLastXHours.ValueChanged += new System.EventHandler(this.nudRigLastXHours_ValueChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 5);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(27, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Last";
             // 
             // NicehashStatsViewer
             // 
@@ -642,12 +751,18 @@
             this.tcRigStats.ResumeLayout(false);
             this.tpRigGraphs.ResumeLayout(false);
             this.tpRigGraphs.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.tpCardStats.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCardLastXHours)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRigLastXHours)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -702,6 +817,14 @@
         private System.Windows.Forms.Button btnCardLastDay;
         private System.Windows.Forms.Button btnCardLastWeek;
         private System.Windows.Forms.Button btnCardLastMonth;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown nudCardLastXHours;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown nudRigLastXHours;
+        private System.Windows.Forms.Label label12;
     }
 }
 

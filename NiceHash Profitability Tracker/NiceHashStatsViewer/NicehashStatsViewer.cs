@@ -46,21 +46,47 @@ namespace NiceHashStatsViewer
 		private void RunRigStatReport(int resolution)
 		{
 			try
-			{
-				switch (cbRigStatsGraphReport.SelectedIndex)
-			{
-				case 0:
-					Reports.RigReports.RunRigStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "Power", "Power(Watts)", "WorkerName", true,"F");
-					break;
-				case 1:
-					Reports.RigReports.RunRigStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "Temp", "Temp(C)", "WorkerName", false, "F");
-					break;
-				case 2:
-					Reports.RigReports.RunRigWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "Efficiency", "Efficiency %", "WorkerName", false, "P");
-					break;
-				case 3:
-					Reports.RigReports.RunRigWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpRigStatsGraphStartTime.Value, dtpRigStatsGraphsEndTime.Value, resolution, cartesianChart1, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", "WorkerName", true, "F9");
-					break;
+            {
+                string legend = "WorkerName";
+                Reports.ReportParameters Params = new Reports.ReportParameters
+                {
+                    WalletAddress = tbRigStatsGraphWallet.Text,
+                    start = dtpRigStatsGraphStartTime.Value,
+                    end = dtpRigStatsGraphsEndTime.Value,
+                    resolution = resolution,
+                    chart = cartesianChart1,
+                    LegendColumn = legend
+                };
+                switch (cbRigStatsGraphReport.SelectedIndex)
+			    {
+				    case 0:
+                        Params.sum = true;
+                        Params.stat = "Power";
+                        Params.YKey = "Power(Watts)";
+                        Params.numberFormat = "F";
+                        Reports.RigReports.RunRigStatAndGenerateChart(Params);
+					    break;
+				    case 1:
+                        Params.sum = false;
+                        Params.stat = "Temp";
+                        Params.YKey = "Temp(C)";
+                        Params.numberFormat = "F";
+                        Reports.RigReports.RunRigStatAndGenerateChart(Params);
+					    break;
+				    case 2:
+                        Params.sum = false;
+                        Params.stat = "Efficiency";
+                        Params.YKey = "Efficiency %";
+                        Params.numberFormat = "P";
+                        Reports.RigReports.RunRigWorkStatAndGenerateChart(Params);
+					    break;
+				    case 3:
+                        Params.sum = true;
+                        Params.stat = "CalculatedEarnings";
+                        Params.YKey = "CalculatedEarnings (BTC/Day)";
+                        Params.numberFormat = "F";
+                        Reports.RigReports.RunRigWorkStatAndGenerateChart(Params);
+					    break;
 				}
 			}
 			catch (Exception ex)
@@ -85,19 +111,45 @@ namespace NiceHashStatsViewer
 				{
 					legend = "FriendlyName";
 				}
+                Reports.ReportParameters Params = new Reports.ReportParameters
+                {
+                    WalletAddress = tbRigStatsGraphWallet.Text,
+                    start = dtpCardStatsGraphStart.Value,
+                    end = dtpCardStatsGraphEnd.Value,
+                    resolution = resolution,
+                    chart = cartesianChart2,
+                    LegendColumn = legend
+
+                };
 				switch (cbCardStatsGraphReport.SelectedIndex)
 				{
 					case 0:
-						Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Power", "Power(Watts)", legend, true, "F");
+                        Params.sum = true;
+                        Params.stat = "Power";
+                        Params.YKey = "Power(Watts)";
+                        Params.numberFormat = "F";
+                        Reports.RigReports.RunCardStatAndGenerateChart(Params);
 						break;
 					case 1:
-						Reports.RigReports.RunCardStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Temp", "Temp(C)", legend, false, "F");
+                        Params.sum = false;
+                        Params.stat = "Temp";
+                        Params.YKey = "Temp(C)";
+                        Params.numberFormat = "F";
+                        Reports.RigReports.RunCardStatAndGenerateChart(Params);
 						break;
 					case 2:
-						Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "Efficiency", "Efficiency %", legend, false, "P");
+                        Params.sum = false;
+                        Params.stat = "Efficiency";
+                        Params.YKey = "Efficiency %";
+                        Params.numberFormat = "P";
+                        Reports.RigReports.RunCardWorkStatAndGenerateChart(Params);
 						break;
 					case 3:
-						Reports.RigReports.RunCardWorkStatAndGenerateChart(tbRigStatsGraphWallet.Text, dtpCardStatsGraphStart.Value, dtpCardStatsGraphEnd.Value, resolution, cartesianChart2, "CalculatedEarnings", "CalculatedEarnings (BTC/Day)", legend, true, "F9");
+                        Params.sum = true;
+                        Params.stat = "CalculatedEarnings";
+                        Params.YKey = "CalculatedEarnings (BTC/Day)";
+                        Params.numberFormat = "F";
+                        Reports.RigReports.RunCardWorkStatAndGenerateChart(Params);
 						break;
 				}
 			}
@@ -148,7 +200,7 @@ namespace NiceHashStatsViewer
             {
                 resolution = (60);
             }
-            else if (SecondsContained > (60 * 30))
+            else if (SecondsContained > (60 * 10))
             {
                 resolution = (30);
             }
@@ -161,7 +213,26 @@ namespace NiceHashStatsViewer
 
 		private void btnRunCardStatsGraphReport_Click(object sender, EventArgs e)
 		{
-			RunCardStatReport(GetCardResolution());
+            if (btnRunCardStatsGraphReport.Text == "Run Report")
+            {
+                if (cbLive.Checked)
+                {
+
+                    RunCardStatReport(GetCardResolution());
+                    timerCardStatsGraphs.Interval = GetCardResolution() * 1000;
+                    timerCardStatsGraphs.Start();
+                    btnRunCardStatsGraphReport.Text = "Stop Reports";
+                }
+                else
+                {
+                    RunRigStatReport(GetCardResolution());
+                }
+            }
+            else
+            {
+                timerCardStatsGraphs.Stop();
+                btnRunCardStatsGraphReport.Text = "Run Report";
+            }
 		}
 
 		private void NicehashStatsViewer_Load(object sender, EventArgs e)
@@ -276,6 +347,26 @@ namespace NiceHashStatsViewer
         {
             dtpCardStatsGraphStart.Value = DateTime.Now.AddMonths(-1);
             dtpCardStatsGraphEnd.Value = DateTime.Now;
+        }
+
+        private void nudRigLastXHours_ValueChanged(object sender, EventArgs e)
+        {
+            dtpRigStatsGraphStartTime.Value = DateTime.Now.AddHours(-(int)nudRigLastXHours.Value);
+            dtpRigStatsGraphsEndTime.Value = DateTime.Now;
+
+        }
+
+        private void nudCardLastXHours_ValueChanged(object sender, EventArgs e)
+        {
+            dtpCardStatsGraphStart.Value = DateTime.Now.AddHours(-(int)nudCardLastXHours.Value);
+            dtpCardStatsGraphEnd.Value = DateTime.Now;
+        }
+
+        private void timerCardStatsGraphs_Tick(object sender, EventArgs e)
+        {
+            dtpCardStatsGraphEnd.Value = DateTime.Now;
+            timerCardStatsGraphs.Interval = GetCardResolution() * 1000;
+            RunCardStatReport(GetRigResolution());
         }
     }
 }
