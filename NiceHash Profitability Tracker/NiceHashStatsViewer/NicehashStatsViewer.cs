@@ -123,48 +123,41 @@ namespace NiceHashStatsViewer
 		}
 		private int GetRigResolution()
 		{
-			double SecondsContained = (dtpRigStatsGraphsEndTime.Value - dtpRigStatsGraphStartTime.Value).TotalSeconds;
-			int resolution = (60 * 60);
-			if (SecondsContained >= (60 * 60 * 24 * 5))
-			{
-				resolution = (60 * 60 * 12);
-			}
-			else if (SecondsContained >= (60 * 60 * 2))
-			{
-				resolution = (60 * 60);
-			}
-			else if (SecondsContained >= (60 * 30))
-			{
-				resolution = (60);
-			}
-			else
-			{
-				resolution = (10);
-			}
-			return resolution;
+            return GetResolution((dtpRigStatsGraphsEndTime.Value - dtpRigStatsGraphStartTime.Value).TotalSeconds);
 		}
 		private int GetCardResolution()
 		{
-			double SecondsContained = (dtpCardStatsGraphEnd.Value - dtpCardStatsGraphStart.Value).TotalSeconds;
-			int resolution = (60 * 60);
-			if (SecondsContained >= (60 * 60 * 24*5))
-			{
-				resolution = (60 * 60 * 12);
-			}
-			else if (SecondsContained >= (60 * 60 * 2))
-			{
-				resolution = (60 * 60);
-			}
-			else if (SecondsContained >= (60 * 30))
-			{
-				resolution = (60);
-			}
-			else
-			{
-				resolution = (10);
-			}
-			return resolution;
+			return GetResolution((dtpCardStatsGraphEnd.Value - dtpCardStatsGraphStart.Value).TotalSeconds);
 		}
+        private int GetResolution(double SecondsContained)
+        {
+            int resolution = (60 * 60);
+            if (SecondsContained > (60 * 60 * 24 * 5))
+            {
+                resolution = (60 * 60 * 12);
+            }
+            else if (SecondsContained > (60 * 60 * 6))
+            {
+                resolution = (60 * 10);
+            }
+            else if (SecondsContained > (60 * 60 * 2))
+            {
+                resolution = (60 * 5);
+            }
+            else if (SecondsContained > (60 * 60))
+            {
+                resolution = (60);
+            }
+            else if (SecondsContained > (60 * 30))
+            {
+                resolution = (30);
+            }
+            else
+            {
+                resolution = (10);
+            }
+            return resolution;
+        }
 
 		private void btnRunCardStatsGraphReport_Click(object sender, EventArgs e)
 		{
