@@ -84,7 +84,7 @@ namespace NiceHashStatsViewer
                         Params.sum = true;
                         Params.stat = "CalculatedEarnings";
                         Params.YKey = "CalculatedEarnings (BTC/Day)";
-                        Params.numberFormat = "F";
+                        Params.numberFormat = "F9";
                         Reports.RigReports.RunRigWorkStatAndGenerateChart(Params);
 					    break;
 				}
@@ -148,7 +148,7 @@ namespace NiceHashStatsViewer
                         Params.sum = true;
                         Params.stat = "CalculatedEarnings";
                         Params.YKey = "CalculatedEarnings (BTC/Day)";
-                        Params.numberFormat = "F";
+                        Params.numberFormat = "F9";
                         Reports.RigReports.RunCardWorkStatAndGenerateChart(Params);
 						break;
 				}
@@ -225,7 +225,7 @@ namespace NiceHashStatsViewer
                 }
                 else
                 {
-                    RunRigStatReport(GetCardResolution());
+                    RunCardStatReport(GetCardResolution());
                 }
             }
             else
