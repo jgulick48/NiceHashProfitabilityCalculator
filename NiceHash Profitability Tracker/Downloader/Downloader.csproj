@@ -53,7 +53,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NiceHashProfitabilityCalculatorUpdater\Updater.csproj">
+    <ProjectReference Include="..\Updater\Updater.csproj">
       <Project>{5c8613c4-04a5-4ce3-93fd-7b74f16d37c5}</Project>
       <Name>Updater</Name>
     </ProjectReference>
