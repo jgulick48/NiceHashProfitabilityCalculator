@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NiceHashWorkerMonitor.DataHelper
+namespace Monitor.DataHelper
 {
 	public static class DataManager
 	{

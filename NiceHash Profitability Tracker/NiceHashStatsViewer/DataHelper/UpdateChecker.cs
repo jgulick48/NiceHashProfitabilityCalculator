@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace NiceHashStatsViewer.DataHelper
+namespace Viewer.DataHelper
 {
     public class UpdateChecker
     {
@@ -34,14 +34,14 @@ namespace NiceHashStatsViewer.DataHelper
             }
             else
             {
-                CurrentRelease = NiceHashProfitabilityCalculatorUpdater.DataHelper.GitHubReleases.GetRepoLatestReleaseNumber();
+                CurrentRelease = Updater.DataHelper.GitHubReleases.GetRepoLatestReleaseNumber();
                 File.WriteAllText(ReleaseFilePath, CurrentRelease.ToString());
                 return false;
             }
         }
         private static bool CheckCurrentReleaseAgainstLatest()
         {
-            dynamic LatestRelease = NiceHashProfitabilityCalculatorUpdater.DataHelper.GitHubReleases.GetRepoLatestReleaseNumber();
+            dynamic LatestRelease = Updater.DataHelper.GitHubReleases.GetRepoLatestReleaseNumber();
             if(LatestRelease.id > CurrentRelease.id)
             {
                 NewReleaseURL = LatestRelease.html_url;

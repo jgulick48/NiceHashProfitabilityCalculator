@@ -7,7 +7,7 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 
-namespace NiceHashWorkerMonitor.DataHelper
+namespace Monitor.DataHelper
 {
 	public class NiceHashAPIHelper
 	{

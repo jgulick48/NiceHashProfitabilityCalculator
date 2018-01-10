@@ -1,4 +1,4 @@
-﻿namespace NiceHashStatsViewer.Forms
+﻿namespace Viewer.Forms
 {
 	partial class ExceptionPopup
 	{

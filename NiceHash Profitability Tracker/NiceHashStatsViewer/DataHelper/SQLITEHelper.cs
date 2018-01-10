@@ -8,7 +8,7 @@ using System.Data.SQLite;
 using System.IO;
 
 
-namespace NiceHashStatsViewer.DataHelper
+namespace Viewer.DataHelper
 {
 	public static class SQLITEHandler
 	{

@@ -13,7 +13,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.Data.SQLite;
-using NiceHashWorkerMonitor;
+using Monitor;
 
 namespace NiceHash_Profitability_Tracker
 {
@@ -53,12 +53,12 @@ namespace NiceHash_Profitability_Tracker
                     {
                         if(lastCheck == 0)
                         {
-                            lastCheck = NiceHashWorkerMonitor.DataHelper.DateTimeHelper.GetUnixTimeStamp();
+                            lastCheck = Monitor.DataHelper.DateTimeHelper.GetUnixTimeStamp();
                             lastCheckValue = getBalanceFromResults(returnData.result.stats);
                         }
                         else
                         {
-                            double elapsedTime = (NiceHashWorkerMonitor.DataHelper.DateTimeHelper.GetUnixTimeStamp() - lastCheck);
+                            double elapsedTime = (Monitor.DataHelper.DateTimeHelper.GetUnixTimeStamp() - lastCheck);
                             lastCheck = lastCheck + elapsedTime;
                             float newBal = getBalanceFromResults(returnData.result.stats);
                             float earnings = newBal - lastCheckValue;
@@ -72,7 +72,7 @@ namespace NiceHash_Profitability_Tracker
                         }
                     }
                 }
-                lblLRT.Text = NiceHashWorkerMonitor.DataHelper.DateTimeHelper.UnixTimeStampToDateTime(lastCheck).ToLongTimeString();
+                lblLRT.Text = Monitor.DataHelper.DateTimeHelper.UnixTimeStampToDateTime(lastCheck).ToLongTimeString();
                 lblPB.Text = lastCheckValue.ToString();
                 lblFIAT.Text = Math.Round((lastCheckValue * (float)nudBTCValue.Value), 2).ToString();
             }
@@ -158,7 +158,7 @@ namespace NiceHash_Profitability_Tracker
         
         private float getSecondAverage(int howFarBack)
         {
-            string sql = "select earnings, secondspassed from earnings where daterecorded > '" + (NiceHashWorkerMonitor.DataHelper.DateTimeHelper.GetUnixTimeStamp()-howFarBack) + "'";
+            string sql = "select earnings, secondspassed from earnings where daterecorded > '" + (Monitor.DataHelper.DateTimeHelper.GetUnixTimeStamp()-howFarBack) + "'";
             m_dbConnection.Open();
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             SQLiteDataReader reader = command.ExecuteReader();

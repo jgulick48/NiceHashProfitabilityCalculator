@@ -1,6 +1,6 @@
-﻿namespace NiceHashWorkerMonitor
+﻿namespace Monitor
 {
-	partial class NiceHashWorkerMonitor
+	partial class Monitor
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NiceHashWorkerMonitor));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Monitor));
 			this.nudRefresh = new System.Windows.Forms.NumericUpDown();
 			this.gbSettings = new System.Windows.Forms.GroupBox();
 			this.lblRefreshTime = new System.Windows.Forms.Label();

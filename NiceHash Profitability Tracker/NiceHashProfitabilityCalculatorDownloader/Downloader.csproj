@@ -53,9 +53,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NiceHashProfitabilityCalculatorUpdater\NiceHashProfitabilityCalculatorUpdater.csproj">
+    <ProjectReference Include="..\NiceHashProfitabilityCalculatorUpdater\Updater.csproj">
       <Project>{5c8613c4-04a5-4ce3-93fd-7b74f16d37c5}</Project>
-      <Name>NiceHashProfitabilityCalculatorUpdater</Name>
+      <Name>Updater</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

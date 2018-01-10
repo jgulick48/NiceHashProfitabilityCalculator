@@ -1,4 +1,4 @@
-﻿namespace NiceHashWorkerMonitor.Forms
+﻿namespace Monitor.Forms
 {
 	partial class WorkerAddressInfo
 	{

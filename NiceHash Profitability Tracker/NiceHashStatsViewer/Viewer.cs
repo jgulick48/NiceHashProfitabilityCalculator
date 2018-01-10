@@ -12,12 +12,12 @@ using System.IO;
 using LiveCharts; //Core of the library
 using LiveCharts.WinForms;
 
-namespace NiceHashStatsViewer
+namespace Viewer
 {
-	public partial class NicehashStatsViewer : Form
+	public partial class Viewer : Form
 	{
 		private bool loading = false;
-		public NicehashStatsViewer()
+		public Viewer()
 		{
 			InitializeComponent();
 		}

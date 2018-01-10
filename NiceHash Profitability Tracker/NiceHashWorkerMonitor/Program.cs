@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NiceHashWorkerMonitor
+namespace Monitor
 {
 	static class Program
 	{
@@ -16,7 +16,7 @@ namespace NiceHashWorkerMonitor
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new NiceHashWorkerMonitor());
+			Application.Run(new Monitor());
 		}
 	}
 }

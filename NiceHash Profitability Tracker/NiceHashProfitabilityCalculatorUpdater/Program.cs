@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 
-namespace NiceHashProfitabilityCalculatorUpdater
+namespace Updater
 {
     class Program
     {
@@ -23,13 +23,13 @@ namespace NiceHashProfitabilityCalculatorUpdater
         }
         private static void CheckForRunningApps()
         {
-            if(CheckIfAppRunningByName("NiceHashStatsViewer"))
+            if(CheckIfAppRunningByName("Viewer"))
             {
                 Console.WriteLine("Error: Unable to update app due to NiceHashStatsViewer still running.");
                 Console.ReadLine();
                 Environment.Exit(1);
             }
-            else if (CheckIfAppRunningByName("NiceHashWorkerMonitor"))
+            else if (CheckIfAppRunningByName("Monitor"))
             {
                 Console.WriteLine("Error: Unable to update app due to NiceHashWorkerMonitor still running.");
                 Console.ReadLine();
@@ -73,7 +73,7 @@ namespace NiceHashProfitabilityCalculatorUpdater
 
             foreach (FileInfo file in di.GetFiles())
             {
-                if (!file.Name.Contains("NiceHashProfitabilityCalculatorUpdater") && !file.Name.Contains("Newtonsoft") && !file.Name.Contains("RunningApp.txt"))
+                if (!file.Name.Contains("Updater") && !file.Name.Contains("Newtonsoft") && !file.Name.Contains("RunningApp.txt"))
                 file.Delete();
             }
             foreach (DirectoryInfo dir in di.GetDirectories())
@@ -90,7 +90,7 @@ namespace NiceHashProfitabilityCalculatorUpdater
                 if(asset.label == "Downloader")
                 {
                     downloadCount++;
-                    DataHelper.DownloadHelper.DownLoadFileFromURL(asset.browser_download_url, asset.name);
+                    DataHelper.DownloadHelper.DownLoadFileFromURL(asset.browser_download_url.ToString(), asset.name.ToString());
                     downloadedAsset = asset;
                 }
             }
@@ -101,14 +101,14 @@ namespace NiceHashProfitabilityCalculatorUpdater
             }
             else
             {
-                updaterFolder = Path.Combine(Directory.GetCurrentDirectory(), "Downloader");
+                updaterFolder = "Downloader";
                 Directory.CreateDirectory(updaterFolder);
                 DataHelper.DownloadHelper.ExtractZipFromFile(downloadedAsset.name.ToString(), updaterFolder);
             }
         }
         private static void StartUpdateDownloader()
         {
-            Process.Start(Path.Combine(updaterFolder, "NiceHashProfitabilityCalculatorDownloader.exe"));
+            Process.Start(Path.Combine(updaterFolder, "Downloader.exe"));
         }
     }
 }

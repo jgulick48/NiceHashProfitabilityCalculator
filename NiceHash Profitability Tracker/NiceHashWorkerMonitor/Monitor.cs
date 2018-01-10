@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NiceHashWorkerMonitor
+namespace Monitor
 {
-	public partial class NiceHashWorkerMonitor : Form
+	public partial class Monitor : Form
 	{
 		private Objects.MiningRig rig;
 		private double TimeSinceLastScan;
@@ -18,7 +18,7 @@ namespace NiceHashWorkerMonitor
 		private Dictionary<int, int> CardIDDropdown;
 		private Queue<Objects.WorkUnit> pendingWU = new Queue<Objects.WorkUnit>();
 		private Queue<Objects.GraphicsCardMetrics> pendingGCM = new Queue<Objects.GraphicsCardMetrics>();
-		public NiceHashWorkerMonitor()
+		public Monitor()
 		{
 			InitializeComponent();
 		}

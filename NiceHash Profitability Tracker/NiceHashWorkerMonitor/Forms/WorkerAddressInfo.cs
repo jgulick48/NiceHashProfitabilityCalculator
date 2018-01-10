@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NiceHashWorkerMonitor.Forms
+namespace Monitor.Forms
 {
 	public partial class WorkerAddressInfo : Form
 	{

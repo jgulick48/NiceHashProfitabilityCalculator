@@ -7,7 +7,7 @@ using MySql.Data;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace NiceHashStatsViewer.DataHelper
+namespace Viewer.DataHelper
 {
 	public static class MySQLHandler
 	{

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace NiceHashStatsViewer.DataHelper
+namespace Viewer.DataHelper
 {
 	public static class DataBaseHandler
 	{

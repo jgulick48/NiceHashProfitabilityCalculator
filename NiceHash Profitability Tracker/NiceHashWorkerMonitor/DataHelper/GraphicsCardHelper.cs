@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NiceHashWorkerMonitor.DataHelper
+namespace Monitor.DataHelper
 {
 	class GraphicsCardHelper
 	{

@@ -7,7 +7,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 
-namespace NiceHashProfitabilityCalculatorUpdater.DataHelper
+namespace Updater.DataHelper
 {
     public static class DownloadHelper
     {

@@ -7,7 +7,7 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 
-namespace NiceHashProfitabilityCalculatorUpdater.DataHelper
+namespace Updater.DataHelper
 {
     public static class GitHubReleases
     {

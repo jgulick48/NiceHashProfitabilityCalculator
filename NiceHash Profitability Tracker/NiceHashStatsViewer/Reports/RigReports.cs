@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
 using System.Windows.Media;
-using NiceHashWorkerMonitor.DataHelper;
+using Monitor.DataHelper;
 using LiveCharts.WinForms;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System.Globalization;
 
-namespace NiceHashStatsViewer.Reports
+namespace Viewer.Reports
 {
 	public static class RigReports
 	{

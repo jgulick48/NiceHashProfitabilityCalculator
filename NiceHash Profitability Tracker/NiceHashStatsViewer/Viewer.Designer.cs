@@ -1,6 +1,6 @@
-﻿namespace NiceHashStatsViewer
+﻿namespace Viewer
 {
-	partial class NicehashStatsViewer
+	partial class Viewer
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NicehashStatsViewer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Viewer));
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpRigStats = new System.Windows.Forms.TabPage();
             this.tcRigStats = new System.Windows.Forms.TabControl();

@@ -8,7 +8,7 @@ using System.Data;
 
 using System.IO;
 
-namespace NiceHashWorkerMonitor.DataHelper
+namespace Monitor.DataHelper
 {
 	public static class sqliteHelper
 	{

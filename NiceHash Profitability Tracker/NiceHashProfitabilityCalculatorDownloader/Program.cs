@@ -9,7 +9,7 @@ using System.Net;
 using System.Diagnostics;
 using System.Threading;
 
-namespace NiceHashProfitabilityCalculatorDownloader
+namespace Downloader
 {
     class Program
     {
@@ -43,7 +43,7 @@ namespace NiceHashProfitabilityCalculatorDownloader
         }
         private static void GetInstallFolderPath()
         {
-            InstallFolder = Directory.GetParent(Environment.CurrentDirectory.ToString()).ToString();
+            InstallFolder = "..";
         }
         private static void ImportReleaseInfoFromFile()
         {
@@ -77,7 +77,7 @@ namespace NiceHashProfitabilityCalculatorDownloader
                 if (asset.label == "Application")
                 {
                     downloadCount++;
-                    NiceHashProfitabilityCalculatorUpdater.DataHelper.DownloadHelper.DownLoadFileFromURL(asset.browser_download_url, asset.name);
+                    Updater.DataHelper.DownloadHelper.DownLoadFileFromURL(asset.browser_download_url, asset.name);
                     downloadedAsset = asset;
                 }
             }
@@ -88,7 +88,7 @@ namespace NiceHashProfitabilityCalculatorDownloader
             }
             else
             {
-                NiceHashProfitabilityCalculatorUpdater.DataHelper.DownloadHelper.ExtractZipFromFile(downloadedAsset.name.ToString(), InstallFolder);
+                Updater.DataHelper.DownloadHelper.ExtractZipFromFile(downloadedAsset.name.ToString(), InstallFolder);
             }
         }
         private static void SaveInstalledReleaseInformation()

@@ -10,7 +10,7 @@ using System.Net.Sockets;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace NiceHashWorkerMonitor.DataHelper
+namespace Monitor.DataHelper
 {
 	class ExcavatorSocket
 	{

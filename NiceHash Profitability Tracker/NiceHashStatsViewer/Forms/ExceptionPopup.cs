@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NiceHashStatsViewer.Forms
+namespace Viewer.Forms
 {
 	public partial class ExceptionPopup : Form
 	{

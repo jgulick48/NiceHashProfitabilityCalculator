@@ -7,7 +7,7 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace NiceHashWorkerMonitor.DataHelper
+namespace Monitor.DataHelper
 {
 	public class MySQLHelper
 	{

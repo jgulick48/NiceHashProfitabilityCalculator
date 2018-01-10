@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NiceHashWorkerMonitor.Objects
+namespace Monitor.Objects
 {
 	public class Algorithm
 	{
