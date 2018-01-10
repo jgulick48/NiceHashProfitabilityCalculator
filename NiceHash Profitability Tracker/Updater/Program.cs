@@ -108,7 +108,10 @@ namespace Updater
         }
         private static void StartUpdateDownloader()
         {
-            Process.Start(Path.Combine(updaterFolder, "Downloader.exe"));
+            ProcessStartInfo psStart = new ProcessStartInfo();
+            psStart.WorkingDirectory = Path.Combine(Environment.CurrentDirectory, "Downloader");
+            psStart.FileName = "Downloader.exe";
+            Process.Start(psStart);
         }
     }
 }
