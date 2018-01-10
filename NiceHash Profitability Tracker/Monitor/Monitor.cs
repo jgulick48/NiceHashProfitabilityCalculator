@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Diagnostics;
 
 namespace Monitor
 {
@@ -216,5 +218,44 @@ namespace Monitor
 				DataHelper.DataManager.UpdateGraphicsCardFirendlyName(cardSelected);
 			}
 		}
-	}
+
+        private void lblNewRelease_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            File.WriteAllText("RunningApp.txt", "Monitor.exe");
+            Process.Start("Updater.exe");
+            this.Close();
+
+        }
+
+        private void lblReleaseNotes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(DataHelper.UpdateChecker.NewReleaseURL))
+            {
+                Process.Start(DataHelper.UpdateChecker.NewReleaseURL);
+            }
+        }
+
+        private void timerUpdateCheck_Tick(object sender, EventArgs e)
+        {
+            UpdateReleaseInfoAndLabels();
+        }
+        private void UpdateReleaseInfoAndLabels()
+        {
+            if (DataHelper.UpdateChecker.CheckForUpdatedRelease())
+            {
+                lblNewRelease.Visible = true;
+                lblReleaseNotes.Visible = true;
+                lblNewRelease.Enabled = true;
+                lblReleaseNotes.Enabled = true;
+            }
+            else
+            {
+                lblNewRelease.Visible = false;
+                lblReleaseNotes.Visible = false;
+                lblNewRelease.Enabled = false;
+                lblReleaseNotes.Enabled = false;
+            }
+
+        }
+    }
 }

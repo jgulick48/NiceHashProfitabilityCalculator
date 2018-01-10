@@ -406,7 +406,7 @@ namespace Viewer
         }
         private void lblNewRelease_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            File.WriteAllText("RunningApp.txt", "NicehashStatsViewer.exe");
+            File.WriteAllText("RunningApp.txt", "Viewer.exe");
             Process.Start("Updater.exe");
             this.Close();
         }

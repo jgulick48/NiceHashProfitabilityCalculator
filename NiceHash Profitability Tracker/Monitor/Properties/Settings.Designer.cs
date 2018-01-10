@@ -82,5 +82,17 @@ namespace Monitor.Properties {
                 this["BTCValue"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsRunning {
+            get {
+                return ((bool)(this["IsRunning"]));
+            }
+            set {
+                this["IsRunning"] = value;
+            }
+        }
     }
 }

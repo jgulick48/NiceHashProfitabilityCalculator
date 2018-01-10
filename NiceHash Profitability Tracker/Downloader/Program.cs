@@ -107,7 +107,10 @@ namespace Downloader
         }
         private static void StartApplication()
         {
-            Process.Start(Path.Combine(InstallFolder, RunningApplication));
+            ProcessStartInfo psStart = new ProcessStartInfo();
+            psStart.WorkingDirectory = "..";
+            psStart.FileName = Path.Combine(InstallFolder, RunningApplication);
+            Process.Start(psStart);
         }
     }
 }
