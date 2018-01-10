@@ -44,14 +44,11 @@ namespace Downloader
         }
         private static void GetInstallFolderPath()
         {
-            InstallFolder = ".";
+            InstallFolder = "..";
         }
         private static void ImportReleaseInfoFromFile()
         {
-            if (File.Exists("LatestRelease.json"))
-            {
-                ReleaseInfo = JsonConvert.DeserializeObject(File.ReadAllText("LatestRelease.json"));
-            }
+            ReleaseInfo = JsonConvert.DeserializeObject(File.ReadAllText("LatestRelease.json"));
         }
         private static void DeleteFilesInInstallDirectory()
         {
@@ -66,7 +63,7 @@ namespace Downloader
             }
             foreach (DirectoryInfo dir in di.GetDirectories())
             {
-                if (!dir.Name.Contains("Downloader"))
+                if (!dir.Name.Contains("Downloader") && !dir.Name.Contains("Debug"))
                 {
                     dir.Delete(true);
                 }
