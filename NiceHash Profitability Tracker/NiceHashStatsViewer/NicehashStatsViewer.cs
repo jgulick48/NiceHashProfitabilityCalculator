@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.IO;
 using LiveCharts; //Core of the library
 using LiveCharts.WinForms;
 
@@ -245,7 +247,10 @@ namespace NiceHashStatsViewer
 			loading = false;
 			dtpCardStatsGraphStart.Value = DateTime.Now.AddHours(-12);
 			dtpRigStatsGraphStartTime.Value = DateTime.Now.AddHours(-12);
-		}
+            UpdateReleaseInfoAndLabels();
+            timerNewReleaseCheck.Start();
+
+        }
 
 		private void cbRigStatsGraphReport_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -367,6 +372,43 @@ namespace NiceHashStatsViewer
             dtpCardStatsGraphEnd.Value = DateTime.Now;
             timerCardStatsGraphs.Interval = GetCardResolution() * 1000;
             RunCardStatReport(GetRigResolution());
+        }
+
+        private void lblReleaseNotes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(!String.IsNullOrEmpty(DataHelper.UpdateChecker.NewReleaseURL))
+            { 
+                Process.Start(DataHelper.UpdateChecker.NewReleaseURL);
+            }
+        }
+
+        private void timerNewReleaseCheck_Tick(object sender, EventArgs e)
+        {
+            UpdateReleaseInfoAndLabels();
+        }
+        private void UpdateReleaseInfoAndLabels()
+        {
+            if (DataHelper.UpdateChecker.CheckForUpdatedRelease())
+            {
+                lblNewRelease.Visible = true;
+                lblReleaseNotes.Visible = true;
+                lblNewRelease.Enabled = true;
+                lblReleaseNotes.Enabled = true;
+            }
+            else
+            {
+                lblNewRelease.Visible = false;
+                lblReleaseNotes.Visible = false;
+                lblNewRelease.Enabled = false;
+                lblReleaseNotes.Enabled = false;
+            }
+
+        }
+        private void lblNewRelease_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            File.WriteAllText("RunningApp.txt", "NicehashStatsViewer.exe");
+            Process.Start("NiceHashProfitabilityCalculatorUpdater.exe");
+            this.Close();
         }
     }
 }

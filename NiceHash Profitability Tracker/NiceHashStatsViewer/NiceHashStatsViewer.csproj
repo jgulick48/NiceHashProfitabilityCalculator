@@ -96,6 +96,7 @@
     <Compile Include="DataHelper\DataBaseHelper.cs" />
     <Compile Include="DataHelper\MySQLHelper.cs" />
     <Compile Include="DataHelper\SQLITEHelper.cs" />
+    <Compile Include="DataHelper\UpdateChecker.cs" />
     <Compile Include="Forms\ExceptionPopup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +157,10 @@
     <Content Include="docs\MySqlTransaction.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NiceHashProfitabilityCalculatorUpdater\NiceHashProfitabilityCalculatorUpdater.csproj">
+      <Project>{5c8613c4-04a5-4ce3-93fd-7b74f16d37c5}</Project>
+      <Name>NiceHashProfitabilityCalculatorUpdater</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NiceHashWorkerMonitor\NiceHashWorkerMonitor.csproj">
       <Project>{2c671c2c-16f6-4748-8e6c-e67bf16dde55}</Project>
       <Name>NiceHashWorkerMonitor</Name>

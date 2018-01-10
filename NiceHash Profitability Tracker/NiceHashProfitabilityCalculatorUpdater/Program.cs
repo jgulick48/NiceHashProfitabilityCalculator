@@ -48,7 +48,7 @@ namespace NiceHashProfitabilityCalculatorUpdater
                 return true;
             }
         }
-        private static void SaveInformationOnLatestRelease()
+        public static void SaveInformationOnLatestRelease()
         {
             updaterFolder = Path.Combine(Directory.GetCurrentDirectory(), "Downloader");
             if (!Directory.Exists(updaterFolder))
@@ -73,7 +73,7 @@ namespace NiceHashProfitabilityCalculatorUpdater
 
             foreach (FileInfo file in di.GetFiles())
             {
-                if(!file.Name.Contains("NiceHashProfitabilityCalculatorUpdater") && !file.Name.Contains("LatestRelease.json") && !file.Name.Contains("Newtonsoft"))
+                if (!file.Name.Contains("NiceHashProfitabilityCalculatorUpdater") && !file.Name.Contains("Newtonsoft") && !file.Name.Contains("RunningApp.txt"))
                 file.Delete();
             }
             foreach (DirectoryInfo dir in di.GetDirectories())

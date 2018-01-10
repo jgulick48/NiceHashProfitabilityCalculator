@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiceHashStatsViewer", "Nice
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiceHashProfitabilityCalculatorUpdater", "NiceHashProfitabilityCalculatorUpdater\NiceHashProfitabilityCalculatorUpdater.csproj", "{5C8613C4-04A5-4CE3-93FD-7B74F16D37C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiceHashProfitabilityCalculatorDownloader", "NiceHashProfitabilityCalculatorDownloader\NiceHashProfitabilityCalculatorDownloader.csproj", "{865C5B94-AF44-478A-A866-D1BDBEAECBCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5C8613C4-04A5-4CE3-93FD-7B74F16D37C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C8613C4-04A5-4CE3-93FD-7B74F16D37C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C8613C4-04A5-4CE3-93FD-7B74F16D37C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{865C5B94-AF44-478A-A866-D1BDBEAECBCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{865C5B94-AF44-478A-A866-D1BDBEAECBCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{865C5B94-AF44-478A-A866-D1BDBEAECBCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{865C5B94-AF44-478A-A866-D1BDBEAECBCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
