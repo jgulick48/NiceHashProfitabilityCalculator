@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{865C5B94-AF44-478A-A866-D1BDBEAECBCB}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>NiceHashProfitabilityCalculatorDownloader</RootNamespace>
-    <AssemblyName>NiceHashProfitabilityCalculatorDownloader</AssemblyName>
+    <RootNamespace>Downloader</RootNamespace>
+    <AssemblyName>Downloader</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
