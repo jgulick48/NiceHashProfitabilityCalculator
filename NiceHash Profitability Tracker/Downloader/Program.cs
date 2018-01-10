@@ -48,7 +48,10 @@ namespace Downloader
         }
         private static void ImportReleaseInfoFromFile()
         {
-            ReleaseInfo = JsonConvert.DeserializeObject(File.ReadAllText("LatestRelease.json"));
+            if (File.Exists("LatestRelease.json"))
+            {
+                ReleaseInfo = JsonConvert.DeserializeObject(File.ReadAllText("LatestRelease.json"));
+            }
         }
         private static void DeleteFilesInInstallDirectory()
         {
