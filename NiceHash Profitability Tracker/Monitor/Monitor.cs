@@ -45,7 +45,7 @@ namespace Monitor
 			Forms.WorkerAddressInfo WAI = new Forms.WorkerAddressInfo();
 			WAI.tbWalletAddress.Text = Properties.Settings.Default.WalletAddress;
 			WAI.tbWorkerName.Text = Properties.Settings.Default.WorkerName;
-			if (WAI.ShowDialog() == DialogResult.OK)
+			if (Properties.Settings.Default.IsRunning || WAI.ShowDialog() == DialogResult.OK)
 			{
 				CardIDDropdown = new Dictionary<int, int>();
 				Properties.Settings.Default.WalletAddress = WAI.tbWalletAddress.Text;
@@ -67,6 +67,10 @@ namespace Monitor
 					rig.CardList.Add(card.ID, card);
 					card.FriendlyName = DataHelper.DataManager.CreateOrUpdateGraphicsCard(card);
 				}
+                if(Properties.Settings.Default.IsRunning)
+                {
+                    btnStartStop_Click(sender, e);
+                }
 			}
 			else
 			{
@@ -221,6 +225,16 @@ namespace Monitor
 
         private void lblNewRelease_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if (btnStartStop.Text == "Stop")
+            {
+                Properties.Settings.Default.IsRunning = true;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.IsRunning = false;
+                Properties.Settings.Default.Save();
+            }
             File.WriteAllText("RunningApp.txt", "Monitor.exe");
             Process.Start("Updater.exe");
             this.Close();
