@@ -109,7 +109,7 @@
     <Content Include="bitcoin_icon_Vgs_icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NiceHashWorkerMonitor\Monitor.csproj">
+    <ProjectReference Include="..\Monitor\Monitor.csproj">
       <Project>{2c671c2c-16f6-4748-8e6c-e67bf16dde55}</Project>
       <Name>Monitor</Name>
     </ProjectReference>

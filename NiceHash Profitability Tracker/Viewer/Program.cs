@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NiceHashStatsViewer
+namespace Viewer
 {
 	static class Program
 	{
@@ -16,7 +16,7 @@ namespace NiceHashStatsViewer
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new NicehashStatsViewer());
+			Application.Run(new Viewer());
 		}
 	}
 }

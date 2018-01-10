@@ -158,11 +158,11 @@
     <Content Include="docs\MySqlTransaction.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NiceHashProfitabilityCalculatorUpdater\Updater.csproj">
+    <ProjectReference Include="..\Updater\Updater.csproj">
       <Project>{5c8613c4-04a5-4ce3-93fd-7b74f16d37c5}</Project>
       <Name>Updater</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NiceHashWorkerMonitor\Monitor.csproj">
+    <ProjectReference Include="..\Monitor\Monitor.csproj">
       <Project>{2c671c2c-16f6-4748-8e6c-e67bf16dde55}</Project>
       <Name>Monitor</Name>
     </ProjectReference>
