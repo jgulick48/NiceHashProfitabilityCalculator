@@ -78,7 +78,7 @@ namespace Downloader
                 if (asset.label == "Application")
                 {
                     downloadCount++;
-                    Updater.DataHelper.DownloadHelper.DownLoadFileFromURL(asset.browser_download_url, asset.name);
+                    Updater.DataHelper.DownloadHelper.DownLoadFileFromURL(asset.browser_download_url.ToString(), asset.name.ToString());
                     downloadedAsset = asset;
                 }
             }
