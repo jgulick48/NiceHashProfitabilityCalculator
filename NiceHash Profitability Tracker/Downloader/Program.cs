@@ -9,6 +9,7 @@ using System.Net;
 using System.Diagnostics;
 using System.Threading;
 
+
 namespace Downloader
 {
     class Program
@@ -101,6 +102,7 @@ namespace Downloader
             if (File.Exists(runningAppFilePath))
             {
                 RunningApplication = File.ReadAllText(runningAppFilePath);
+                File.Delete(runningAppFilePath);
             }
         }
         private static void StartApplication()
