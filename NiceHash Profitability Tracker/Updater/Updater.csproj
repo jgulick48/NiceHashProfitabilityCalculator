@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DataHelper\DownloadHelper.cs" />
     <Compile Include="DataHelper\GitHubReleases.cs" />
+    <Compile Include="DataHelper\UpdateChecker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
