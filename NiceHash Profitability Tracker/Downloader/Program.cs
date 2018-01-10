@@ -44,7 +44,7 @@ namespace Downloader
         }
         private static void GetInstallFolderPath()
         {
-            InstallFolder = "..";
+            InstallFolder = ".";
         }
         private static void ImportReleaseInfoFromFile()
         {
