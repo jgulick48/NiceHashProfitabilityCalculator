@@ -13,7 +13,7 @@ This is a graphing tool to see the logs that you have generated.  I have 4 repor
 
 # Quick How To:
 
-1. Download the files from the release at https://github.com/jgulick48/NiceHashProfitabilityCalculator/releases/tag/1.0.0.10
+1. Download the files from the release at https://github.com/jgulick48/NiceHashProfitabilityCalculator/releases/
 
 2. Extract them to where ever you want on each miner.
 
@@ -25,7 +25,7 @@ This is a graphing tool to see the logs that you have generated.  I have 4 repor
 
 6. From any machine you can now run the NiceHashStatsViewer.exe to run various reports using your Wallet Address. You will want to change the default time that is listed to be able to view recent stats. Best to let the monitor log for 10-20 minutes first just so you have stuff to view.
 
-7. Feel free open and issue if you find problems or want to see some features added.  Issues will be moved/tracked at https://jira.threegm.com/projects/NPC/issues/NPC-2?filter=allopenissues
+7. Feel free open and issue if you find problems or want to see some features added.  Issues will be moved/tracked at https://jira.threegm.com/projects/NPC/issues/
 
 Donation Addresses:
 
