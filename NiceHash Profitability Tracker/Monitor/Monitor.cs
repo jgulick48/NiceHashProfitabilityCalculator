@@ -41,6 +41,7 @@ namespace Monitor
 
 		private void NiceHashWorkerMonitor_Load(object sender, EventArgs e)
 		{
+            timerUpdateCheck.Start();
 			Loading = true;
 			Forms.WorkerAddressInfo WAI = new Forms.WorkerAddressInfo();
 			WAI.tbWalletAddress.Text = Properties.Settings.Default.WalletAddress;
