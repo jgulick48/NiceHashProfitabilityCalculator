@@ -413,24 +413,28 @@
             // 
             this.lblNewRelease.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNewRelease.AutoSize = true;
+            this.lblNewRelease.Enabled = false;
             this.lblNewRelease.Location = new System.Drawing.Point(12, 403);
             this.lblNewRelease.Name = "lblNewRelease";
             this.lblNewRelease.Size = new System.Drawing.Size(196, 13);
             this.lblNewRelease.TabIndex = 7;
             this.lblNewRelease.TabStop = true;
             this.lblNewRelease.Text = "A new release is avaialble for download.";
+            this.lblNewRelease.Visible = false;
             this.lblNewRelease.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblNewRelease_LinkClicked);
             // 
             // lblReleaseNotes
             // 
             this.lblReleaseNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblReleaseNotes.AutoSize = true;
+            this.lblReleaseNotes.Enabled = false;
             this.lblReleaseNotes.Location = new System.Drawing.Point(12, 419);
             this.lblReleaseNotes.Name = "lblReleaseNotes";
             this.lblReleaseNotes.Size = new System.Drawing.Size(77, 13);
             this.lblReleaseNotes.TabIndex = 8;
             this.lblReleaseNotes.TabStop = true;
             this.lblReleaseNotes.Text = "Release Notes";
+            this.lblReleaseNotes.Visible = false;
             this.lblReleaseNotes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblReleaseNotes_LinkClicked);
             // 
             // timerUpdateCheck
