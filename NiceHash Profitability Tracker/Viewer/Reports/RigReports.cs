@@ -163,7 +163,7 @@ namespace Viewer.Reports
 						{
 							if (!string.IsNullOrEmpty(values[i][Params.stat].ToString()))
 							{
-								series.Values.Add(float.Parse(values[i][Params.stat].ToString(), CultureInfo.InvariantCulture));
+                                series.Values.Add(float.Parse(values[i][Params.stat].ToString()));
 							}
 							else
 							{
