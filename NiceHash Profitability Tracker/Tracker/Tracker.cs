@@ -17,13 +17,13 @@ using Monitor;
 
 namespace NiceHash_Profitability_Tracker
 {
-    public partial class Form1 : Form
+    public partial class Tracker : Form
     {
         SQLiteConnection m_dbConnection;
         private double lastCheck;
         private float lastCheckValue;
         private bool Loading = false;
-        public Form1()
+        public Tracker()
         {
             InitializeComponent();
         }
@@ -158,7 +158,7 @@ namespace NiceHash_Profitability_Tracker
         
         private float getSecondAverage(int howFarBack)
         {
-            string sql = "select earnings, secondspassed from earnings where daterecorded > '" + (Monitor.DataHelper.DateTimeHelper.GetUnixTimeStamp()-howFarBack) + "'";
+            string sql = "select earnings, secondspassed from earnings where daterecorded > '" + (Monitor.DataHelper.DateTimeHelper.GetUnixTimeStamp()-howFarBack).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "'";
             m_dbConnection.Open();
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             SQLiteDataReader reader = command.ExecuteReader();
@@ -166,8 +166,8 @@ namespace NiceHash_Profitability_Tracker
             float recordedEarnings = 0;
             while (reader.Read())
             {
-                recordedEarnings += float.Parse(reader["earnings"].ToString(), CultureInfo.InvariantCulture);
-                recordedSeconds += double.Parse(reader["secondspassed"].ToString(), CultureInfo.InvariantCulture);
+                recordedEarnings += float.Parse(reader["earnings"].ToString());
+                recordedSeconds += double.Parse(reader["secondspassed"].ToString());
             }
             m_dbConnection.Close();
             return (recordedEarnings / (float)recordedSeconds);
@@ -188,11 +188,11 @@ namespace NiceHash_Profitability_Tracker
                 mathRoundValue = 2;
                 avgEarnings = avgEarnings * (float)nudBTCValue.Value;
             }
-            lblPMHA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPHHA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPDHA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPWHA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPMthHA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPMHA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString();
+            lblPHHA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString();
+            lblPDHA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString();
+            lblPWHA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString();
+            lblPMthHA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString();
         }
         private void UpdateDayMetrics()
         {
@@ -204,11 +204,11 @@ namespace NiceHash_Profitability_Tracker
                 mathRoundValue = 2;
                 avgEarnings = avgEarnings * (float)nudBTCValue.Value;
             }
-            lblPMDA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPHDA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPDDA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPWDA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPMthDA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPMDA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString();
+            lblPHDA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString();
+            lblPDDA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString();
+            lblPWDA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString();
+            lblPMthDA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString();
 
         }
         private void UpdateWeekMetrics()
@@ -221,11 +221,11 @@ namespace NiceHash_Profitability_Tracker
                 mathRoundValue = 2;
                 avgEarnings = avgEarnings * (float)nudBTCValue.Value;
             }
-            lblPMWA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPHWA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPDWA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPWWA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
-            lblPMthWA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString(CultureInfo.CreateSpecificCulture("en-US"));
+            lblPMWA.Text = Math.Round(avgEarnings * 60, mathRoundValue).ToString();
+            lblPHWA.Text = Math.Round(avgEarnings * 60 * 60, mathRoundValue).ToString();
+            lblPDWA.Text = Math.Round(avgEarnings * 60 * 60 * 24, mathRoundValue).ToString();
+            lblPWWA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 7, mathRoundValue).ToString();
+            lblPMthWA.Text = Math.Round(avgEarnings * 60 * 60 * 24 * 30, mathRoundValue).ToString();
         }
 
         private void tbWalletAddr_TextChanged(object sender, EventArgs e)
@@ -245,5 +245,6 @@ namespace NiceHash_Profitability_Tracker
                 Properties.Settings.Default.Save();
             }
         }
+        
     }
 }
