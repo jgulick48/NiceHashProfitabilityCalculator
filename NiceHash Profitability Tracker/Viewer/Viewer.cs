@@ -217,7 +217,7 @@ namespace Viewer
 		{
             if (btnRunCardStatsGraphReport.Text == "Run Report")
             {
-                if (cbLive.Checked)
+                if (cbGardStatsGraphLive.Checked)
                 {
 
                     RunCardStatReport(GetCardResolution());
@@ -371,7 +371,7 @@ namespace Viewer
         {
             dtpCardStatsGraphEnd.Value = DateTime.Now;
             timerCardStatsGraphs.Interval = GetCardResolution() * 1000;
-            RunCardStatReport(GetRigResolution());
+            RunCardStatReport(GetCardResolution());
         }
 
         private void lblReleaseNotes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -410,5 +410,39 @@ namespace Viewer
             Process.Start("Updater.exe");
             this.Close();
         }
-    }
+
+		private void dtpRigStatsGraphStartTime_ValueChanged(object sender, EventArgs e)
+		{
+			checkStartTimeSeparation(dtpRigStatsGraphStartTime, dtpRigStatsGraphsEndTime);
+		}
+
+		private void dtpRigStatsGraphsEndTime_ValueChanged(object sender, EventArgs e)
+		{
+			checkEndTimeSeparation(dtpRigStatsGraphStartTime, dtpRigStatsGraphsEndTime);
+		}
+		private void checkStartTimeSeparation(DateTimePicker start, DateTimePicker end)
+		{
+			if(start.Value.AddMinutes(5) > end.Value)
+			{
+				end.Value = start.Value.AddMinutes(5);
+			}
+		}
+		private void checkEndTimeSeparation(DateTimePicker start, DateTimePicker end)
+		{
+			if (end.Value.AddMinutes(-5) < start.Value)
+			{
+				start.Value = end.Value.AddMinutes(-5);
+			}
+		}
+
+		private void dtpCardStatsGraphStart_ValueChanged(object sender, EventArgs e)
+		{
+			checkStartTimeSeparation(dtpCardStatsGraphStart, dtpCardStatsGraphEnd);
+		}
+
+		private void dtpCardStatsGraphEnd_ValueChanged(object sender, EventArgs e)
+		{
+			checkEndTimeSeparation(dtpCardStatsGraphStart, dtpCardStatsGraphEnd);
+		}
+	}
 }
