@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Threading;
 using System.IO;
 
 namespace Updater
@@ -14,7 +15,8 @@ namespace Updater
         private static string updaterFolder;
         static void Main(string[] args)
         {
-            Console.WriteLine("Checking for running processes before update.");
+            Console.WriteLine("Waiting 5 seconds then checking for running processes before update.");
+			Thread.Sleep(5);
             CheckForRunningApps();
             DeleteFilesInCurrentDirectory();
             SaveInformationOnLatestRelease();
