@@ -172,7 +172,9 @@ namespace Viewer
 		private void timerRigStatsGraphs_Tick(object sender, EventArgs e)
 		{
 			timerRigStatsGraphs.Interval = GetRigResolution() * 1000;
-			dtpRigStatsGraphsEndTime.Value = DateTime.Now;
+			DateTime newEnd = DateTime.Now;
+			dtpRigStatsGraphStartTime.Value = dtpRigStatsGraphStartTime.Value.Add(newEnd - dtpRigStatsGraphsEndTime.Value);
+			dtpRigStatsGraphsEndTime.Value = newEnd;
 			RunRigStatReport(GetRigResolution());
 		}
 		private int GetRigResolution()
@@ -378,8 +380,10 @@ namespace Viewer
 
         private void timerCardStatsGraphs_Tick(object sender, EventArgs e)
         {
-            dtpCardStatsGraphEnd.Value = DateTime.Now;
-            timerCardStatsGraphs.Interval = GetCardResolution() * 1000;
+			DateTime newEnd = DateTime.Now;
+			dtpCardStatsGraphStart.Value = dtpCardStatsGraphStart.Value.Add(newEnd - dtpCardStatsGraphEnd.Value);
+			dtpCardStatsGraphEnd.Value = newEnd;
+			timerCardStatsGraphs.Interval = GetCardResolution() * 1000;
             RunCardStatReport(GetCardResolution());
         }
 
