@@ -268,15 +268,24 @@ namespace Viewer
 				TextBox itemChanged = (TextBox)sender;
 				Properties.Settings.Default.WalletAddress = itemChanged.Text;
 				Properties.Settings.Default.Save();
-				if (itemChanged != tbCardStatsGraphWallet)
+				if (itemChanged == tbCardStatsGraphWallet)
+				{
+					loading = true;
+					tbRigStatsGraphWallet.Text = itemChanged.Text;
+					tbLiveRigWalletAddr.Text = itemChanged.Text;
+					loading = false;
+				}
+				else if (itemChanged == tbRigStatsGraphWallet)
 				{
 					loading = true;
 					tbCardStatsGraphWallet.Text = itemChanged.Text;
+					tbLiveRigWalletAddr.Text = itemChanged.Text;
 					loading = false;
 				}
-				else if (itemChanged != tbRigStatsGraphWallet)
+				else if (itemChanged == tbLiveRigWalletAddr)
 				{
 					loading = true;
+					tbCardStatsGraphWallet.Text = itemChanged.Text;
 					tbRigStatsGraphWallet.Text = itemChanged.Text;
 					loading = false;
 				}
@@ -443,6 +452,42 @@ namespace Viewer
 		private void dtpCardStatsGraphEnd_ValueChanged(object sender, EventArgs e)
 		{
 			checkEndTimeSeparation(dtpCardStatsGraphStart, dtpCardStatsGraphEnd);
+		}
+
+		private void lblRigPendingWalletBalance_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			Process.Start(string.Format("https://www.nicehash.com/miner/{0}", tbLiveRigWalletAddr.Text));
+		}
+
+		private void tcRigStats_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(tcRigStats.SelectedIndex == 1)
+			{
+				timerLiveStatsRefresh.Start();
+				UpdateRigLiveStatsDashboard();
+			}
+			else
+			{
+				timerLiveStatsRefresh.Stop();
+			}
+		}
+
+		private void timerLiveStatsRefresh_Tick(object sender, EventArgs e)
+		{
+			UpdateRigLiveStatsDashboard();
+		}
+		private void UpdateRigLiveStatsDashboard()
+		{
+			lblRigPendingWalletBalance.Text = DataHelper.NiceHashAPI.GetBalance(tbLiveRigWalletAddr.Text).ToString();
+			DataTable DTable = Reports.RigReports.GetRigLiveStats(tbLiveRigWalletAddr.Text);
+			BindingSource SBind = new BindingSource();
+			SBind.DataSource = DTable;
+
+			dgvLiveRigStats.AutoGenerateColumns = true;
+			dgvLiveRigStats.DataSource = DTable;
+
+			dgvLiveRigStats.DataSource = SBind;
+			dgvLiveRigStats.Refresh();
 		}
 	}
 }

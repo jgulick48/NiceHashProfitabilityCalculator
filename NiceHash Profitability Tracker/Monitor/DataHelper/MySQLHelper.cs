@@ -11,7 +11,7 @@ namespace Monitor.DataHelper
 {
 	public class MySQLHelper
 	{
-		static string connectionstring = System.Configuration.ConfigurationManager.ConnectionStrings["MySQLHome"].ToString();
+		static string connectionstring = System.Configuration.ConfigurationManager.ConnectionStrings["NiceHashStats"].ToString();
 		public static void CreateOrGetRig(Objects.MiningRig rig)
 		{
 			MySqlConnection m_cn = new MySqlConnection(connectionstring);
@@ -148,6 +148,21 @@ namespace Monitor.DataHelper
 			m_cn.Open();
 			cmd.ExecuteNonQuery();
 			m_cn.Close();
+		}
+		public static DataTable RunLiveStatsReport(string WalletAddress, double TimeSince)
+		{
+			MySqlConnection m_cn = new MySqlConnection(connectionstring);
+			MySqlDataAdapter cmd = new MySqlDataAdapter("reportCardLiveStats", m_cn);
+			cmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+			cmd.SelectCommand.Parameters.AddWithValue("?W_ADDR", WalletAddress);
+			cmd.SelectCommand.Parameters["?W_ADDR"].Direction = ParameterDirection.Input;
+			cmd.SelectCommand.Parameters.AddWithValue("?T_Since", TimeSince);
+			cmd.SelectCommand.Parameters["?T_Since"].Direction = ParameterDirection.Input;
+			m_cn.Open();
+			DataTable dt = new DataTable();
+			cmd.Fill(dt);
+			m_cn.Close();
+			return dt;
 		}
 	}
 }
