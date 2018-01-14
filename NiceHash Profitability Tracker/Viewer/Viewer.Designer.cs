@@ -89,6 +89,13 @@
 			this.lblReleaseNotes = new System.Windows.Forms.LinkLabel();
 			this.lblNewRelease = new System.Windows.Forms.LinkLabel();
 			this.timerNewReleaseCheck = new System.Windows.Forms.Timer(this.components);
+			this.tpLiveRigStats = new System.Windows.Forms.TabPage();
+			this.tbLiveRigWalletAddr = new System.Windows.Forms.TextBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.lblRigPendingWalletBalance = new System.Windows.Forms.LinkLabel();
+			this.timerLiveStatsRefresh = new System.Windows.Forms.Timer(this.components);
+			this.dgvLiveRigStats = new System.Windows.Forms.DataGridView();
 			this.tcMain.SuspendLayout();
 			this.tpRigStats.SuspendLayout();
 			this.tcRigStats.SuspendLayout();
@@ -102,6 +109,8 @@
 			this.tableLayoutPanel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudCardLastXHours)).BeginInit();
+			this.tpLiveRigStats.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dgvLiveRigStats)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tcMain
@@ -134,12 +143,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tcRigStats.Controls.Add(this.tpRigGraphs);
+			this.tcRigStats.Controls.Add(this.tpLiveRigStats);
 			this.tcRigStats.Controls.Add(this.tpRigStatsExports);
 			this.tcRigStats.Location = new System.Drawing.Point(6, 6);
 			this.tcRigStats.Name = "tcRigStats";
 			this.tcRigStats.SelectedIndex = 0;
 			this.tcRigStats.Size = new System.Drawing.Size(736, 483);
 			this.tcRigStats.TabIndex = 0;
+			this.tcRigStats.SelectedIndexChanged += new System.EventHandler(this.tcRigStats_SelectedIndexChanged);
 			// 
 			// tpRigGraphs
 			// 
@@ -774,6 +785,75 @@
 			this.timerNewReleaseCheck.Interval = 3600000;
 			this.timerNewReleaseCheck.Tick += new System.EventHandler(this.timerNewReleaseCheck_Tick);
 			// 
+			// tpLiveRigStats
+			// 
+			this.tpLiveRigStats.Controls.Add(this.dgvLiveRigStats);
+			this.tpLiveRigStats.Controls.Add(this.lblRigPendingWalletBalance);
+			this.tpLiveRigStats.Controls.Add(this.label14);
+			this.tpLiveRigStats.Controls.Add(this.tbLiveRigWalletAddr);
+			this.tpLiveRigStats.Controls.Add(this.label13);
+			this.tpLiveRigStats.Location = new System.Drawing.Point(4, 22);
+			this.tpLiveRigStats.Name = "tpLiveRigStats";
+			this.tpLiveRigStats.Padding = new System.Windows.Forms.Padding(3);
+			this.tpLiveRigStats.Size = new System.Drawing.Size(728, 457);
+			this.tpLiveRigStats.TabIndex = 2;
+			this.tpLiveRigStats.Text = "Live";
+			this.tpLiveRigStats.UseVisualStyleBackColor = true;
+			// 
+			// tbLiveRigWalletAddr
+			// 
+			this.tbLiveRigWalletAddr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbLiveRigWalletAddr.Location = new System.Drawing.Point(92, 6);
+			this.tbLiveRigWalletAddr.Name = "tbLiveRigWalletAddr";
+			this.tbLiveRigWalletAddr.Size = new System.Drawing.Size(630, 20);
+			this.tbLiveRigWalletAddr.TabIndex = 9;
+			this.tbLiveRigWalletAddr.Text = "37s2ZBNJ64sa1bkYh3HWAkncJSxcXoBzvn";
+			this.tbLiveRigWalletAddr.TextChanged += new System.EventHandler(this.tbRigStatsGraphWallet_TextChanged);
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(5, 9);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(81, 13);
+			this.label13.TabIndex = 8;
+			this.label13.Text = "Wallet Address:";
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(6, 441);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(124, 13);
+			this.label14.TabIndex = 10;
+			this.label14.Text = "Pending Wallet Balance:";
+			// 
+			// lblRigPendingWalletBalance
+			// 
+			this.lblRigPendingWalletBalance.AutoSize = true;
+			this.lblRigPendingWalletBalance.Location = new System.Drawing.Point(136, 441);
+			this.lblRigPendingWalletBalance.Name = "lblRigPendingWalletBalance";
+			this.lblRigPendingWalletBalance.Size = new System.Drawing.Size(55, 13);
+			this.lblRigPendingWalletBalance.TabIndex = 11;
+			this.lblRigPendingWalletBalance.TabStop = true;
+			this.lblRigPendingWalletBalance.Text = "linkLabel1";
+			this.lblRigPendingWalletBalance.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblRigPendingWalletBalance_LinkClicked);
+			// 
+			// timerLiveStatsRefresh
+			// 
+			this.timerLiveStatsRefresh.Interval = 60000;
+			this.timerLiveStatsRefresh.Tick += new System.EventHandler(this.timerLiveStatsRefresh_Tick);
+			// 
+			// dgvLiveRigStats
+			// 
+			this.dgvLiveRigStats.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgvLiveRigStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvLiveRigStats.Location = new System.Drawing.Point(9, 32);
+			this.dgvLiveRigStats.Name = "dgvLiveRigStats";
+			this.dgvLiveRigStats.Size = new System.Drawing.Size(713, 406);
+			this.dgvLiveRigStats.TabIndex = 12;
+			// 
 			// Viewer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -803,6 +883,9 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudCardLastXHours)).EndInit();
+			this.tpLiveRigStats.ResumeLayout(false);
+			this.tpLiveRigStats.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dgvLiveRigStats)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -869,6 +952,13 @@
         private System.Windows.Forms.LinkLabel lblReleaseNotes;
         private System.Windows.Forms.LinkLabel lblNewRelease;
         private System.Windows.Forms.Timer timerNewReleaseCheck;
-    }
+		private System.Windows.Forms.TabPage tpLiveRigStats;
+		private System.Windows.Forms.TextBox tbLiveRigWalletAddr;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.LinkLabel lblRigPendingWalletBalance;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Timer timerLiveStatsRefresh;
+		private System.Windows.Forms.DataGridView dgvLiveRigStats;
+	}
 }
 

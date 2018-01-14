@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="DataHelper\DataBaseHelper.cs" />
     <Compile Include="DataHelper\MySQLHelper.cs" />
+    <Compile Include="DataHelper\NiceHashAPI.cs" />
     <Compile Include="DataHelper\SQLITEHelper.cs" />
     <Compile Include="DataHelper\UpdateChecker.cs" />
     <Compile Include="Forms\ExceptionPopup.cs">
