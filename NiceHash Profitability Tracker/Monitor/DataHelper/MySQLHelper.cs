@@ -152,7 +152,7 @@ namespace Monitor.DataHelper
 		public static DataTable RunLiveStatsReport(string WalletAddress, double TimeSince)
 		{
 			MySqlConnection m_cn = new MySqlConnection(connectionstring);
-			MySqlDataAdapter cmd = new MySqlDataAdapter("reportCardLiveStats", m_cn);
+			MySqlDataAdapter cmd = new MySqlDataAdapter("reportRigLiveStats", m_cn);
 			cmd.SelectCommand.CommandType = CommandType.StoredProcedure;
 			cmd.SelectCommand.Parameters.AddWithValue("?W_ADDR", WalletAddress);
 			cmd.SelectCommand.Parameters["?W_ADDR"].Direction = ParameterDirection.Input;
