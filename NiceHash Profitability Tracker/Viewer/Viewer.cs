@@ -217,7 +217,7 @@ namespace Viewer
 		{
             if (btnRunCardStatsGraphReport.Text == "Run Report")
             {
-                if (cbLive.Checked)
+                if (cbGardStatsGraphLive.Checked)
                 {
 
                     RunCardStatReport(GetCardResolution());
@@ -268,15 +268,24 @@ namespace Viewer
 				TextBox itemChanged = (TextBox)sender;
 				Properties.Settings.Default.WalletAddress = itemChanged.Text;
 				Properties.Settings.Default.Save();
-				if (itemChanged != tbCardStatsGraphWallet)
+				if (itemChanged == tbCardStatsGraphWallet)
+				{
+					loading = true;
+					tbRigStatsGraphWallet.Text = itemChanged.Text;
+					tbLiveRigWalletAddr.Text = itemChanged.Text;
+					loading = false;
+				}
+				else if (itemChanged == tbRigStatsGraphWallet)
 				{
 					loading = true;
 					tbCardStatsGraphWallet.Text = itemChanged.Text;
+					tbLiveRigWalletAddr.Text = itemChanged.Text;
 					loading = false;
 				}
-				else if (itemChanged != tbRigStatsGraphWallet)
+				else if (itemChanged == tbLiveRigWalletAddr)
 				{
 					loading = true;
+					tbCardStatsGraphWallet.Text = itemChanged.Text;
 					tbRigStatsGraphWallet.Text = itemChanged.Text;
 					loading = false;
 				}
@@ -371,7 +380,7 @@ namespace Viewer
         {
             dtpCardStatsGraphEnd.Value = DateTime.Now;
             timerCardStatsGraphs.Interval = GetCardResolution() * 1000;
-            RunCardStatReport(GetRigResolution());
+            RunCardStatReport(GetCardResolution());
         }
 
         private void lblReleaseNotes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -410,5 +419,75 @@ namespace Viewer
             Process.Start("Updater.exe");
             this.Close();
         }
-    }
+
+		private void dtpRigStatsGraphStartTime_ValueChanged(object sender, EventArgs e)
+		{
+			checkStartTimeSeparation(dtpRigStatsGraphStartTime, dtpRigStatsGraphsEndTime);
+		}
+
+		private void dtpRigStatsGraphsEndTime_ValueChanged(object sender, EventArgs e)
+		{
+			checkEndTimeSeparation(dtpRigStatsGraphStartTime, dtpRigStatsGraphsEndTime);
+		}
+		private void checkStartTimeSeparation(DateTimePicker start, DateTimePicker end)
+		{
+			if(start.Value.AddMinutes(5) > end.Value)
+			{
+				end.Value = start.Value.AddMinutes(5);
+			}
+		}
+		private void checkEndTimeSeparation(DateTimePicker start, DateTimePicker end)
+		{
+			if (end.Value.AddMinutes(-5) < start.Value)
+			{
+				start.Value = end.Value.AddMinutes(-5);
+			}
+		}
+
+		private void dtpCardStatsGraphStart_ValueChanged(object sender, EventArgs e)
+		{
+			checkStartTimeSeparation(dtpCardStatsGraphStart, dtpCardStatsGraphEnd);
+		}
+
+		private void dtpCardStatsGraphEnd_ValueChanged(object sender, EventArgs e)
+		{
+			checkEndTimeSeparation(dtpCardStatsGraphStart, dtpCardStatsGraphEnd);
+		}
+
+		private void lblRigPendingWalletBalance_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			Process.Start(string.Format("https://www.nicehash.com/miner/{0}", tbLiveRigWalletAddr.Text));
+		}
+
+		private void tcRigStats_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(tcRigStats.SelectedIndex == 1)
+			{
+				timerLiveStatsRefresh.Start();
+				UpdateRigLiveStatsDashboard();
+			}
+			else
+			{
+				timerLiveStatsRefresh.Stop();
+			}
+		}
+
+		private void timerLiveStatsRefresh_Tick(object sender, EventArgs e)
+		{
+			UpdateRigLiveStatsDashboard();
+		}
+		private void UpdateRigLiveStatsDashboard()
+		{
+			lblRigPendingWalletBalance.Text = DataHelper.NiceHashAPI.GetBalance(tbLiveRigWalletAddr.Text).ToString();
+			DataTable DTable = Reports.RigReports.GetRigLiveStats(tbLiveRigWalletAddr.Text);
+			BindingSource SBind = new BindingSource();
+			SBind.DataSource = DTable;
+
+			dgvLiveRigStats.AutoGenerateColumns = true;
+			dgvLiveRigStats.DataSource = DTable;
+
+			dgvLiveRigStats.DataSource = SBind;
+			dgvLiveRigStats.Refresh();
+		}
+	}
 }

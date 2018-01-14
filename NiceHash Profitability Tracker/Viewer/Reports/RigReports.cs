@@ -195,5 +195,9 @@ namespace Viewer.Reports
 
             Params.chart.LegendLocation = LegendLocation.Right;
 		}
+		public static DataTable GetRigLiveStats(string WalletAddress)
+		{
+			return Monitor.DataHelper.DataManager.RunLiveStatsReport(WalletAddress, DateTimeHelper.GetUnixTimeStamp(DateTime.Now.AddSeconds(-60)));
+		}
 	}
 }

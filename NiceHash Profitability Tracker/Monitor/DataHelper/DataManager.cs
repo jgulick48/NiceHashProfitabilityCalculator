@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Monitor.DataHelper
 {
@@ -93,6 +94,19 @@ namespace Monitor.DataHelper
 					break;
 			}
 			return -1;
+		}
+
+		public static DataTable RunLiveStatsReport(string walletAddress, double Time)
+		{
+			switch (DataSaveMethod)
+			{
+				case 0:
+					return DataHelper.MySQLHelper.RunLiveStatsReport(walletAddress, Time);
+					break;
+				case 1:
+					break;
+			}
+			return null;
 		}
 	}
 }
