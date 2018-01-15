@@ -108,5 +108,17 @@ namespace Monitor.DataHelper
 			}
 			return null;
 		}
+		public static DataTable RunLiveCardStatsReport(string walletAddress, double Time, bool UseFriendlyName)
+		{
+			switch (DataSaveMethod)
+			{
+				case 0:
+					return DataHelper.MySQLHelper.RunLiveCardStatsReport(walletAddress, Time, UseFriendlyName);
+					break;
+				case 1:
+					break;
+			}
+			return null;
+		}
 	}
 }

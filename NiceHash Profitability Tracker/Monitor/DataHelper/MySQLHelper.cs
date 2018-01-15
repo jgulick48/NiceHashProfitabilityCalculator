@@ -164,5 +164,22 @@ namespace Monitor.DataHelper
 			m_cn.Close();
 			return dt;
 		}
+		public static DataTable RunLiveCardStatsReport(string WalletAddress, double TimeSince, bool UseFriendlyName)
+		{
+			MySqlConnection m_cn = new MySqlConnection(connectionstring);
+			MySqlDataAdapter cmd = new MySqlDataAdapter("reportCardLiveStats", m_cn);
+			cmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+			cmd.SelectCommand.Parameters.AddWithValue("?W_ADDR", WalletAddress);
+			cmd.SelectCommand.Parameters["?W_ADDR"].Direction = ParameterDirection.Input;
+			cmd.SelectCommand.Parameters.AddWithValue("?T_Since", TimeSince);
+			cmd.SelectCommand.Parameters["?T_Since"].Direction = ParameterDirection.Input;
+			cmd.SelectCommand.Parameters.AddWithValue("?Use_Friendly_Name", UseFriendlyName);
+			cmd.SelectCommand.Parameters["?Use_Friendly_Name"].Direction = ParameterDirection.Input;
+			m_cn.Open();
+			DataTable dt = new DataTable();
+			cmd.Fill(dt);
+			m_cn.Close();
+			return dt;
+		}
 	}
 }

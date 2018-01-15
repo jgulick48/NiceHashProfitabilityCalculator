@@ -275,6 +275,7 @@ namespace Viewer
 					loading = true;
 					tbRigStatsGraphWallet.Text = itemChanged.Text;
 					tbLiveRigWalletAddr.Text = itemChanged.Text;
+					tbCardLiveWalletAddress.Text = itemChanged.Text;
 					loading = false;
 				}
 				else if (itemChanged == tbRigStatsGraphWallet)
@@ -282,6 +283,7 @@ namespace Viewer
 					loading = true;
 					tbCardStatsGraphWallet.Text = itemChanged.Text;
 					tbLiveRigWalletAddr.Text = itemChanged.Text;
+					tbCardLiveWalletAddress.Text = itemChanged.Text;
 					loading = false;
 				}
 				else if (itemChanged == tbLiveRigWalletAddr)
@@ -289,6 +291,15 @@ namespace Viewer
 					loading = true;
 					tbCardStatsGraphWallet.Text = itemChanged.Text;
 					tbRigStatsGraphWallet.Text = itemChanged.Text;
+					tbCardLiveWalletAddress.Text = itemChanged.Text;
+					loading = false;
+				}
+				else if (itemChanged == tbCardLiveWalletAddress)
+				{
+					loading = true;
+					tbCardStatsGraphWallet.Text = itemChanged.Text;
+					tbRigStatsGraphWallet.Text = itemChanged.Text;
+					tbLiveRigWalletAddr.Text = itemChanged.Text;
 					loading = false;
 				}
 			}
@@ -483,15 +494,53 @@ namespace Viewer
 		private void UpdateRigLiveStatsDashboard()
 		{
 			lblRigPendingWalletBalance.Text = DataHelper.NiceHashAPI.GetBalance(tbLiveRigWalletAddr.Text).ToString();
+			dgvLiveRigStats.DataSource = null;
 			DataTable DTable = Reports.RigReports.GetRigLiveStats(tbLiveRigWalletAddr.Text);
 			BindingSource SBind = new BindingSource();
 			SBind.DataSource = DTable;
-
+			dgvLiveRigStats.Rows.Clear();
 			dgvLiveRigStats.AutoGenerateColumns = true;
 			dgvLiveRigStats.DataSource = DTable;
 
 			dgvLiveRigStats.DataSource = SBind;
 			dgvLiveRigStats.Refresh();
+		}
+
+		private void lblCardLiveSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			Process.Start(string.Format("https://www.nicehash.com/miner/{0}", tbCardLiveWalletAddress.Text));
+		}
+
+		private void timerLiveCardStatsRefresh_Tick(object sender, EventArgs e)
+		{
+			UpdateCardLiveStatsDashboard();
+		}
+		private void UpdateCardLiveStatsDashboard()
+		{
+			lblCardLiveSite.Text = DataHelper.NiceHashAPI.GetBalance(tbCardLiveWalletAddress.Text).ToString();
+			dgvLiveCardStats.DataSource = null;
+			DataTable DTable = Reports.RigReports.GetCardLiveStats(tbCardLiveWalletAddress.Text, cbCardLiveStatFriendlyName.Checked);
+			BindingSource SBind = new BindingSource();
+			SBind.DataSource = DTable;
+			dgvLiveCardStats.Rows.Clear();
+			dgvLiveCardStats.AutoGenerateColumns = true;
+			dgvLiveCardStats.DataSource = DTable;
+
+			dgvLiveCardStats.DataSource = SBind;
+			dgvLiveCardStats.Refresh();
+		}
+
+		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (tabControl1.SelectedIndex == 1)
+			{
+				timerLiveCardStatsRefresh.Start();
+				UpdateCardLiveStatsDashboard();
+			}
+			else
+			{
+				timerLiveCardStatsRefresh.Stop();
+			}
 		}
 	}
 }

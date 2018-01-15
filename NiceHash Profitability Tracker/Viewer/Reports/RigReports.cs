@@ -199,5 +199,9 @@ namespace Viewer.Reports
 		{
 			return Monitor.DataHelper.DataManager.RunLiveStatsReport(WalletAddress, DateTimeHelper.GetUnixTimeStamp(DateTime.Now.AddSeconds(-60)));
 		}
+		public static DataTable GetCardLiveStats(string WalletAddress, bool UseFriendlyName)
+		{
+			return Monitor.DataHelper.DataManager.RunLiveCardStatsReport(WalletAddress, DateTimeHelper.GetUnixTimeStamp(DateTime.Now.AddSeconds(-60)), UseFriendlyName);
+		}
 	}
 }
