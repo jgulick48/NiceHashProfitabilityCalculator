@@ -96,7 +96,10 @@ namespace Monitor.DataHelper
 			{
 				metric.Power = CardInfo.gpu_power_usage;
 			}
-			metric.Power = 0;
+			else
+			{
+				metric.Power = 0;
+			}
 			metric.Temprature = CardInfo.gpu_temp;
 			metric.TimeElapsed = timeElapsed;
 			metric.TimeRecorded = rig.LastCheckTime;
