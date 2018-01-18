@@ -542,5 +542,17 @@ namespace Viewer
 				timerLiveCardStatsRefresh.Stop();
 			}
 		}
+
+		private void tcMain_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(tcMain.SelectedIndex == 1)
+			{
+				tabControl1_SelectedIndexChanged(sender, e);
+			}
+			else if (tcMain.SelectedIndex == 0)
+			{
+				tcRigStats_SelectedIndexChanged(sender, e);
+			}
+		}
 	}
 }
