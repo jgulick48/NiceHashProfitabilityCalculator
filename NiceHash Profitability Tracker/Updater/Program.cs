@@ -17,7 +17,7 @@ namespace Updater
         {
             Console.WriteLine("Waiting 5 seconds then checking for running processes before update.");
 			Thread.Sleep(5);
-            CheckForRunningApps();
+            //CheckForRunningApps();
             DeleteFilesInCurrentDirectory();
             SaveInformationOnLatestRelease();
             DownloadAppDownloader();
