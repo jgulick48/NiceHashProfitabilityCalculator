@@ -92,7 +92,11 @@ namespace Monitor.DataHelper
 			metric.FanSpeedPercent = CardInfo.gpu_fan_speed;
 			metric.FanSpeedRPM = CardInfo.gpu_fan_speed_rpm;
 			metric.GPUUsage = CardInfo.gpu_load;
-			metric.Power = CardInfo.gpu_power_usage;
+			if (CardInfo.gpu_power_usage >= 0)
+			{
+				metric.Power = CardInfo.gpu_power_usage;
+			}
+			metric.Power = 0;
 			metric.Temprature = CardInfo.gpu_temp;
 			metric.TimeElapsed = timeElapsed;
 			metric.TimeRecorded = rig.LastCheckTime;
