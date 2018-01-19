@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHelper\DataBaseHelper.cs" />
+    <Compile Include="DataHelper\DateTimeHelper.cs" />
     <Compile Include="DataHelper\MySQLHelper.cs" />
     <Compile Include="DataHelper\NiceHashAPI.cs" />
     <Compile Include="DataHelper\SQLITEHelper.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Forms\ExceptionPopup.Designer.cs">
       <DependentUpon>ExceptionPopup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Export.cs" />
     <Compile Include="Viewer.cs">
       <SubType>Form</SubType>
     </Compile>
