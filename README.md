@@ -1,3 +1,6 @@
+# Website for News!
+Head over to https://www.hashstats.org/ for my blog with news on what I'm working on and more details about the releases.
+
 # NiceHashProfitabilityCalculator
 A quick GUI to monitor your profitability on NiceHash and store numbers in an sqlite db
 
