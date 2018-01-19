@@ -21,7 +21,10 @@ namespace Viewer
 		{
 			InitializeComponent();
 		}
-
+		private Dictionary<int, Reports.Export> CardExportReports;
+		private Dictionary<int, Reports.Export> RigExportReports;
+		private DataTable CardExport;
+		private DataTable RigExport;
 		private void btnPlotData_Click(object sender, EventArgs e)
 		{
 			if (btnPlotData.Text == "Run Report")
@@ -276,6 +279,8 @@ namespace Viewer
 					tbRigStatsGraphWallet.Text = itemChanged.Text;
 					tbLiveRigWalletAddr.Text = itemChanged.Text;
 					tbCardLiveWalletAddress.Text = itemChanged.Text;
+					tbRigExportWallet.Text = itemChanged.Text;
+					tbCardExportWallet.Text = itemChanged.Text;
 					loading = false;
 				}
 				else if (itemChanged == tbRigStatsGraphWallet)
@@ -284,6 +289,8 @@ namespace Viewer
 					tbCardStatsGraphWallet.Text = itemChanged.Text;
 					tbLiveRigWalletAddr.Text = itemChanged.Text;
 					tbCardLiveWalletAddress.Text = itemChanged.Text;
+					tbRigExportWallet.Text = itemChanged.Text;
+					tbCardExportWallet.Text = itemChanged.Text;
 					loading = false;
 				}
 				else if (itemChanged == tbLiveRigWalletAddr)
@@ -292,6 +299,8 @@ namespace Viewer
 					tbCardStatsGraphWallet.Text = itemChanged.Text;
 					tbRigStatsGraphWallet.Text = itemChanged.Text;
 					tbCardLiveWalletAddress.Text = itemChanged.Text;
+					tbRigExportWallet.Text = itemChanged.Text;
+					tbCardExportWallet.Text = itemChanged.Text;
 					loading = false;
 				}
 				else if (itemChanged == tbCardLiveWalletAddress)
@@ -300,6 +309,28 @@ namespace Viewer
 					tbCardStatsGraphWallet.Text = itemChanged.Text;
 					tbRigStatsGraphWallet.Text = itemChanged.Text;
 					tbLiveRigWalletAddr.Text = itemChanged.Text;
+					tbRigExportWallet.Text = itemChanged.Text;
+					tbCardExportWallet.Text = itemChanged.Text;
+					loading = false;
+				}
+				else if (itemChanged == tbRigExportWallet)
+				{
+					loading = true;
+					tbCardStatsGraphWallet.Text = itemChanged.Text;
+					tbRigStatsGraphWallet.Text = itemChanged.Text;
+					tbLiveRigWalletAddr.Text = itemChanged.Text;
+					tbCardLiveWalletAddress.Text = itemChanged.Text;
+					tbCardExportWallet.Text = itemChanged.Text;
+					loading = false;
+				}
+				else if (itemChanged == tbCardExportWallet)
+				{
+					loading = true;
+					tbCardStatsGraphWallet.Text = itemChanged.Text;
+					tbRigStatsGraphWallet.Text = itemChanged.Text;
+					tbLiveRigWalletAddr.Text = itemChanged.Text;
+					tbCardLiveWalletAddress.Text = itemChanged.Text;
+					tbRigExportWallet.Text = itemChanged.Text;
 					loading = false;
 				}
 			}
@@ -481,6 +512,12 @@ namespace Viewer
 				timerLiveStatsRefresh.Start();
 				UpdateRigLiveStatsDashboard();
 			}
+			else if (tcRigStats.SelectedIndex == 2)
+			{
+				btnRigExportReportRefresh_Click(sender, e);
+				timerLiveStatsRefresh.Stop();
+				btnRigExportWTD_Click(sender, e);
+			}
 			else
 			{
 				timerLiveStatsRefresh.Stop();
@@ -537,6 +574,12 @@ namespace Viewer
 				timerLiveCardStatsRefresh.Start();
 				UpdateCardLiveStatsDashboard();
 			}
+			else if (tabControl1.SelectedIndex == 2)
+			{
+				btnCardExportReportRefresh_Click(sender, e);
+				btnCardExportWTD_Click(sender, e);
+				timerLiveCardStatsRefresh.Stop();
+			}
 			else
 			{
 				timerLiveCardStatsRefresh.Stop();
@@ -553,6 +596,251 @@ namespace Viewer
 			{
 				tcRigStats_SelectedIndexChanged(sender, e);
 			}
+		}
+
+		private void tpRigStatsExports_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void btnRigExportSave_Click(object sender, EventArgs e)
+		{
+			if(RigExport != null)
+			{
+				SaveDataTableToCSV(RigExport);
+			}
+		}
+		private void SaveDataTableToCSV(DataTable Data)
+		{
+			SaveFileDialog sfd = new SaveFileDialog();
+			sfd.Filter = "csv files (*.csv)|*.csv";
+			sfd.FilterIndex = 1;
+			sfd.RestoreDirectory = true;
+			if(sfd.ShowDialog() == DialogResult.OK)
+			{
+				File.WriteAllText(sfd.FileName, ConvertDataTableToCSV(Data));
+			}
+		}
+		private string ConvertDataTableToCSV(DataTable Data)
+		{
+			string output = "";
+			foreach(DataColumn col in Data.Columns)
+			{
+				output += SanatizeCSVData(col.ColumnName) + ",";
+			}
+			foreach(DataRow row in Data.Rows)
+			{
+				output += Environment.NewLine;
+				for(int i = 0; i < Data.Columns.Count;i++)
+				{
+					output += SanatizeCSVData(row[i].ToString()) + ",";
+				}
+			}
+			return output;
+		}
+		private string SanatizeCSVData(string cell)
+		{
+			bool encapsulate = false;
+			if(cell.Contains('\"'))
+			{
+				cell = cell.Replace("\"", "\"\"");
+				encapsulate = true;
+			}
+			if(cell.Contains(","))
+			{
+				encapsulate = true;
+			}
+			if(encapsulate)
+			{
+				cell = "\"" + cell + "\"";
+			}
+			return cell;
+		}
+
+		private void btnCardExportReportRefresh_Click(object sender, EventArgs e)
+		{
+			cbCardExportReportSelect.Items.Clear();
+			CardExportReports = LoadReports(cbCardExportReportSelect, 2);
+		}
+		private Dictionary<int, Reports.Export> LoadReports(ComboBox reportSelector, int ReportType)
+		{
+			Dictionary<int, Reports.Export> Exports = new Dictionary<int, Reports.Export>();
+			DataTable ReturnedReports = DataHelper.DataBaseHandler.GetReports(ReportType);
+			foreach(DataRow row in ReturnedReports.Rows)
+			{
+				Reports.Export export = new Reports.Export();
+				export.DisplayName = row["DisplayName"].ToString();
+				export.ReportID = (int)row["ReportID"];
+				export.ReportType = (int)row["ReportType"];
+				export.SprocName = row["SprocName"].ToString();
+				export.ToolTip = row["ToolTip"].ToString();
+				Exports.Add(reportSelector.Items.Count, export);
+				reportSelector.Items.Add(export.DisplayName);
+			}
+			return Exports;
+		}
+
+		private void btnRigExportReportRefresh_Click(object sender, EventArgs e)
+		{
+			cbRigExportReport.Items.Clear();
+			RigExportReports = LoadReports(cbRigExportReport, 1);
+		}
+
+		private void btnRigExportYTD_Click(object sender, EventArgs e)
+		{
+			dtpRigExportStart.Value = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0, 0);
+			dtpRigExportEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0);
+		}
+
+		private void btnRigExportMTD_Click(object sender, EventArgs e)
+		{
+			dtpRigExportStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0, 0);
+			dtpRigExportEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0);
+		}
+
+		private void btnRigExportWTD_Click(object sender, EventArgs e)
+		{
+			DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0);
+			start = StartOfWeek(start, DayOfWeek.Sunday);
+			dtpRigExportStart.Value = start;
+			dtpRigExportEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0);
+		}
+		public static DateTime StartOfWeek(DateTime dt, DayOfWeek startOfWeek)
+		{
+			int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
+			return dt.AddDays(-1 * diff).Date;
+		}
+
+		private void btnRigExportLY_Click(object sender, EventArgs e)
+		{
+			dtpRigExportStart.Value = new DateTime(DateTime.Now.Year -1, 1, 1, 0, 0, 0, 0);
+			dtpRigExportEnd.Value = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0, 0);
+		}
+
+		private void btnRigExportLM_Click(object sender, EventArgs e)
+		{
+			DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0, 0);
+			dtpRigExportStart.Value = start.AddMonths(-1);
+			dtpRigExportEnd.Value = start;
+		}
+
+		private void btnRigExportLW_Click(object sender, EventArgs e)
+		{
+			DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0);
+			start = StartOfWeek(start, DayOfWeek.Sunday);
+			dtpRigExportStart.Value = start.AddDays(-7);
+			dtpRigExportEnd.Value = start;
+		}
+
+		private void btnCardExportYTD_Click(object sender, EventArgs e)
+		{
+			dtpCardExportStart.Value = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0, 0);
+			dtpCardExportEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0);
+		}
+
+		private void btnCardExportMTD_Click(object sender, EventArgs e)
+		{
+			dtpCardExportStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0, 0);
+			dtpCardExportEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0);
+		}
+
+		private void btnCardExportWTD_Click(object sender, EventArgs e)
+		{
+			DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0);
+			start = StartOfWeek(start, DayOfWeek.Sunday);
+			dtpCardExportStart.Value = start;
+			dtpCardExportEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0);
+		}
+
+		private void btnCardExportLY_Click(object sender, EventArgs e)
+		{
+			dtpCardExportStart.Value = new DateTime(DateTime.Now.Year - 1, 1, 1, 0, 0, 0, 0);
+			dtpCardExportEnd.Value = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0, 0);
+		}
+
+		private void btnCardExportLM_Click(object sender, EventArgs e)
+		{
+			DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0, 0);
+			dtpCardExportStart.Value = start.AddMonths(-1);
+			dtpCardExportEnd.Value = start;
+		}
+
+		private void btnCardExportLW_Click(object sender, EventArgs e)
+		{
+			DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0);
+			start = StartOfWeek(start, DayOfWeek.Sunday);
+			dtpCardExportStart.Value = start.AddDays(-7);
+			dtpCardExportEnd.Value = start;
+		}
+		private int GetResolutionBySelection(int Selection)
+		{
+			switch(Selection)
+			{
+				case 0:
+					return (60 * 60 * 24 * 30);
+					break;
+				case 1:
+					return (60 * 60 * 24 * 7);
+					break;
+				case 2:
+					return (60 * 60 * 24);
+					break;
+				case 3:
+					return (60 * 60);
+					break;
+			}
+			return 60 * 60 * 24;
+		}
+
+		private void btnCardExportRunReport_Click(object sender, EventArgs e)
+		{
+			if (cbCardExportReportSelect.SelectedIndex != -1)
+			{
+				dgvCardExport.DataSource = null;
+				Reports.Export selectedExport = CardExportReports[cbCardExportReportSelect.SelectedIndex];
+				DataTable DTable = DataHelper.DataBaseHandler.RunExportReport(selectedExport.SprocName, tbCardExportWallet.Text, DataHelper.DateTimeHelper.GetUnixTimeStamp(dtpCardExportStart.Value), DataHelper.DateTimeHelper.GetUnixTimeStamp(dtpCardExportEnd.Value), GetResolutionBySelection(cbCardExportResolution.SelectedIndex));
+				BindingSource SBind = new BindingSource();
+				SBind.DataSource = DTable;
+				dgvCardExport.Rows.Clear();
+				dgvCardExport.AutoGenerateColumns = true;
+				dgvCardExport.DataSource = DTable;
+
+				dgvCardExport.DataSource = SBind;
+				dgvCardExport.Refresh();
+				CardExport = DTable;
+			}
+		}
+
+		private void btnRigExportRunReport_Click(object sender, EventArgs e)
+		{
+			if (cbRigExportReport.SelectedIndex != -1)
+			{
+				dgvRigExport.DataSource = null;
+				Reports.Export selectedExport = RigExportReports[cbRigExportReport.SelectedIndex];
+				DataTable DTable = DataHelper.DataBaseHandler.RunExportReport(selectedExport.SprocName, tbRigExportWallet.Text, DataHelper.DateTimeHelper.GetUnixTimeStamp(dtpRigExportStart.Value), DataHelper.DateTimeHelper.GetUnixTimeStamp(dtpRigExportEnd.Value), GetResolutionBySelection(cbRigExportResolution.SelectedIndex));
+				BindingSource SBind = new BindingSource();
+				SBind.DataSource = DTable;
+				dgvRigExport.Rows.Clear();
+				dgvRigExport.AutoGenerateColumns = true;
+				dgvRigExport.DataSource = DTable;
+
+				dgvRigExport.DataSource = SBind;
+				dgvRigExport.Refresh();
+				RigExport = DTable;
+			}
+		}
+
+		private void btnCardExportSave_Click(object sender, EventArgs e)
+		{
+			if (CardExport != null)
+			{
+				SaveDataTableToCSV(CardExport);
+			}
+		}
+
+		private void cbCardExportResolution_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

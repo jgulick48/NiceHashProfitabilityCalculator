@@ -35,5 +35,30 @@ namespace Viewer.DataHelper
 			}
 			return -1;
 		}
+		public static DataTable GetReports(int ReportType)
+		{
+			switch (DataBaseMethod)
+			{
+				case 0:
+					return DataHelper.MySQLHandler.GetAvaialbleReports(ReportType);
+					break;
+				case 1:
+					return null;
+					break;
+			}
+			return new DataTable();
+		}
+		public static DataTable RunExportReport(string SprocName, string WalletAddress, double Start, double End, int resolution)
+		{
+			switch (DataBaseMethod)
+			{
+				case 0:
+					return DataHelper.MySQLHandler.RunExportReport(SprocName, WalletAddress, Start, End, resolution);
+					break;
+				case 1:
+					break;
+			}
+			return null;
+		}
 	}
 }
