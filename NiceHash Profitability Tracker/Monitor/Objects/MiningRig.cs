@@ -16,6 +16,7 @@ namespace Monitor.Objects
 		public string Name;
 		public Dictionary<int,GraphicsCard> CardList;
 		public double LastCheckTime;
+		public int CurrencyID;
 		public void ClearWorkMetrics()
 		{
 			foreach(GraphicsCard card in CardList.Values)

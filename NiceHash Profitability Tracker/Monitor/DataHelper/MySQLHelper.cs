@@ -181,5 +181,72 @@ namespace Monitor.DataHelper
 			m_cn.Close();
 			return dt;
 		}
+		public static Objects.RigCurrencyPower GetRigCurrencyPowerCost(long RigID)
+		{
+			Objects.RigCurrencyPower RCP = new Objects.RigCurrencyPower();
+			MySqlConnection m_cn = new MySqlConnection(connectionstring);
+			MySqlCommand cmd = new MySqlCommand("getRigCurrencyPowerCost", m_cn);
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.AddWithValue("?R_ID", RigID);
+			cmd.Parameters["?R_ID"].Direction = ParameterDirection.Input;
+			cmd.Parameters.Add("?C_ID", MySqlDbType.Int16);
+			cmd.Parameters["?C_ID"].Direction = ParameterDirection.Output;
+			cmd.Parameters.Add("?B_POWER", MySqlDbType.Int16);
+			cmd.Parameters["?B_POWER"].Direction = ParameterDirection.Output;
+			cmd.Parameters.Add("?P_COST", MySqlDbType.Double);
+			cmd.Parameters["?P_COST"].Direction = ParameterDirection.Output;
+			cmd.Parameters.Add("?C_SHORT", MySqlDbType.VarChar);
+			cmd.Parameters["?C_SHORT"].Direction = ParameterDirection.Output;
+			cmd.Parameters.Add("?C_SYMBOL", MySqlDbType.VarChar);
+			cmd.Parameters["?C_SYMBOL"].Direction = ParameterDirection.Output;
+			m_cn.Open();
+			cmd.ExecuteNonQuery();
+			m_cn.Close();
+
+			RCP.CurrencyID = int.Parse(cmd.Parameters["?C_ID"].Value.ToString());
+			RCP.BasePowerUsage = int.Parse(cmd.Parameters["?B_POWER"].Value.ToString());
+			RCP.ElectricCost = double.Parse(cmd.Parameters["?P_COST"].Value.ToString());
+			RCP.CurrencyShortName = cmd.Parameters["?C_SHORT"].Value.ToString();
+			RCP.CurrencySymbol = cmd.Parameters["?C_SYMBOL"].Value.ToString();
+			return RCP;
+		}
+		public static List<Objects.Currency> GetCurrencies()
+		{
+			MySqlConnection m_cn = new MySqlConnection(connectionstring);
+			MySqlDataAdapter cmd = new MySqlDataAdapter("getCurrencyInformation", m_cn);
+			cmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+			m_cn.Open();
+			DataTable dt = new DataTable();
+			cmd.Fill(dt);
+			m_cn.Close();
+			List<Objects.Currency> CurList = new List<Objects.Currency>();
+			foreach(DataRow row in dt.Rows)
+			{
+				Objects.Currency Cur = new Objects.Currency();
+				Cur.CurrencyID = (int)row["CurrencyID"];
+				Cur.CurrecyShortName = row["CurrencyShortName"].ToString();
+				Cur.CurrencyLongName = row["CurrencyLongName"].ToString();
+				Cur.CurrencySymbol = row["CurrencySymbol"].ToString();
+				CurList.Add(Cur);
+			}
+			return CurList;
+		}
+		public static void UpdateRigCurrencyPowerCost(long RigID, int CurrencyID, int BasePower, double PowerCost)
+		{
+			MySqlConnection m_cn = new MySqlConnection(connectionstring);
+			MySqlCommand cmd = new MySqlCommand("updateRigCurrencyPowerCost", m_cn);
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.AddWithValue("?R_ID", RigID);
+			cmd.Parameters["?R_ID"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?C_ID", CurrencyID);
+			cmd.Parameters["?C_ID"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?B_POWER", BasePower);
+			cmd.Parameters["?B_POWER"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?P_COST", PowerCost);
+			cmd.Parameters["?P_COST"].Direction = ParameterDirection.Input;
+			m_cn.Open();
+			cmd.ExecuteNonQuery();
+			m_cn.Close();
+		}
 	}
 }
