@@ -43,10 +43,15 @@ namespace Monitor
 		{
             timerUpdateCheck.Start();
 			Loading = true;
+			bool SkipWAI = false;
 			Forms.WorkerAddressInfo WAI = new Forms.WorkerAddressInfo();
+			if (!string.IsNullOrEmpty(Properties.Settings.Default.WalletAddress) && !string.IsNullOrEmpty(Properties.Settings.Default.WorkerName))
+			{
+				SkipWAI = true;
+			}
 			WAI.tbWalletAddress.Text = Properties.Settings.Default.WalletAddress;
 			WAI.tbWorkerName.Text = Properties.Settings.Default.WorkerName;
-			if (Properties.Settings.Default.IsRunning || WAI.ShowDialog() == DialogResult.OK)
+			if (Properties.Settings.Default.IsRunning || SkipWAI || WAI.ShowDialog() == DialogResult.OK)
 			{
 				CardIDDropdown = new Dictionary<int, int>();
 				Properties.Settings.Default.WalletAddress = WAI.tbWalletAddress.Text;
@@ -94,11 +99,15 @@ namespace Monitor
 			if(btnStartStop.Text == "Start")
 			{
 				btnStartStop.Text = "Stop";
+				Properties.Settings.Default.IsRunning = true;
+				Properties.Settings.Default.Save();
 				timerCardStatsRefresh.Start();
 			}
 			else
 			{
 				timerCardStatsRefresh.Stop();
+				Properties.Settings.Default.IsRunning = false;
+				Properties.Settings.Default.Save();
 				btnStartStop.Text = "Start";
 			}
 		}
