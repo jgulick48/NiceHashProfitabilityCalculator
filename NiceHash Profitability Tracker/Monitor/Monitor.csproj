@@ -86,6 +86,12 @@
     <Compile Include="DataHelper\MySQLHelper.cs" />
     <Compile Include="DataHelper\NiceHashAPIHelper.cs" />
     <Compile Include="DataHelper\sqliteHelper.cs" />
+    <Compile Include="Forms\RigPowerCurrencyEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RigPowerCurrencyEditor.Designer.cs">
+      <DependentUpon>RigPowerCurrencyEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\WorkerAddressInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,12 +105,17 @@
       <DependentUpon>Monitor.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\Algorithm.cs" />
+    <Compile Include="Objects\Currency.cs" />
     <Compile Include="Objects\GraphicsCard.cs" />
     <Compile Include="Objects\GraphicsCardMetrics.cs" />
     <Compile Include="Objects\MiningRig.cs" />
+    <Compile Include="Objects\RigCurrencyPower.cs" />
     <Compile Include="Objects\WorkUnit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\RigPowerCurrencyEditor.resx">
+      <DependentUpon>RigPowerCurrencyEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\WorkerAddressInfo.resx">
       <DependentUpon>WorkerAddressInfo.cs</DependentUpon>
     </EmbeddedResource>

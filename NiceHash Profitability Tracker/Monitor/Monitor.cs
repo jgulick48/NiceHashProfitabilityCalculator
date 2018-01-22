@@ -15,6 +15,7 @@ namespace Monitor
 	public partial class Monitor : Form
 	{
 		private Objects.MiningRig rig;
+		private Objects.RigCurrencyPower RCP;
 		private double TimeSinceLastScan;
 		private bool Loading;
 		private Dictionary<int, int> CardIDDropdown;
@@ -43,10 +44,15 @@ namespace Monitor
 		{
             timerUpdateCheck.Start();
 			Loading = true;
+			bool SkipWAI = false;
 			Forms.WorkerAddressInfo WAI = new Forms.WorkerAddressInfo();
+			if (!string.IsNullOrEmpty(Properties.Settings.Default.WalletAddress) && !string.IsNullOrEmpty(Properties.Settings.Default.WorkerName))
+			{
+				SkipWAI = true;
+			}
 			WAI.tbWalletAddress.Text = Properties.Settings.Default.WalletAddress;
 			WAI.tbWorkerName.Text = Properties.Settings.Default.WorkerName;
-			if (Properties.Settings.Default.IsRunning || WAI.ShowDialog() == DialogResult.OK)
+			if (Properties.Settings.Default.IsRunning || SkipWAI || WAI.ShowDialog() == DialogResult.OK)
 			{
 				CardIDDropdown = new Dictionary<int, int>();
 				Properties.Settings.Default.WalletAddress = WAI.tbWalletAddress.Text;
@@ -59,6 +65,8 @@ namespace Monitor
 				rig.Port = 4000;
 				rig.Name = "DevCetner";
 				DataHelper.DataManager.CreateOrGetRig(rig);
+				RCP = DataHelper.DataManager.GetRigCurrencyPowerCost(rig.ID);
+				LoadRigCurrencyPowerCost();
 				List<Objects.GraphicsCard> cards = DataHelper.GraphicsCardHelper.GetGraphicsCardDataForRig(rig);
 				rig.CardList = new Dictionary<int, Objects.GraphicsCard>();
 				foreach (Objects.GraphicsCard card in cards)
@@ -78,6 +86,14 @@ namespace Monitor
 				this.Close();
 			}
 		}
+		private void LoadRigCurrencyPowerCost()
+		{
+			lblBasePower.Text = RCP.BasePowerUsage.ToString();
+			lblPricePerKWH.Text = RCP.ElectricCost.ToString();
+			lblCurShort.Text = RCP.CurrencyShortName;
+			lblPerKWH.Text = String.Format("{0}/kWH:", RCP.CurrencySymbol);
+			rig.CurrencyID = RCP.CurrencyID;
+		}
 
 		private void nudRefresh_ValueChanged(object sender, EventArgs e)
 		{
@@ -94,11 +110,15 @@ namespace Monitor
 			if(btnStartStop.Text == "Start")
 			{
 				btnStartStop.Text = "Stop";
+				Properties.Settings.Default.IsRunning = true;
+				Properties.Settings.Default.Save();
 				timerCardStatsRefresh.Start();
 			}
 			else
 			{
 				timerCardStatsRefresh.Stop();
+				Properties.Settings.Default.IsRunning = false;
+				Properties.Settings.Default.Save();
 				btnStartStop.Text = "Start";
 			}
 		}
@@ -272,5 +292,24 @@ namespace Monitor
             }
 
         }
-    }
+
+		private void btnEditRigPowerCur_Click(object sender, EventArgs e)
+		{
+			Forms.RigPowerCurrencyEditor RPCE = new Forms.RigPowerCurrencyEditor();
+			RPCE.RigID = rig.ID;
+			RPCE.CurrencyID = RCP.CurrencyID;
+			RPCE.nudBasePower.Value = (decimal)RCP.BasePowerUsage;
+			RPCE.nudPowerPrice.Value = (decimal)RCP.ElectricCost;
+			if(RPCE.ShowDialog() == DialogResult.OK)
+			{
+				DataHelper.DataManager.UpdateRigCurrencyPowerCost(rig.ID, RPCE.SelectedCurrency.CurrencyID, (int)RPCE.nudBasePower.Value, (double)RPCE.nudPowerPrice.Value);
+				RCP.BasePowerUsage = (int)RPCE.nudBasePower.Value;
+				RCP.ElectricCost = (double)RPCE.nudPowerPrice.Value;
+				RCP.CurrencyShortName = RPCE.SelectedCurrency.CurrencySymbol;
+				rig.CurrencyID = RPCE.SelectedCurrency.CurrencyID;
+				RCP.CurrencyID = RPCE.SelectedCurrency.CurrencyID;
+				LoadRigCurrencyPowerCost();
+			}
+		}
+	}
 }

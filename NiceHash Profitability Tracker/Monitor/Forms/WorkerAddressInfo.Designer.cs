@@ -87,6 +87,7 @@
 			// 
 			// cbStorageType
 			// 
+			this.cbStorageType.Enabled = false;
 			this.cbStorageType.FormattingEnabled = true;
 			this.cbStorageType.Items.AddRange(new object[] {
             "MySQL",
@@ -95,15 +96,18 @@
 			this.cbStorageType.Name = "cbStorageType";
 			this.cbStorageType.Size = new System.Drawing.Size(491, 21);
 			this.cbStorageType.TabIndex = 5;
+			this.cbStorageType.Visible = false;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
+			this.label3.Enabled = false;
 			this.label3.Location = new System.Drawing.Point(12, 67);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(74, 13);
 			this.label3.TabIndex = 6;
 			this.label3.Text = "Storage Type:";
+			this.label3.Visible = false;
 			// 
 			// WorkerAddressInfo
 			// 
