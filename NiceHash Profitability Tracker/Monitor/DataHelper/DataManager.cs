@@ -120,5 +120,40 @@ namespace Monitor.DataHelper
 			}
 			return null;
 		}
+		public static Objects.RigCurrencyPower GetRigCurrencyPowerCost(long RigID)
+		{
+			switch (DataSaveMethod)
+			{
+				case 0:
+					return DataHelper.MySQLHelper.GetRigCurrencyPowerCost(RigID);
+					break;
+				case 1:
+					break;
+			}
+			return null;
+		}
+		public static List<Objects.Currency> GetCurrencies()
+		{
+			switch (DataSaveMethod)
+			{
+				case 0:
+					return DataHelper.MySQLHelper.GetCurrencies();
+					break;
+				case 1:
+					break;
+			}
+			return null;
+		}
+		public static void UpdateRigCurrencyPowerCost(long RigID, int CurrencyID, int BasePower, double PowerCost)
+		{
+			switch (DataSaveMethod)
+			{
+				case 0:
+					DataHelper.MySQLHelper.UpdateRigCurrencyPowerCost(RigID, CurrencyID, BasePower, PowerCost);
+					break;
+				case 1:
+					break;
+			}
+		}
 	}
 }
