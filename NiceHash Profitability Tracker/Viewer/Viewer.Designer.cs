@@ -399,7 +399,6 @@
 			this.tbRigStatsGraphWallet.Name = "tbRigStatsGraphWallet";
 			this.tbRigStatsGraphWallet.Size = new System.Drawing.Size(360, 20);
 			this.tbRigStatsGraphWallet.TabIndex = 7;
-			this.tbRigStatsGraphWallet.Text = "37s2ZBNJ64sa1bkYh3HWAkncJSxcXoBzvn";
 			this.tbRigStatsGraphWallet.TextChanged += new System.EventHandler(this.tbRigStatsGraphWallet_TextChanged);
 			// 
 			// label4
@@ -536,7 +535,6 @@
 			this.tbLiveRigWalletAddr.Name = "tbLiveRigWalletAddr";
 			this.tbLiveRigWalletAddr.Size = new System.Drawing.Size(586, 20);
 			this.tbLiveRigWalletAddr.TabIndex = 9;
-			this.tbLiveRigWalletAddr.Text = "37s2ZBNJ64sa1bkYh3HWAkncJSxcXoBzvn";
 			this.tbLiveRigWalletAddr.TextChanged += new System.EventHandler(this.tbRigStatsGraphWallet_TextChanged);
 			// 
 			// label13
@@ -771,7 +769,6 @@
 			this.tbRigExportWallet.Name = "tbRigExportWallet";
 			this.tbRigExportWallet.Size = new System.Drawing.Size(243, 20);
 			this.tbRigExportWallet.TabIndex = 19;
-			this.tbRigExportWallet.Text = "37s2ZBNJ64sa1bkYh3HWAkncJSxcXoBzvn";
 			this.tbRigExportWallet.TextChanged += new System.EventHandler(this.tbRigStatsGraphWallet_TextChanged);
 			// 
 			// label20
@@ -1043,7 +1040,6 @@
 			this.tbCardStatsGraphWallet.Name = "tbCardStatsGraphWallet";
 			this.tbCardStatsGraphWallet.Size = new System.Drawing.Size(360, 20);
 			this.tbCardStatsGraphWallet.TabIndex = 7;
-			this.tbCardStatsGraphWallet.Text = "37s2ZBNJ64sa1bkYh3HWAkncJSxcXoBzvn";
 			this.tbCardStatsGraphWallet.TextChanged += new System.EventHandler(this.tbRigStatsGraphWallet_TextChanged);
 			// 
 			// label5
@@ -1191,7 +1187,6 @@
 			this.tbCardLiveWalletAddress.Name = "tbCardLiveWalletAddress";
 			this.tbCardLiveWalletAddress.Size = new System.Drawing.Size(465, 20);
 			this.tbCardLiveWalletAddress.TabIndex = 14;
-			this.tbCardLiveWalletAddress.Text = "37s2ZBNJ64sa1bkYh3HWAkncJSxcXoBzvn";
 			this.tbCardLiveWalletAddress.TextChanged += new System.EventHandler(this.tbRigStatsGraphWallet_TextChanged);
 			// 
 			// label16
@@ -1426,7 +1421,6 @@
 			this.tbCardExportWallet.Name = "tbCardExportWallet";
 			this.tbCardExportWallet.Size = new System.Drawing.Size(243, 20);
 			this.tbCardExportWallet.TabIndex = 34;
-			this.tbCardExportWallet.Text = "37s2ZBNJ64sa1bkYh3HWAkncJSxcXoBzvn";
 			this.tbCardExportWallet.TextChanged += new System.EventHandler(this.tbRigStatsGraphWallet_TextChanged);
 			// 
 			// label24
