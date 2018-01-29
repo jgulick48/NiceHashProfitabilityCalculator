@@ -46,7 +46,7 @@ namespace Monitor
 			Loading = true;
 			bool SkipWAI = false;
 			Forms.WorkerAddressInfo WAI = new Forms.WorkerAddressInfo();
-			if (!string.IsNullOrEmpty(Properties.Settings.Default.WalletAddress) && !string.IsNullOrEmpty(Properties.Settings.Default.WorkerName))
+			if (!string.IsNullOrEmpty(Properties.Settings.Default.WalletAddress) && !string.IsNullOrEmpty(Properties.Settings.Default.WorkerName) && sender != btnEditRig)
 			{
 				SkipWAI = true;
 			}

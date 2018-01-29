@@ -36,6 +36,7 @@
 			this.btnOkay = new System.Windows.Forms.Button();
 			this.cbStorageType = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
+			this.btnResetAllRigs = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -109,11 +110,24 @@
 			this.label3.Text = "Storage Type:";
 			this.label3.Visible = false;
 			// 
+			// btnResetAllRigs
+			// 
+			this.btnResetAllRigs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnResetAllRigs.Location = new System.Drawing.Point(416, 92);
+			this.btnResetAllRigs.Name = "btnResetAllRigs";
+			this.btnResetAllRigs.Size = new System.Drawing.Size(93, 23);
+			this.btnResetAllRigs.TabIndex = 7;
+			this.btnResetAllRigs.Text = "Reset All Rigs";
+			this.btnResetAllRigs.UseVisualStyleBackColor = true;
+			this.btnResetAllRigs.Click += new System.EventHandler(this.btnResetAllRigs_Click);
+			// 
 			// WorkerAddressInfo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(602, 127);
+			this.Controls.Add(this.btnResetAllRigs);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.cbStorageType);
 			this.Controls.Add(this.btnOkay);
@@ -139,5 +153,6 @@
 		private System.Windows.Forms.Button btnOkay;
 		private System.Windows.Forms.ComboBox cbStorageType;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Button btnResetAllRigs;
 	}
 }
