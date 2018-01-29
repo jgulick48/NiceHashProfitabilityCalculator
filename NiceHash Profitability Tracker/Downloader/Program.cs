@@ -109,7 +109,7 @@ namespace Downloader
         {
             ProcessStartInfo psStart = new ProcessStartInfo();
             psStart.WorkingDirectory = "..";
-            psStart.FileName = Path.Combine(InstallFolder, RunningApplication);
+            psStart.FileName = RunningApplication;
             Process.Start(psStart);
         }
     }
