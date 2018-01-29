@@ -28,6 +28,17 @@ namespace Monitor.DataHelper
 			rig.ID = long.Parse(cmd.Parameters["?Rig_ID"].Value.ToString());
 			m_cn.Close();
 		}
+		public static void SetMiningRigInactive(string WalletAddress)
+		{
+			MySqlConnection m_cn = new MySqlConnection(connectionstring);
+			MySqlCommand cmd = new MySqlCommand("setMiningRigInActive", m_cn);
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.AddWithValue("?W_ADDR", WalletAddress);
+			cmd.Parameters["?W_ADDR"].Direction = ParameterDirection.Input;
+			m_cn.Open();
+			cmd.ExecuteNonQuery();
+			m_cn.Close();
+		}
 		public static string CreateOrUpdateGraphicsCard(Objects.GraphicsCard cardInfo)
 		{
 			MySqlConnection m_cn = new MySqlConnection(connectionstring);

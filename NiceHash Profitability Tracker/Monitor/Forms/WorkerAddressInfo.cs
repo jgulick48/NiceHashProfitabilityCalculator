@@ -16,5 +16,13 @@ namespace Monitor.Forms
 		{
 			InitializeComponent();
 		}
+
+		private void btnResetAllRigs_Click(object sender, EventArgs e)
+		{
+			if(MessageBox.Show("Are you sure that you want to reset all rig information?","Reset All Rigs?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+			{
+				DataHelper.DataManager.SetMiningRigInactive(tbWalletAddress.Text);
+			}
+		}
 	}
 }

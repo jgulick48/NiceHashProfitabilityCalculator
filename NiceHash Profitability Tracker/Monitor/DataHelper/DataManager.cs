@@ -155,5 +155,16 @@ namespace Monitor.DataHelper
 					break;
 			}
 		}
+		public static void SetMiningRigInactive(string SetMiningRigInactive)
+		{
+			switch (DataSaveMethod)
+			{
+				case 0:
+					DataHelper.MySQLHelper.SetMiningRigInactive(SetMiningRigInactive);
+					break;
+				case 1:
+					break;
+			}
+		}
 	}
 }
