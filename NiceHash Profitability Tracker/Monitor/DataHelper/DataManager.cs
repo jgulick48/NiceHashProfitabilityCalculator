@@ -10,17 +10,13 @@ namespace Monitor.DataHelper
 	public static class DataManager
 	{
 		public static int dataSaveMethod = 0;
-		public static int DataSaveMethod
-		{
-			get { return dataSaveMethod; }
-			set { dataSaveMethod = value; }
-		}
+		public static int DataSaveMethod {get; set; }
 		public static void CreateOrGetRig(Objects.MiningRig rig)
 		{
 			switch(DataSaveMethod)
 			{
 				case 0:
-					DataHelper.MySQLHelper.CreateOrGetRig(rig);
+					DataHelper.MySqlHelper.CreateOrGetRig(rig);
 					break;
 				case 1:
 					DataHelper.sqliteHelper.CreateOrGetRig(rig);
@@ -32,7 +28,7 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHelper.CreateOrUpdateGraphicsCard(cardInfo);
+					return DataHelper.MySqlHelper.CreateOrUpdateGraphicsCard(cardInfo);
 					break;
 				case 1:
 					return DataHelper.sqliteHelper.CreateOrUpdateGraphicsCard(cardInfo);
@@ -44,7 +40,7 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					DataHelper.MySQLHelper.InsertGraphicsCardMetric(metric);
+					DataHelper.MySqlHelper.InsertGraphicsCardMetric(metric);
 					break;
 				case 1:
 					DataHelper.sqliteHelper.InsertGraphicsCardMetric(metric);
@@ -56,7 +52,7 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					DataHelper.MySQLHelper.InsertGraphicsWorkUnit(workUnit);
+					DataHelper.MySqlHelper.InsertGraphicsWorkUnit(workUnit);
 					break;
 				case 1:
 					DataHelper.sqliteHelper.InsertGraphicsWorkUnit(workUnit);
@@ -68,7 +64,7 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHelper.GetAlgoFloatMultiplierByName(name);
+					return DataHelper.MySqlHelper.GetAlgoFloatMultiplierByName(name);
 					break;
 				case 1:
 					return DataHelper.sqliteHelper.GetAlgoFloatMultiplierByName(name);
@@ -81,7 +77,7 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					DataHelper.MySQLHelper.UpdateGraphicsCardFirendlyName(card);
+					DataHelper.MySqlHelper.UpdateGraphicsCardFirendlyName(card);
 					break;
 				case 1:
 					DataHelper.sqliteHelper.UpdateGraphicsCardFirendlyName(card);
@@ -93,7 +89,7 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHelper.SaveExceptionLogAndReturnID(ExceptionDetails, ExceptionMethod);
+					return DataHelper.MySqlHelper.SaveExceptionLogAndReturnID(ExceptionDetails, ExceptionMethod);
 					break;
 				case 1:
 					break;
@@ -106,7 +102,7 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHelper.RunLiveStatsReport(walletAddress, Time);
+					return DataHelper.MySqlHelper.RunLiveStatsReport(walletAddress, Time);
 					break;
 				case 1:
 					break;
@@ -118,7 +114,7 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHelper.RunLiveCardStatsReport(walletAddress, Time, UseFriendlyName);
+					return DataHelper.MySqlHelper.RunLiveCardStatsReport(walletAddress, Time, UseFriendlyName);
 					break;
 				case 1:
 					break;
@@ -130,7 +126,7 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHelper.GetRigCurrencyPowerCost(RigID);
+					return DataHelper.MySqlHelper.GetRigCurrencyPowerCost(RigID);
 					break;
 				case 1:
 					break;
@@ -142,19 +138,19 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHelper.GetCurrencies();
+					return DataHelper.MySqlHelper.GetCurrencies();
 					break;
 				case 1:
 					break;
 			}
-			return null;
+			return new List<Objects.Currency>();
 		}
 		public static void UpdateRigCurrencyPowerCost(long RigID, int CurrencyID, int BasePower, double PowerCost)
 		{
 			switch (DataSaveMethod)
 			{
 				case 0:
-					DataHelper.MySQLHelper.UpdateRigCurrencyPowerCost(RigID, CurrencyID, BasePower, PowerCost);
+					DataHelper.MySqlHelper.UpdateRigCurrencyPowerCost(RigID, CurrencyID, BasePower, PowerCost);
 					break;
 				case 1:
 					break;
@@ -165,7 +161,7 @@ namespace Monitor.DataHelper
 			switch (DataSaveMethod)
 			{
 				case 0:
-					DataHelper.MySQLHelper.SetMiningRigInactive(SetMiningRigInactive);
+					DataHelper.MySqlHelper.SetMiningRigInactive(SetMiningRigInactive);
 					break;
 				case 1:
 					break;

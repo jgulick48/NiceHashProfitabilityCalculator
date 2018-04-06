@@ -10,16 +10,12 @@ using System.IO;
 
 namespace Viewer.DataHelper
 {
-	public static class SQLITEHandler
+	public static class SqliteHandler
 	{
 		static string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NHWM", "data", "database.sqlite");
-		static bool initialized = false;
 		public static void Intialize()
 		{
-			string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NHWM", "data");
-			if (!File.Exists(path))
-			{
-			}
+			
 		}
 		public static DataTable GetDataTableFromSQL(string sql)
 		{

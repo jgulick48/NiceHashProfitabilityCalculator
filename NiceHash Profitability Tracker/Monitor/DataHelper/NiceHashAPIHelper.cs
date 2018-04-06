@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Monitor.DataHelper
 {
-	public class NiceHashAPIHelper
+	public static class NiceHashApiHelper
 	{
 		public static dynamic GetNiceHashData(string uri)
 		{

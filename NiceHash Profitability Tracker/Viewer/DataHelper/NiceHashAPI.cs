@@ -10,7 +10,7 @@ using System.Globalization;
 
 namespace Viewer.DataHelper
 {
-	public static class NiceHashAPI
+	public static class NiceHashApi
 	{
 		public static float GetBalance(string WalletAddress)
 		{
@@ -47,9 +47,6 @@ namespace Viewer.DataHelper
 				if (float.TryParse(stat.balance.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out balance))
 				{
 					total += balance;
-				}
-				else
-				{
 				}
 			}
 			return total;

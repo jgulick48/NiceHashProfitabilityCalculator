@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Monitor.DataHelper
 {
-    public class UpdateChecker
+    public static class UpdateChecker
     {
         static dynamic CurrentRelease;
         private static string newReleaseURL;

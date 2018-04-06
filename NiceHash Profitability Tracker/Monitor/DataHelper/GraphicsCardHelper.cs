@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Monitor.DataHelper
 {
-	class GraphicsCardHelper
+	public static class GraphicsCardHelper
 	{
 		public static string GetDetailsForAllGraphicsCards(Objects.MiningRig[] rigs)
 		{
@@ -17,7 +17,7 @@ namespace Monitor.DataHelper
 				List<Objects.GraphicsCard> cards = GetGraphicsCardDataForRig(rig);
 				foreach(Objects.GraphicsCard card in cards)
 				{
-					results += GetGraphicsCardDetailsString(rig, card) + Environment.NewLine;
+					results = string.Format("{0}{1}{2}", results, GetGraphicsCardDetailsString(rig, card), Environment.NewLine);
 				}
 			}
 			return results;

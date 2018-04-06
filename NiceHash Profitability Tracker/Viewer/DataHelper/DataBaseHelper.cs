@@ -10,17 +10,13 @@ namespace Viewer.DataHelper
 	public static class DataBaseHandler
 	{
 		private static int dataBaseMethod = 0;
-		public static int DataBaseMethod
-		{
-			get { return dataBaseMethod; }
-			set { dataBaseMethod = value; }
-		}
+		public static int DataBaseMethod {get; set; }
 		public static DataTable GetDataTableFromSQL(string sql)
 		{
 			switch(DataBaseMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHandler.GetDataTableFromSQL(sql);
+					return DataHelper.MySqlHandler.GetDataTableFromSQL(sql);
 					break;
 				case 1:
 					return DataHelper.SQLITEHandler.GetDataTableFromSQL(sql);
@@ -33,7 +29,7 @@ namespace Viewer.DataHelper
 			switch (DataBaseMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHandler.SaveExceptionLogAndReturnID(ExceptionDetails, ExceptionMethod);
+					return DataHelper.MySqlHandler.SaveExceptionLogAndReturnID(ExceptionDetails, ExceptionMethod);
 					break;
 				case 1:
 					break;
@@ -45,7 +41,7 @@ namespace Viewer.DataHelper
 			switch (DataBaseMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHandler.GetAvaialbleReports(ReportType);
+					return DataHelper.MySqlHandler.GetAvaialbleReports(ReportType);
 					break;
 				case 1:
 					return null;
@@ -58,7 +54,7 @@ namespace Viewer.DataHelper
 			switch (DataBaseMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHandler.RunExportReport(SprocName, WalletAddress, Start, End, resolution);
+					return DataHelper.MySqlHandler.RunExportReport(SprocName, WalletAddress, Start, End, resolution);
 					break;
 				case 1:
 					break;

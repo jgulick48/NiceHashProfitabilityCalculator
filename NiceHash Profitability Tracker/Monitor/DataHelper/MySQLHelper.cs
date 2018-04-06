@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Monitor.DataHelper
 {
-	public class MySQLHelper
+	public static class MySqlHelper
 	{
 		static string connectionstring = System.Configuration.ConfigurationManager.ConnectionStrings["NiceHashStats"].ToString();
 		public static void CreateOrGetRig(Objects.MiningRig rig)
@@ -86,33 +86,26 @@ namespace Monitor.DataHelper
 		}
 		public static void InsertGraphicsWorkUnit(Objects.WorkUnit workUnit)
 		{
-			try
-			{
-				MySqlConnection m_cn = new MySqlConnection(connectionstring);
-				MySqlCommand cmd = new MySqlCommand("insertWorkUnitStat", m_cn);
-				cmd.CommandType = CommandType.StoredProcedure;
-				cmd.Parameters.AddWithValue("?G_UUID", workUnit.card.GUID);
-				cmd.Parameters["?G_UUID"].Direction = ParameterDirection.Input;
-				cmd.Parameters.AddWithValue("?A_ID", workUnit.algo.GetNiceHashID());
-				cmd.Parameters["?A_ID"].Direction = ParameterDirection.Input;
-				cmd.Parameters.AddWithValue("?T_RECORDED", workUnit.TimeRecorded);
-				cmd.Parameters["?T_RECORDED"].Direction = ParameterDirection.Input;
-				cmd.Parameters.AddWithValue("?H_SPEED", workUnit.speed);
-				cmd.Parameters["?H_SPEED"].Direction = ParameterDirection.Input;
-				cmd.Parameters.AddWithValue("?T_ELAPSED", workUnit.Time);
-				cmd.Parameters["?T_ELAPSED"].Direction = ParameterDirection.Input;
-				cmd.Parameters.AddWithValue("?E_PERCENT", workUnit.efficiency);
-				cmd.Parameters["?E_PERCENT"].Direction = ParameterDirection.Input;
-				cmd.Parameters.AddWithValue("?C_EARNINGS", workUnit.caclulatedEarnings);
-				cmd.Parameters["?C_EARNINGS"].Direction = ParameterDirection.Input;
-				m_cn.Open();
-				cmd.ExecuteNonQuery();
-				m_cn.Close();
-			}
-			catch(Exception ex)
-			{
-
-			}
+			MySqlConnection m_cn = new MySqlConnection(connectionstring);
+			MySqlCommand cmd = new MySqlCommand("insertWorkUnitStat", m_cn);
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.AddWithValue("?G_UUID", workUnit.card.GUID);
+			cmd.Parameters["?G_UUID"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?A_ID", workUnit.algo.GetNiceHashID());
+			cmd.Parameters["?A_ID"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?T_RECORDED", workUnit.TimeRecorded);
+			cmd.Parameters["?T_RECORDED"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?H_SPEED", workUnit.speed);
+			cmd.Parameters["?H_SPEED"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?T_ELAPSED", workUnit.Time);
+			cmd.Parameters["?T_ELAPSED"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?E_PERCENT", workUnit.efficiency);
+			cmd.Parameters["?E_PERCENT"].Direction = ParameterDirection.Input;
+			cmd.Parameters.AddWithValue("?C_EARNINGS", workUnit.caclulatedEarnings);
+			cmd.Parameters["?C_EARNINGS"].Direction = ParameterDirection.Input;
+			m_cn.Open();
+			cmd.ExecuteNonQuery();
+			m_cn.Close();
 		}
 		public static int SaveExceptionLogAndReturnID(string ExceptionDetails, string ExceptionMethod)
 		{
