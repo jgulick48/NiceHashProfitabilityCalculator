@@ -12,10 +12,10 @@ using Newtonsoft.Json.Linq;
 
 namespace Monitor.DataHelper
 {
-	class ExcavatorSocket
+	public static class ExcavatorSocket
 	{
 		private static TcpClient _tcpclient;
-		protected static List<string> lst_storeddata = new List<string>();
+		public static List<string> lst_storeddata = new List<string>();
 		public static dynamic Client(Objects.MiningRig rig, int id, string method, string[] param)
 		{
 			try

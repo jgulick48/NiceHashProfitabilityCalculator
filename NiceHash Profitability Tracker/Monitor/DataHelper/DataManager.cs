@@ -9,7 +9,6 @@ namespace Monitor.DataHelper
 {
 	public static class DataManager
 	{
-		public static int dataSaveMethod = 0;
 		public static int DataSaveMethod {get; set; }
 		public static void CreateOrGetRig(Objects.MiningRig rig)
 		{
@@ -29,7 +28,6 @@ namespace Monitor.DataHelper
 			{
 				case 0:
 					return DataHelper.MySqlHelper.CreateOrUpdateGraphicsCard(cardInfo);
-					break;
 				case 1:
 					return DataHelper.SqliteHelper.CreateOrUpdateGraphicsCard(cardInfo);
 			}
@@ -65,10 +63,8 @@ namespace Monitor.DataHelper
 			{
 				case 0:
 					return DataHelper.MySqlHelper.GetAlgoFloatMultiplierByName(name);
-					break;
 				case 1:
 					return DataHelper.SqliteHelper.GetAlgoFloatMultiplierByName(name);
-					break;
 			}
 			return 0;
 		}
@@ -90,7 +86,6 @@ namespace Monitor.DataHelper
 			{
 				case 0:
 					return DataHelper.MySqlHelper.SaveExceptionLogAndReturnID(ExceptionDetails, ExceptionMethod);
-					break;
 				case 1:
 					break;
 			}
@@ -103,7 +98,6 @@ namespace Monitor.DataHelper
 			{
 				case 0:
 					return DataHelper.MySqlHelper.RunLiveStatsReport(walletAddress, Time);
-					break;
 				case 1:
 					break;
 			}
@@ -115,7 +109,6 @@ namespace Monitor.DataHelper
 			{
 				case 0:
 					return DataHelper.MySqlHelper.RunLiveCardStatsReport(walletAddress, Time, UseFriendlyName);
-					break;
 				case 1:
 					break;
 			}
@@ -127,7 +120,6 @@ namespace Monitor.DataHelper
 			{
 				case 0:
 					return DataHelper.MySqlHelper.GetRigCurrencyPowerCost(RigID);
-					break;
 				case 1:
 					break;
 			}
@@ -139,7 +131,6 @@ namespace Monitor.DataHelper
 			{
 				case 0:
 					return DataHelper.MySqlHelper.GetCurrencies();
-					break;
 				case 1:
 					break;
 			}

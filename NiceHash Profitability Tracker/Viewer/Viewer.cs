@@ -778,16 +778,12 @@ namespace Viewer
 			{
 				case 0:
 					return (60 * 60 * 24 * 30);
-					break;
 				case 1:
 					return (60 * 60 * 24 * 7);
-					break;
 				case 2:
 					return (60 * 60 * 24);
-					break;
 				case 3:
 					return (60 * 60);
-					break;
 			}
 			return 60 * 60 * 24;
 		}

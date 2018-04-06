@@ -11,7 +11,6 @@ namespace Monitor.DataHelper
     public static class UpdateChecker
     {
         static dynamic CurrentRelease;
-        private static string newReleaseURL;
 		public static string NewReleaseURL {get; set; }
 		private static string ReleaseFilePath = Path.Combine(Environment.CurrentDirectory, "CurrentRelease.json");
         public static bool CheckForUpdatedRelease()
@@ -24,7 +23,6 @@ namespace Monitor.DataHelper
             {
                 return false;
             }
-            return false;
         }
         private static bool LoadCurrentRelease()
         {
