@@ -10,7 +10,7 @@ namespace Viewer.DataHelper
 {
     public static class UpdateChecker
     {
-        public static dynamic CurrentRelease;
+        public static dynamic CurrentRelease { get; set; }
 		public static string NewReleaseURL {get; set; }
 		private static string ReleaseFilePath = Path.Combine(Environment.CurrentDirectory, "CurrentRelease.json");
         public static bool CheckForUpdatedRelease()

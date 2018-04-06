@@ -15,7 +15,6 @@ namespace Monitor.DataHelper
 	public static class ExcavatorSocket
 	{
 		private static TcpClient _tcpclient;
-		public static List<string> lst_storeddata = new List<string>();
 		public static dynamic Client(Objects.MiningRig rig, int id, string method, string[] param)
 		{
 			try

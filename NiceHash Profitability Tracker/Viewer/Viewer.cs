@@ -190,7 +190,7 @@ namespace Viewer
 		}
         private int GetResolution(double SecondsContained)
         {
-            int resolution = (60 * 60);
+            int resolution;
             if (SecondsContained > (60 * 60 * 24 * 5))
             {
                 resolution = (60 * 60 * 12);

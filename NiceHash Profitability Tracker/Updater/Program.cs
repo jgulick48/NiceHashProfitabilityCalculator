@@ -9,34 +9,17 @@ using System.IO;
 
 namespace Updater
 {
-    class Program
+    public static class Program
     {
         private static dynamic ReleaseInfo;
-        private static string updaterFolder;
         static void Main(string[] args)
         {
             Console.WriteLine("Waiting 5 seconds then checking for running processes before update.");
 			Thread.Sleep(5);
-            //CheckForRunningApps();
             DeleteFilesInCurrentDirectory();
             SaveInformationOnLatestRelease();
             DownloadAppDownloader();
             StartUpdateDownloader();
-        }
-        private static void CheckForRunningApps()
-        {
-            if(CheckIfAppRunningByName("Viewer"))
-            {
-                Console.WriteLine("Error: Unable to update app due to NiceHashStatsViewer still running.");
-                Console.ReadLine();
-                Environment.Exit(1);
-            }
-            else if (CheckIfAppRunningByName("Monitor"))
-            {
-                Console.WriteLine("Error: Unable to update app due to NiceHashWorkerMonitor still running.");
-                Console.ReadLine();
-                Environment.Exit(1);
-            }
         }
         private static bool CheckIfAppRunningByName(string name)
         {
@@ -52,7 +35,7 @@ namespace Updater
         }
         public static void SaveInformationOnLatestRelease()
         {
-            updaterFolder = Path.Combine(Directory.GetCurrentDirectory(), "Downloader");
+			string updaterFolder = Path.Combine(Directory.GetCurrentDirectory(), "Downloader");
             if (!Directory.Exists(updaterFolder))
             {
                 Directory.CreateDirectory(updaterFolder);
@@ -103,7 +86,7 @@ namespace Updater
             }
             else
             {
-                updaterFolder = "Downloader";
+				string updaterFolder = "Downloader";
                 Directory.CreateDirectory(updaterFolder);
 				if (downloadedAsset != null)
 				{

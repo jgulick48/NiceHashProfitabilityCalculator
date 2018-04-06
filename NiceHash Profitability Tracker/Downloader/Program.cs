@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace Downloader
 {
-    class Program
+    public static class Program
     {
         private static dynamic ReleaseInfo;
         private static string InstallFolder;
