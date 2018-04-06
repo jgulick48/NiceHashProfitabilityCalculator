@@ -208,11 +208,11 @@ namespace Monitor
 					float totalEarnings = 0;
 					foreach (Objects.WorkUnit WU in cardSelected.LastWorkUnits)
 					{
-						AlgoName += WU.algo.Name + "\t";
+						AlgoName = string.Format("{0}{1}{2}", AlgoName, WU.algo.Name , "\t");
 						totalTime += WU.Time;
 						totalEarnings += (WU.caclulatedEarnings * WU.efficiency) * ((float)WU.Time / (60 * 60 * 24));
 					}
-					float EarningsRate = (totalEarnings / (float)totalTime) * (60 * 60 * 24) * cardSelected.LastWorkUnits.Count();
+					float EarningsRate = (totalEarnings / (float)totalTime) * (60 * 60 * 24) * cardSelected.LastWorkUnits.Count;
 					tbGCEarnings.Text = EarningsRate.ToString();
 					tbAlogName.Text = AlgoName;
 				}

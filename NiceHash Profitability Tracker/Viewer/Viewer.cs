@@ -626,14 +626,14 @@ namespace Viewer
 			string output = "";
 			foreach(DataColumn col in Data.Columns)
 			{
-				output += SanatizeCSVData(col.ColumnName) + ",";
+				output += string.Format("{0}{1}{2}", output, SanatizeCSVData(col.ColumnName), ",");
 			}
 			foreach(DataRow row in Data.Rows)
 			{
-				output += Environment.NewLine;
+				output = string.Format("{0}{1}",output,Environment.NewLine);
 				for(int i = 0; i < Data.Columns.Count;i++)
 				{
-					output += SanatizeCSVData(row[i].ToString()) + ",";
+					output += string.Format("{0}{1}{2}", output, SanatizeCSVData(row[i].ToString()),",");
 				}
 			}
 			return output;

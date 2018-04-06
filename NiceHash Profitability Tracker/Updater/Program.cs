@@ -21,18 +21,6 @@ namespace Updater
             DownloadAppDownloader();
             StartUpdateDownloader();
         }
-        private static bool CheckIfAppRunningByName(string name)
-        {
-            Process[] pname = Process.GetProcessesByName(name);
-            if (pname.Length == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
         public static void SaveInformationOnLatestRelease()
         {
 			string updaterFolder = Path.Combine(Directory.GetCurrentDirectory(), "Downloader");
