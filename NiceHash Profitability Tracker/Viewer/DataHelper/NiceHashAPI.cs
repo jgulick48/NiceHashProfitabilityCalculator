@@ -17,6 +17,7 @@ namespace Viewer.DataHelper
 			var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.nicehash.com/api?method=stats.provider&addr=" + WalletAddress);
 			httpWebRequest.ContentType = "application/json";
 			httpWebRequest.Method = "GET";
+			httpWebRequest.Timeout = 10 * 1000;
 			try
 			{
 				var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();

@@ -89,7 +89,10 @@ namespace Downloader
             }
             else
             {
-                Updater.DataHelper.DownloadHelper.ExtractZipFromFile(downloadedAsset.name.ToString(), InstallFolder);
+				if (downloadedAsset != null)
+				{
+					Updater.DataHelper.DownloadHelper.ExtractZipFromFile(downloadedAsset.name.ToString(), InstallFolder);
+				}
             }
         }
         private static void SaveInstalledReleaseInformation()

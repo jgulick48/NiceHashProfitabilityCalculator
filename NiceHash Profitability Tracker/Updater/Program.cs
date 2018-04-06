@@ -105,7 +105,10 @@ namespace Updater
             {
                 updaterFolder = "Downloader";
                 Directory.CreateDirectory(updaterFolder);
-                DataHelper.DownloadHelper.ExtractZipFromFile(downloadedAsset.name.ToString(), updaterFolder);
+				if (downloadedAsset != null)
+				{
+					DataHelper.DownloadHelper.ExtractZipFromFile(downloadedAsset.name.ToString(), updaterFolder);
+				}
             }
         }
         private static void StartUpdateDownloader()

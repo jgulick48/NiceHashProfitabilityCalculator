@@ -18,7 +18,7 @@ namespace Monitor.DataHelper
 
 		private static StreamReader _sReader;
 		private static StreamWriter _sWriter;
-		public static List<string> lst_storeddata = new List<string>();
+		protected static List<string> lst_storeddata = new List<string>();
 
 		private Boolean _isConnected;
 		public static dynamic Client(Objects.MiningRig rig, int id, string method, string[] param)
