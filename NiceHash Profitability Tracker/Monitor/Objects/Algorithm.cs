@@ -8,8 +8,8 @@ namespace Monitor.Objects
 {
 	public class Algorithm
 	{
-		public int ID;
-		public string Name;
+		public int ID { get; set; }
+		public string Name { get; set; }
 		public float GetHashMultiplier()
 		{
 			return (float)Math.Pow(10,DataHelper.DataManager.GetAlgoFloatMultiplierByName(Name));

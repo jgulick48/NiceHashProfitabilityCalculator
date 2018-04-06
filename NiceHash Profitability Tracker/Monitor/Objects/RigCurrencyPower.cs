@@ -8,10 +8,10 @@ namespace Monitor.Objects
 {
 	public class RigCurrencyPower
 	{
-		public int CurrencyID;
-		public int BasePowerUsage;
-		public double ElectricCost;
-		public string CurrencyShortName;
-		public string CurrencySymbol;
+		public int CurrencyID { get; set; }
+		public int BasePowerUsage { get; set; }
+		public double ElectricCost { get; set; }
+		public string CurrencyShortName { get; set; }
+		public string CurrencySymbol { get; set; }
 	}
 }

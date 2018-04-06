@@ -8,15 +8,15 @@ namespace Viewer.Reports
 {
     public class ReportParameters
     {
-        public string stat;
-        public string WalletAddress;
-        public DateTime start;
-        public DateTime end;
-        public int resolution;
-        public bool sum;
-        public LiveCharts.WinForms.CartesianChart chart;
-        public string YKey;
-        public string LegendColumn;
-        public string numberFormat;
-    }
+        public string stat { get; set; }
+		public string WalletAddress { get; set; }
+		public DateTime start { get; set; }
+		public DateTime end { get; set; }
+		public int resolution { get; set; }
+		public bool sum { get; set; }
+		public LiveCharts.WinForms.CartesianChart chart { get; set; }
+		public string YKey { get; set; }
+		public string LegendColumn { get; set; }
+		public string numberFormat { get; set; }
+	}
 }

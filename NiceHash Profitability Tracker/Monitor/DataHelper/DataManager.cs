@@ -9,7 +9,12 @@ namespace Monitor.DataHelper
 {
 	public static class DataManager
 	{
-		public static int DataSaveMethod = 0;
+		public static int dataSaveMethod = 0;
+		public static int DataSaveMethod
+		{
+			get { return dataSaveMethod; }
+			set { dataSaveMethod = value; }
+		}
 		public static void CreateOrGetRig(Objects.MiningRig rig)
 		{
 			switch(DataSaveMethod)

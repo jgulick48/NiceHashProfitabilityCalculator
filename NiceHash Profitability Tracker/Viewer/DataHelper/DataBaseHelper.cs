@@ -9,7 +9,12 @@ namespace Viewer.DataHelper
 {
 	public static class DataBaseHandler
 	{
-		public static int DataBaseMethod = 0;
+		private static int dataBaseMethod = 0;
+		public static int DataBaseMethod
+		{
+			get { return dataBaseMethod; }
+			set { dataBaseMethod = value; }
+		}
 		public static DataTable GetDataTableFromSQL(string sql)
 		{
 			switch(DataBaseMethod)

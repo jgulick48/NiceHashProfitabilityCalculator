@@ -8,10 +8,10 @@ namespace Viewer.Reports
 {
 	public class Export
 	{
-		public int ReportID;
-		public string SprocName;
-		public string DisplayName;
-		public int ReportType;
-		public string ToolTip;
+		public int ReportID { get; set; }
+		public string SprocName { get; set; }
+		public string DisplayName { get; set; }
+		public int ReportType { get; set; }
+		public string ToolTip { get; set; }
 	}
 }
