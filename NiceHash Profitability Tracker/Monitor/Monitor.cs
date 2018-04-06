@@ -16,7 +16,6 @@ namespace Monitor
 	{
 		private Objects.MiningRig rig;
 		private Objects.RigCurrencyPower RCP;
-		private double TimeSinceLastScan;
 		private bool Loading;
 		private Dictionary<int, int> CardIDDropdown;
 		private Queue<Objects.WorkUnit> pendingWU = new Queue<Objects.WorkUnit>();
@@ -140,7 +139,7 @@ namespace Monitor
 				timeElapsed = (newCheckTime - rig.LastCheckTime);
 			}
 			rig.LastCheckTime = newCheckTime;
-			List<Objects.WorkUnit> workUnits = DataHelper.GraphicsCardHelper.GetWorkUnitsForRig(rig, DataHelper.NiceHashAPIHelper.GetNiceHashData("https://api.nicehash.com/api?method=simplemultialgo.info"), timeElapsed);
+			List<Objects.WorkUnit> workUnits = DataHelper.GraphicsCardHelper.GetWorkUnitsForRig(rig, DataHelper.NiceHashApiHelper.GetNiceHashData("https://api.nicehash.com/api?method=simplemultialgo.info"), timeElapsed);
 			foreach(Objects.WorkUnit workUnit in workUnits)
 			{
 				pendingWU.Enqueue(workUnit);

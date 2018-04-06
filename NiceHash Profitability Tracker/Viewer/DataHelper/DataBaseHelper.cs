@@ -19,7 +19,7 @@ namespace Viewer.DataHelper
 					return DataHelper.MySqlHandler.GetDataTableFromSQL(sql);
 					break;
 				case 1:
-					return DataHelper.SQLITEHandler.GetDataTableFromSQL(sql);
+					return DataHelper.SqliteHandler.GetDataTableFromSQL(sql);
 					break;
 			}
 			return new DataTable();

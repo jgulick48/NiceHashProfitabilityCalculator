@@ -19,7 +19,7 @@ namespace Monitor.DataHelper
 					DataHelper.MySqlHelper.CreateOrGetRig(rig);
 					break;
 				case 1:
-					DataHelper.sqliteHelper.CreateOrGetRig(rig);
+					DataHelper.SqliteHelper.CreateOrGetRig(rig);
 					break;
 			}
 		}
@@ -31,7 +31,7 @@ namespace Monitor.DataHelper
 					return DataHelper.MySqlHelper.CreateOrUpdateGraphicsCard(cardInfo);
 					break;
 				case 1:
-					return DataHelper.sqliteHelper.CreateOrUpdateGraphicsCard(cardInfo);
+					return DataHelper.SqliteHelper.CreateOrUpdateGraphicsCard(cardInfo);
 			}
 			return "";
 		}
@@ -43,7 +43,7 @@ namespace Monitor.DataHelper
 					DataHelper.MySqlHelper.InsertGraphicsCardMetric(metric);
 					break;
 				case 1:
-					DataHelper.sqliteHelper.InsertGraphicsCardMetric(metric);
+					DataHelper.SqliteHelper.InsertGraphicsCardMetric(metric);
 					break;
 			}
 		}
@@ -55,7 +55,7 @@ namespace Monitor.DataHelper
 					DataHelper.MySqlHelper.InsertGraphicsWorkUnit(workUnit);
 					break;
 				case 1:
-					DataHelper.sqliteHelper.InsertGraphicsWorkUnit(workUnit);
+					DataHelper.SqliteHelper.InsertGraphicsWorkUnit(workUnit);
 					break;
 			}
 		}
@@ -67,7 +67,7 @@ namespace Monitor.DataHelper
 					return DataHelper.MySqlHelper.GetAlgoFloatMultiplierByName(name);
 					break;
 				case 1:
-					return DataHelper.sqliteHelper.GetAlgoFloatMultiplierByName(name);
+					return DataHelper.SqliteHelper.GetAlgoFloatMultiplierByName(name);
 					break;
 			}
 			return 0;
@@ -80,7 +80,7 @@ namespace Monitor.DataHelper
 					DataHelper.MySqlHelper.UpdateGraphicsCardFirendlyName(card);
 					break;
 				case 1:
-					DataHelper.sqliteHelper.UpdateGraphicsCardFirendlyName(card);
+					DataHelper.SqliteHelper.UpdateGraphicsCardFirendlyName(card);
 					break;
 			}
 		}

@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Monitor.DataHelper
 {
-	public static class sqliteHelper
+	public static class SqliteHelper
 	{
 		static string connectionstring = System.Configuration.ConfigurationManager.ConnectionStrings["MySQLHome"].ToString();
 		static string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NHWM", "data", "database.sqlite");

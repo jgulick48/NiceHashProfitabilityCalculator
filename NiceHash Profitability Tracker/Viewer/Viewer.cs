@@ -530,7 +530,7 @@ namespace Viewer
 		}
 		private void UpdateRigLiveStatsDashboard()
 		{
-			lblRigPendingWalletBalance.Text = DataHelper.NiceHashAPI.GetBalance(tbLiveRigWalletAddr.Text).ToString();
+			lblRigPendingWalletBalance.Text = DataHelper.NiceHashApi.GetBalance(tbLiveRigWalletAddr.Text).ToString();
 			dgvLiveRigStats.DataSource = null;
 			DataTable DTable = Reports.RigReports.GetRigLiveStats(tbLiveRigWalletAddr.Text);
 			BindingSource SBind = new BindingSource();
@@ -554,7 +554,7 @@ namespace Viewer
 		}
 		private void UpdateCardLiveStatsDashboard()
 		{
-			lblCardLiveSite.Text = DataHelper.NiceHashAPI.GetBalance(tbCardLiveWalletAddress.Text).ToString();
+			lblCardLiveSite.Text = DataHelper.NiceHashApi.GetBalance(tbCardLiveWalletAddress.Text).ToString();
 			dgvLiveCardStats.DataSource = null;
 			DataTable DTable = Reports.RigReports.GetCardLiveStats(tbCardLiveWalletAddress.Text, cbCardLiveStatFriendlyName.Checked);
 			BindingSource SBind = new BindingSource();
