@@ -190,7 +190,7 @@ namespace Viewer
 		}
         private int GetResolution(double SecondsContained)
         {
-            int resolution = (60 * 60);
+            int resolution;
             if (SecondsContained > (60 * 60 * 24 * 5))
             {
                 resolution = (60 * 60 * 12);
@@ -530,7 +530,7 @@ namespace Viewer
 		}
 		private void UpdateRigLiveStatsDashboard()
 		{
-			lblRigPendingWalletBalance.Text = DataHelper.NiceHashAPI.GetBalance(tbLiveRigWalletAddr.Text).ToString();
+			lblRigPendingWalletBalance.Text = DataHelper.NiceHashApi.GetBalance(tbLiveRigWalletAddr.Text).ToString();
 			dgvLiveRigStats.DataSource = null;
 			DataTable DTable = Reports.RigReports.GetRigLiveStats(tbLiveRigWalletAddr.Text);
 			BindingSource SBind = new BindingSource();
@@ -554,7 +554,7 @@ namespace Viewer
 		}
 		private void UpdateCardLiveStatsDashboard()
 		{
-			lblCardLiveSite.Text = DataHelper.NiceHashAPI.GetBalance(tbCardLiveWalletAddress.Text).ToString();
+			lblCardLiveSite.Text = DataHelper.NiceHashApi.GetBalance(tbCardLiveWalletAddress.Text).ToString();
 			dgvLiveCardStats.DataSource = null;
 			DataTable DTable = Reports.RigReports.GetCardLiveStats(tbCardLiveWalletAddress.Text, cbCardLiveStatFriendlyName.Checked);
 			BindingSource SBind = new BindingSource();
@@ -626,14 +626,14 @@ namespace Viewer
 			string output = "";
 			foreach(DataColumn col in Data.Columns)
 			{
-				output += SanatizeCSVData(col.ColumnName) + ",";
+				output += string.Format("{0}{1}{2}", output, SanatizeCSVData(col.ColumnName), ",");
 			}
 			foreach(DataRow row in Data.Rows)
 			{
-				output += Environment.NewLine;
+				output = string.Format("{0}{1}",output,Environment.NewLine);
 				for(int i = 0; i < Data.Columns.Count;i++)
 				{
-					output += SanatizeCSVData(row[i].ToString()) + ",";
+					output += string.Format("{0}{1}{2}", output, SanatizeCSVData(row[i].ToString()),",");
 				}
 			}
 			return output;
@@ -778,16 +778,12 @@ namespace Viewer
 			{
 				case 0:
 					return (60 * 60 * 24 * 30);
-					break;
 				case 1:
 					return (60 * 60 * 24 * 7);
-					break;
 				case 2:
 					return (60 * 60 * 24);
-					break;
 				case 3:
 					return (60 * 60);
-					break;
 			}
 			return 60 * 60 * 24;
 		}

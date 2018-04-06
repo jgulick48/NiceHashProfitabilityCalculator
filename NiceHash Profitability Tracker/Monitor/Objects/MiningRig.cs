@@ -8,15 +8,15 @@ namespace Monitor.Objects
 {
 	public class MiningRig
 	{
-		public string WalletAddress;
-		public string WorkerName;
-		public long ID;
-		public string IPAddress;
-		public int Port;
-		public string Name;
-		public Dictionary<int,GraphicsCard> CardList;
-		public double LastCheckTime;
-		public int CurrencyID;
+		public string WalletAddress { get; set; }
+		public string WorkerName { get; set; }
+		public long ID { get; set; }
+		public string IPAddress { get; set; }
+		public int Port { get; set; }
+		public string Name { get; set; }
+		public Dictionary<int,GraphicsCard> CardList { get; set; }
+		public double LastCheckTime { get; set; }
+		public int CurrencyID { get; set; }
 		public void ClearWorkMetrics()
 		{
 			foreach(GraphicsCard card in CardList.Values)

@@ -8,12 +8,12 @@ namespace Monitor.Objects
 {
 	public class GraphicsCard
 	{
-		public int ID;
-		public long RigID;
-		public string GUID;
-		public string DeviceName;
-		public string FriendlyName;
-		public Objects.GraphicsCardMetrics LastGPUMetric;
-		public List<Objects.WorkUnit> LastWorkUnits;
+		public int ID { get; set; }
+		public long RigID { get; set; }
+		public string GUID { get; set; }
+		public string DeviceName { get; set; }
+		public string FriendlyName { get; set; }
+		public Objects.GraphicsCardMetrics LastGPUMetric { get; set; }
+		public List<Objects.WorkUnit> LastWorkUnits { get; set; }
 	}
 }

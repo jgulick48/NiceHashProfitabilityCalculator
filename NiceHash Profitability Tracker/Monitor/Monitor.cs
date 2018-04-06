@@ -16,7 +16,6 @@ namespace Monitor
 	{
 		private Objects.MiningRig rig;
 		private Objects.RigCurrencyPower RCP;
-		private double TimeSinceLastScan;
 		private bool Loading;
 		private Dictionary<int, int> CardIDDropdown;
 		private Queue<Objects.WorkUnit> pendingWU = new Queue<Objects.WorkUnit>();
@@ -140,7 +139,7 @@ namespace Monitor
 				timeElapsed = (newCheckTime - rig.LastCheckTime);
 			}
 			rig.LastCheckTime = newCheckTime;
-			List<Objects.WorkUnit> workUnits = DataHelper.GraphicsCardHelper.GetWorkUnitsForRig(rig, DataHelper.NiceHashAPIHelper.GetNiceHashData("https://api.nicehash.com/api?method=simplemultialgo.info"), timeElapsed);
+			List<Objects.WorkUnit> workUnits = DataHelper.GraphicsCardHelper.GetWorkUnitsForRig(rig, DataHelper.NiceHashApiHelper.GetNiceHashData("https://api.nicehash.com/api?method=simplemultialgo.info"), timeElapsed);
 			foreach(Objects.WorkUnit workUnit in workUnits)
 			{
 				pendingWU.Enqueue(workUnit);
@@ -209,11 +208,11 @@ namespace Monitor
 					float totalEarnings = 0;
 					foreach (Objects.WorkUnit WU in cardSelected.LastWorkUnits)
 					{
-						AlgoName += WU.algo.Name + "\t";
+						AlgoName = string.Format("{0}{1}{2}", AlgoName, WU.algo.Name , "\t");
 						totalTime += WU.Time;
 						totalEarnings += (WU.caclulatedEarnings * WU.efficiency) * ((float)WU.Time / (60 * 60 * 24));
 					}
-					float EarningsRate = (totalEarnings / (float)totalTime) * (60 * 60 * 24) * cardSelected.LastWorkUnits.Count();
+					float EarningsRate = (totalEarnings / (float)totalTime) * (60 * 60 * 24) * cardSelected.LastWorkUnits.Count;
 					tbGCEarnings.Text = EarningsRate.ToString();
 					tbAlogName.Text = AlgoName;
 				}

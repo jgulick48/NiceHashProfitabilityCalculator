@@ -12,9 +12,9 @@ namespace Monitor.Forms
 {
 	public partial class RigPowerCurrencyEditor : Form
 	{
-		public long RigID;
-		public int CurrencyID;
-		public Objects.Currency SelectedCurrency;
+		public long RigID { get; set; }
+		public int CurrencyID { get; set; }
+		public Objects.Currency SelectedCurrency { get; set; }
 		private Dictionary<int, Objects.Currency> CurrencyLookup;
 		private Dictionary<int, int> CurrencyDropdown;
 		public RigPowerCurrencyEditor()

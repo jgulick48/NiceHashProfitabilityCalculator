@@ -8,11 +8,11 @@ using Newtonsoft.Json;
 
 namespace Monitor.DataHelper
 {
-    public class UpdateChecker
+    public static class UpdateChecker
     {
         static dynamic CurrentRelease;
-        public static string NewReleaseURL;
-        private static string ReleaseFilePath = Path.Combine(Environment.CurrentDirectory, "CurrentRelease.json");
+		public static string NewReleaseURL {get; set; }
+		private static string ReleaseFilePath = Path.Combine(Environment.CurrentDirectory, "CurrentRelease.json");
         public static bool CheckForUpdatedRelease()
         {
             if (LoadCurrentRelease())
@@ -23,7 +23,6 @@ namespace Monitor.DataHelper
             {
                 return false;
             }
-            return false;
         }
         private static bool LoadCurrentRelease()
         {

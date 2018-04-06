@@ -9,17 +9,15 @@ namespace Viewer.DataHelper
 {
 	public static class DataBaseHandler
 	{
-		public static int DataBaseMethod = 0;
+		public static int DataBaseMethod {get; set; }
 		public static DataTable GetDataTableFromSQL(string sql)
 		{
 			switch(DataBaseMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHandler.GetDataTableFromSQL(sql);
-					break;
+					return DataHelper.MySqlHandler.GetDataTableFromSQL(sql);
 				case 1:
-					return DataHelper.SQLITEHandler.GetDataTableFromSQL(sql);
-					break;
+					return DataHelper.SqliteHandler.GetDataTableFromSQL(sql);
 			}
 			return new DataTable();
 		}
@@ -28,8 +26,7 @@ namespace Viewer.DataHelper
 			switch (DataBaseMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHandler.SaveExceptionLogAndReturnID(ExceptionDetails, ExceptionMethod);
-					break;
+					return DataHelper.MySqlHandler.SaveExceptionLogAndReturnID(ExceptionDetails, ExceptionMethod);
 				case 1:
 					break;
 			}
@@ -40,11 +37,9 @@ namespace Viewer.DataHelper
 			switch (DataBaseMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHandler.GetAvaialbleReports(ReportType);
-					break;
+					return DataHelper.MySqlHandler.GetAvaialbleReports(ReportType);
 				case 1:
 					return null;
-					break;
 			}
 			return new DataTable();
 		}
@@ -53,8 +48,7 @@ namespace Viewer.DataHelper
 			switch (DataBaseMethod)
 			{
 				case 0:
-					return DataHelper.MySQLHandler.RunExportReport(SprocName, WalletAddress, Start, End, resolution);
-					break;
+					return DataHelper.MySqlHandler.RunExportReport(SprocName, WalletAddress, Start, End, resolution);
 				case 1:
 					break;
 			}

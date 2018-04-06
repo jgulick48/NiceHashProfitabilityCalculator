@@ -83,9 +83,9 @@
     <Compile Include="DataHelper\DateTimeHelper.cs" />
     <Compile Include="DataHelper\ExcavatorSocket.cs" />
     <Compile Include="DataHelper\GraphicsCardHelper.cs" />
-    <Compile Include="DataHelper\MySQLHelper.cs" />
-    <Compile Include="DataHelper\NiceHashAPIHelper.cs" />
-    <Compile Include="DataHelper\sqliteHelper.cs" />
+    <Compile Include="DataHelper\MySqlHelper.cs" />
+    <Compile Include="DataHelper\NiceHashApiHelper.cs" />
+    <Compile Include="DataHelper\SqliteHelper.cs" />
     <Compile Include="Forms\RigPowerCurrencyEditor.cs">
       <SubType>Form</SubType>
     </Compile>

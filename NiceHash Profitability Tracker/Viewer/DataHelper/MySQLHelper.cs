@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace Viewer.DataHelper
 {
-	public static class MySQLHandler
+	public static class MySqlHandler
 	{
 		public static DataTable GetDataTableFromSQL(string sql)
 		{

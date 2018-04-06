@@ -12,17 +12,11 @@ using Newtonsoft.Json.Linq;
 
 namespace Monitor.DataHelper
 {
-	class ExcavatorSocket
+	public static class ExcavatorSocket
 	{
 		private static TcpClient _tcpclient;
-
-		private static StreamReader _sReader;
-		private static StreamWriter _sWriter;
-		public static List<string> lst_storeddata = new List<string>();
-
-		private Boolean _isConnected;
 		public static dynamic Client(Objects.MiningRig rig, int id, string method, string[] param)
-		{;
+		{
 			try
 			{
 				_tcpclient = new TcpClient();
@@ -37,15 +31,14 @@ namespace Monitor.DataHelper
 
 		public static dynamic HandleCommunication(int id, string method, string[] param)
 		{
-			_sReader = new StreamReader(_tcpclient.GetStream(), Encoding.ASCII);
-			_sWriter = new StreamWriter(_tcpclient.GetStream(), Encoding.ASCII);
+			StreamReader _sReader = new StreamReader(_tcpclient.GetStream(), Encoding.ASCII);
+			StreamWriter _sWriter = new StreamWriter(_tcpclient.GetStream(), Encoding.ASCII);
 			JObject requestData = new JObject(
 				new JProperty("id", id),
 				new JProperty("method", method),
 				new JProperty("params",GetJArrayFromStringArray(param)));
 			
 			_sWriter.WriteLine(requestData.ToString(Formatting.None));
-			string temp = requestData.ToString(Formatting.None);
 			_sWriter.Flush();
 
 			// receive data

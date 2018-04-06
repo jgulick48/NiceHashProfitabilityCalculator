@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace Downloader
 {
-    class Program
+    public static class Program
     {
         private static dynamic ReleaseInfo;
         private static string InstallFolder;
@@ -89,7 +89,10 @@ namespace Downloader
             }
             else
             {
-                Updater.DataHelper.DownloadHelper.ExtractZipFromFile(downloadedAsset.name.ToString(), InstallFolder);
+				if (downloadedAsset != null)
+				{
+					Updater.DataHelper.DownloadHelper.ExtractZipFromFile(downloadedAsset.name.ToString(), InstallFolder);
+				}
             }
         }
         private static void SaveInstalledReleaseInformation()

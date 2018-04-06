@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Monitor.DataHelper
 {
-	public class DateTimeHelper
+	public static class DateTimeHelper
 	{
 		public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
 		{
